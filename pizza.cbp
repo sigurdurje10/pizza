@@ -33,8 +33,14 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/menu.h" />
+		<Unit filename="include/pizza_data.h" />
+		<Unit filename="include/pizza_size.h" />
+		<Unit filename="include/umsjon.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/menu.cpp" />
+		<Unit filename="src/pizza_data.cpp" />
+		<Unit filename="src/pizza_size.cpp" />
+		<Unit filename="src/umsjon.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
