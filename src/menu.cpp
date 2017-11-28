@@ -21,7 +21,7 @@ void menu::start_menu() {
         switch(action) {
             case 'u': {
                 char action_u;
-                //umsjon* u = new umsjon();
+                umsjon* u = new umsjon();
                 do {
                     cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t) eda haetta(h): ";
                     cin >> action_u;
@@ -35,7 +35,7 @@ void menu::start_menu() {
                                 cin >> size;
                                 cout << "Verd:  ";
                                 cin >> price;
-                                //u->new_size(size, price);
+                                u->new_size(size, price);
                                 cout << "Veldu Nyja staerd(n) eda haetta(h): ";
                                 cin >> action_u_s;
                             } while(action_u_s != 'h');

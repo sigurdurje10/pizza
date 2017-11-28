@@ -9,7 +9,8 @@ umsjon::umsjon() {
 
 void umsjon::new_size(int size, int price) {
     pizza_size* s = new pizza_size(size, price);
-    //data* d = new data(s, "sizes.txt");
+    pizza_data* d = new pizza_data();
+    d->save_size(s);
 }
 
 pizza_size* umsjon::get_sizes() {
