@@ -17,4 +17,5 @@ public:
     void set_price(int price);
     void set_pizza(int size, int price);
 };
+
 #endif // PIZZA_SIZE_H
