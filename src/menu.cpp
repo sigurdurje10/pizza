@@ -2,14 +2,12 @@
 //  menu.cpp
 //  pizza
 //
-//  Created by SigurÃ°ur JÃ¶kull on 27/11/2017.
-//  Copyright Â© 2017 SigurÃ°ur JÃ¶kull. All rights reserved.
+//  Created by Sigurður Jökull on 27/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
 #include "menu.h"
-#include <iostream>
-#include <string>
-using namespace std;
+
 
 menu::menu() {
 
