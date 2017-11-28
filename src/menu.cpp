@@ -7,7 +7,13 @@
 //
 
 #include "menu.h"
+#include <iostream>
+#include <string>
+#include "umsjon.h"
+#include "pizza_size.h"
 
+
+using namespace std;
 
 menu::menu() {
 
@@ -20,8 +26,8 @@ void menu::start_menu() {
         cin >> action;
         switch(action) {
             case 'u': {
-                char action_u;
                 umsjon* u = new umsjon();
+                char action_u;
                 do {
                     cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t) eda haetta(h): ";
                     cin >> action_u;
@@ -36,8 +42,17 @@ void menu::start_menu() {
                                 cout << "Verd:  ";
                                 cin >> price;
                                 u->new_size(size, price);
+                                pizza_size* p = u->get_sizes();
+                                //int arr_len = sizeof(p) / sizeof(pizza_size);
+                                int arr_len = u->get_sizes_length();
+                                cout << "Staerdir: " << endl;
+                                for(int i = 0; i < arr_len; i++) {
+                                    cout << "Staerd: " << p[i].get_size() << endl;
+                                    cout << "Verd: " << p[i].get_price() << endl;
+                                }
                                 cout << "Veldu Nyja staerd(n) eda haetta(h): ";
                                 cin >> action_u_s;
+                                //delete u;
                             } while(action_u_s != 'h');
                             break;
                         case 'b':
