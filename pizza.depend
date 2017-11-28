@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1511873031 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\src\menu.cpp
+	"menu.h"
+
+1511873014 c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\include\menu.h
+	<iostream>
+	<string>
+
+1511872966 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\main.cpp
+	<iostream>
+	"menu.h"
+
