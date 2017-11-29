@@ -28,25 +28,17 @@ void menu_manage::start_menu() {
             case 's':
                 char action_u_s;
                 do {
-                    int size;
-                    int price;
-                    cout << "Ny staerd:  ";
-                    cin >> size;
-                    cout << "Verd:  ";
-                    cin >> price;
-                    pizza_size* p_size = new pizza_size(size, price);
+                    pizza_size* p_size = new pizza_size();
+                    cin >> p_size[0];
                     u->new_size(p_size);
                     pizza_size* p = u->get_sizes();
                     int arr_len = u->get_sizes_length();
                     cout << "Staerdir: " << endl;
                     for(int i = 0; i < arr_len; i++) {
-                        cout << "Staerd: " << p[i].get_size() << endl;
-                        cout << "Verd: " << p[i].get_price() << endl;
+                        cout << p[i];
                     }
                     cout << "Veldu Nyja staerd(n) eda haetta(h): ";
                     cin >> action_u_s;
-                    delete u;
-                    //delete p;
                 } while(action_u_s != 'h');
                 break;
             case 'b':
