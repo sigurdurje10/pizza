@@ -9,8 +9,13 @@
 #include "menu.h"
 #include <iostream>
 #include <string>
-#include "umsjon.h"
+#include "manage.h"
+#include "menu_manage.h"
 #include "pizza_size.h"
+#include "menu_baking.h"
+#include "menu_delivery.h"
+#include "menu_sales.h"
+
 
 
 using namespace std;

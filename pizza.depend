@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1511873031 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\src\menu.cpp
+1511874068 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\src\menu.cpp
 	"menu.h"
 
 1511873014 c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\include\menu.h
@@ -9,4 +9,31 @@
 1511872966 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\main.cpp
 	<iostream>
 	"menu.h"
+
+1511878349 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\src\pizza_data.cpp
+	"pizza_data.h"
+	"pizza_size.h"
+	<iostream>
+	<fstream>
+
+1511961325 c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\include\pizza_data.h
+	<stdio.h>
+	"pizza_size.h"
+
+1511961325 c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\include\pizza_size.h
+	<stdio.h>
+
+1511878349 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\src\pizza_size.cpp
+	"pizza_size.h"
+
+1511961325 source:c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\src\manage.cpp
+	"manage.h"
+	"pizza_size.h"
+	"pizza_data.h"
+	<iostream>
+
+1511961325 c:\users\tomas\desktop\verklegt namskeid 1\verkefni\pizza\include\manage.h
+	<stdio.h>
+	"pizza_size.h"
+	"pizza_data.h"
 
