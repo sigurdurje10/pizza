@@ -1,7 +1,7 @@
 #include "pizza_bottom.h"
 
 pizza_bottom::pizza_bottom(){
-    name[0] = '/0';
+    name[0] = '\0';
     prize = 0;
 }
 
