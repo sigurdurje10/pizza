@@ -20,11 +20,14 @@ pizza_data::pizza_data() {
 void pizza_data::save_size(pizza_size* p) {
     ofstream fout;
     if(!this->is_empty()) {
-        this->get_sizes();
-        this->pizza_sizes[this->number_of_sizes-1].set_pizza(p->get_size(), p->get_price());
-        cout << "number of sizes:" << this->number_of_sizes << endl;
+        pizza_size* p_z = this->get_sizes();
+        pizza_size p_sizes[this->number_of_sizes+1];
+        for(int i = 0; i < this->number_of_sizes; i++) {
+            p_sizes[i] = p_z[i];
+        }
+        p_sizes[this->number_of_sizes-1] = (*p);
         fout.open("sizes.dat", ios::out|ios::binary);
-        fout.write((char*)(&this->pizza_sizes), sizeof(pizza_size)*(this->number_of_sizes));
+        fout.write((char*)(&p_sizes), sizeof(pizza_size)*(this->number_of_sizes));
         fout.close();
     } else {
         pizza_size x[1];
@@ -52,10 +55,14 @@ pizza_size* pizza_data::get_sizes() {
     int records = (fin.tellg() / sizeof(pizza_size));
     fin.seekg(0, fin.beg);
     this->number_of_sizes = records+1;
-    this->pizza_sizes[records+1];
-    fin.read((char*)(&pizza_sizes), sizeof(pizza_size)*(records));
+    pizza_size p_sizes[records+1];
+    fin.read((char*)(&p_sizes), sizeof(pizza_size)*(records));
+    this->p_z = new pizza_size[records+1];
+    for(int i = 0; i < records; i++) {
+        this->p_z[i] = p_sizes[i];
+    }
     fin.close();
-    return pizza_sizes;
+    return p_z;
 }
 
 int pizza_data::get_sizes_length() {

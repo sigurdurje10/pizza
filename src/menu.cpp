@@ -26,7 +26,6 @@ void menu::start_menu() {
         cin >> action;
         switch(action) {
             case 'u': {
-                umsjon* u = new umsjon();
                 char action_u;
                 do {
                     cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t) eda haetta(h): ";
@@ -35,6 +34,7 @@ void menu::start_menu() {
                         case 's':
                             char action_u_s;
                             do {
+                                umsjon* u = new umsjon();
                                 int size;
                                 int price;
                                 cout << "Ny staerd:  ";
@@ -52,7 +52,8 @@ void menu::start_menu() {
                                 }
                                 cout << "Veldu Nyja staerd(n) eda haetta(h): ";
                                 cin >> action_u_s;
-                                //delete u;
+                                delete u;
+                                //delete p;
                             } while(action_u_s != 'h');
                             break;
                         case 'b':
@@ -400,5 +401,4 @@ void menu::start_menu() {
         }
     } while(action != 'h');
 }
-
 

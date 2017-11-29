@@ -9,7 +9,7 @@
 class pizza_data {
 private:
     int number_of_sizes;
-    pizza_size pizza_sizes[];
+    pizza_size* p_z;
 public:
     pizza_data();
     void save_size(pizza_size* p);
