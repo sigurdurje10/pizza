@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include "pizza_size.h"
 
-
 class pizza_data {
 private:
     int number_of_sizes;

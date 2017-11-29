@@ -17,7 +17,6 @@
 #include "menu_sales.h"
 
 
-
 using namespace std;
 
 menu::menu() {
