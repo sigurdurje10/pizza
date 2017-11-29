@@ -2,7 +2,7 @@
 #define PIZZA_SIZE_H
 
 #include <stdio.h>
-
+#include <iostream>
 using namespace std;
 
 class pizza_size {
