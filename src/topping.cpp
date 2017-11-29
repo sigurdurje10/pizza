@@ -1,7 +1,7 @@
 #include "topping.h"
 
 topping::topping(){
-    name[0] = '/0';
+    name[0] = '\0';
     price = 0;
 }
 
