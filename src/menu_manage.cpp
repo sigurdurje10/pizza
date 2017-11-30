@@ -123,7 +123,7 @@ void menu_manage::start_menu() {
                 do {
                     pizza_place* p = new pizza_place();
                     cin >> p[0];
-                    u->new_place(t);
+                    u->new_place(p);
                     pizza_place* places = u->get_places();
                     int arr_len = u->get_places_length();
                     cout << "Afhendingarstadir: " << endl;
