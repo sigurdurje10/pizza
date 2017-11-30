@@ -7,8 +7,14 @@
 //
 
 #include "menu_sales.h"
+#include "menu_pizza.h"
+#include "pizza.h"
 #include <iostream>
 #include <string>
+#include "manage.h"
+#include "sales.h"
+#include "order.h"
+#include "side_order.h"
 
 using namespace std;
 
@@ -17,21 +23,26 @@ menu_sales::menu_sales() {
 }
 
 void menu_sales::start_menu() {
+    manage* u = new manage();
+    sales* s = new sales();
     char action_s;
     do {
         cout << "Skra pontun(p), Sja heildarverd(v), Skra pontun senta/sotta(s), Merkja pontun greidda(g), Merkja afhendingarstad(a), Skra athugasemd(t), Sja allar pantanir(n) eda haetta(h): ";
         cin >> action_s;
         switch(action_s) {
             case 'p': {
-                //orders* orders = new orders();
                 char action_s_p;
                 do {
+                    order* o = new order();
                     string phone;
-                    cout << "Simanumer:  ";
+                    cout << "Simanumer: ";
                     cin.ignore();
                     getline(cin, phone);
-                    //pizza pizzas[10];
-                    //side sides[10];
+                    o->set_phone(phone);
+                    string address;
+                    cout << "Heimilisfang: ";
+                    getline(cin, address);
+                    o->set_address(address);
                     int p_count = 0;
                     char action_s_p_p;
                     do {
@@ -40,53 +51,60 @@ void menu_sales::start_menu() {
                         string pizza_name;
                         string bottom;
                         int size;
+                        pizza p;
                         if(action_s_p_p == 'm') {
-                            cout << "Heiti pitsu af matsedli: ";
-                            cin.ignore();
-                            getline(cin, pizza_name);
-                            //pizza* p = new pizza(heiti_pitsu);
-                            //pizzas[p_count] = p;
-                        } else {
-                            cout << "Tegund botns: ";
-                            cin.ignore();
-                            getline(cin, bottom);
-                            cout << "Staerd: ";
-                            cin >> size;
-                            string toppings[10];
-                            string topping;
-                            char action_s_p_p_t;
-                            int top_count = 0;
-                            do {
-                                cout << "Alegg: ";
+                            string pizza_name = "";
+                            while(pizza_name == "") {
+                                cout << "Heiti pitsu af matsedli: ";
                                 cin.ignore();
-                                getline(cin, topping);
-                                toppings[top_count] = topping;
-                                top_count++;
-                                cout << "Nytt alegg(n) eda haetta(h): ";
-                                cin >> action_s_p_p_t;
-                            } while(action_s_p_p_t != 'h' && top_count < 10);
-                            //pizza* p = new pizza(bottom, size, toppings);
-                            //pizzas[p_count] = p;
+                                getline(cin, pizza_name);
+                                p = u->find_menu_item(pizza_name);
+                                if(p.get_name() == "") {
+                                    cout << "Pitsa ekki til stadar." << endl;
+                                } else {
+                                    cout << "Pitsa '" << p.get_name() << "' valin." << endl;
+                                    o->add_pizza(p);
+                                }
+                                pizza_name = p.get_name();
+                            }
+                        } else {
+                            menu_pizza* mp = new menu_pizza();
+                            p = (*mp->get_pizza());
                         }
                         p_count++;
-                        cout << "Verd pitsu: " << endl; // pizzas[p_count-1]->get_price();
+                        p.calculate_price();
+                        cout << "Verd pitsu: " << p.get_price() << endl;
                         cout << "Nyja pitsu(n) eda haetta(h):  ";
                         cin >> action_s_p_p;
                     } while(action_s_p_p != 'h' && p_count < 10);
                     int side_count = 0;
                     char action_s_p_s;
                     do {
+                        side_order s;
                         string side;
+                        string side_name = "";
                         cout << "Medlaeti: ";
                         cin.ignore();
                         getline(cin, side);
-                        //sides[side_count] = new side(side);
+                        s = u->find_side(side);
+                        side_name = s.get_name();
+                        if(side_name == "") {
+                            cout << "Medlaeti ekki til stadar." << endl;
+                        } else {
+                            cout << "Medlaeti '" << side_name << "' valid." << endl;
+                        }
                         side_count++;
                         cout << "Nytt medlaeti(n) eda haetta(h):  ";
                         cin >> action_s_p_s;
                     } while(action_s_p_s != 'h' && side_count < 10);
-                    //int order_num = orders->new_order(phone, pizzas, side);
-                    cout << "Pontunarnumer: " << endl; //order_num;
+                    int id = 0;
+                    if(!s->orders_empty()) {
+                        order* orders = s->get_orders();
+                        id = s->get_orders_length();
+                    }
+                    o->set_id(id);
+                    s->new_order(o);
+                    cout << "Pontunarnumer: " << id << endl;
                     cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                     cin >> action_s_p;
                 } while(action_s_p != 'h');
@@ -98,8 +116,13 @@ void menu_sales::start_menu() {
                     int order_number;
                     cout << "Pontunarnumer: ";
                     cin >> order_number;
-                    //order* o = new order(order_number);
-                    cout << "Heildarverd: " << endl; //o->price();
+                    order* o = new order[1];
+                    o[0] = s->find_order(order_number);
+                    if(o->get_id() != -1) {
+                        cout << "Heildarverd: " << o[0].get_price() << endl; //o->price();
+                    } else {
+                        cout << "Faersla fannst ekki. " << endl;
+                    }
                     cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                     cin >> action_s_v;
                 } while(action_s_v != 'h');
@@ -111,15 +134,19 @@ void menu_sales::start_menu() {
                     int order_number;
                     cout << "Pontunarnumer: ";
                     cin >> order_number;
-                    //order* o = new order(order_number);
+                    order* o = new order[1];
+                    o[0] = s->find_order(order_number);
                     cout << "Skra senta(e) eda sotta(o): ";
                     char del;
                     cin >> del;
                     if(del == 'e') {
                         //o->del();
+                        o[0].del();
                     } else if(del == 'o') {
                         //o->pickup();
+                        o[0].pickup();
                     }
+                    s->save_order(o[0]);
                     cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                     cin >> action_s_s;
                 } while(action_s_s != 'h');
@@ -131,8 +158,10 @@ void menu_sales::start_menu() {
                     int order_number;
                     cout << "Pontunarnumer: ";
                     cin >> order_number;
-                    //order* o = new order(order_number);
-                    //o->paid();
+                    order* o = new order[1];
+                    o[0] = s->find_order(order_number);
+                    o->is_paid();
+                    //s->save_order(o);
                     cout << "Pontun hefur verid merkt greidd. " << endl;
                     cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                     cin >> action_s_g;
@@ -174,8 +203,10 @@ void menu_sales::start_menu() {
                 break;
             }
             case 'n':
-                //orders* o = new orders();
-                //o->print_orders();
+                order* orders = s->get_orders();
+                for(int i = 0; i < s->get_orders_length(); i++) {
+                    cout << orders[i];
+                }
                 break;
         }
     } while(action_s != 'h');

@@ -1,21 +1,51 @@
-#ifndef ORDER_H
-#define ORDER_H
+//
+//  order.h
+//  pizza
+//
+//  Created by Sigurður Jökull on 29/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
 
+#ifndef order_h
+#define order_h
 
-class order
-{
-    public:
-        order();
-        virtual ~order();
-        //get set foll
+#include <stdio.h>
+#include "pizza.h"
+#include "side_order.h"
 
-    protected:
-
-    private:
-        pizza pizza_list[5];
-        side_order side_list[5];
-        char address[20];
-        char phone_number[8];
+class order {
+public:
+    order();
+    virtual ~order();
+    order(string address, string phone);
+    void add_pizza(pizza p);
+    void add_side(side_order s);
+    void set_address(string address);
+    void set_phone(string phone);
+    pizza* get_pizzas() const;
+    side_order* get_side() const;
+    string get_address();
+    string get_phone();
+    void set_id(int id);
+    int get_id();
+    int get_price();
+    void del();
+    void pickup();
+    void is_paid();
+    friend ostream& operator << (ostream& out, const order& order);
+    friend istream& operator >> (istream& in, order& order);
+protected:
+    
+private:
+    pizza pizza_list[5];
+    int pizza_count;
+    side_order side_list[5];
+    int side_count;
+    char address[20];
+    char phone_number[8];
+    int id;
+    int deliver;
+    bool paid;
 };
 
-#endif // ORDER_H
+#endif /* order_h */

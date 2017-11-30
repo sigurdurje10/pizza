@@ -1,9 +1,17 @@
+//
+//  pizza_size.cpp
+//  pizza
+//
+//  Created by Sigurður Jökull on 28/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
+
 #include "pizza_size.h"
 
 using namespace std;
 
 pizza_size::pizza_size() {
-
+    
 }
 
 pizza_size::pizza_size(int size, int price) {

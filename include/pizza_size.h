@@ -1,5 +1,13 @@
-#ifndef PIZZA_SIZE_H
-#define PIZZA_SIZE_H
+//
+//  pizza_size.h
+//  pizza
+//
+//  Created by Sigurður Jökull on 28/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
+
+#ifndef pizza_size_h
+#define pizza_size_h
 
 #include <stdio.h>
 #include <iostream>
@@ -21,4 +29,4 @@ public:
     friend istream& operator >> (istream& in, pizza_size& p_size);
 };
 
-#endif // PIZZA_SIZE_H
+#endif /* pizza_size_h */

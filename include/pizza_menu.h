@@ -1,18 +1,27 @@
-#ifndef PIZZA_MENU_H
-#define PIZZA_MENU_H
+//
+//  pizza_menu.h
+//  pizza
+//
+//  Created by Sigurður Jökull on 29/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
 
+#ifndef pizza_menu_h
+#define pizza_menu_h
 
-class pizza_menu
-{
-    public:
-        pizza_menu();
-        virtual ~pizza_menu();
-        void add_pizza(pizza the_pizza);
+#include <stdio.h>
+#include "pizza.h"
 
-    protected:
-
-    private:
-        pizza menu_pizzas[10];
+class pizza_menu {
+public:
+    pizza_menu();
+    virtual ~pizza_menu();
+    void add_pizza(pizza* the_pizza);
+    
+protected:
+    
+private:
+    pizza menu_pizzas[10];
 };
 
-#endif // PIZZA_MENU_H
+#endif /* pizza_menu_h */

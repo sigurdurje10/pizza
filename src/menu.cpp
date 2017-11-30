@@ -2,25 +2,25 @@
 //  menu.cpp
 //  pizza
 //
-//  Created by Sigurður Jökull on 27/11/2017.
-//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//  Created by SigurÃ°ur JÃ¶kull on 27/11/2017.
+//  Copyright Â© 2017 SigurÃ°ur JÃ¶kull. All rights reserved.
 //
 
 #include "menu.h"
 #include <iostream>
 #include <string>
 #include "manage.h"
-#include "menu_manage.h"
 #include "pizza_size.h"
+#include "menu_manage.h"
+#include "menu_sales.h"
 #include "menu_baking.h"
 #include "menu_delivery.h"
-#include "menu_sales.h"
 
 
 using namespace std;
 
 menu::menu() {
-
+    
 }
 
 void menu::start_menu() {
@@ -52,4 +52,5 @@ void menu::start_menu() {
         }
     } while(action != 'h');
 }
+
 

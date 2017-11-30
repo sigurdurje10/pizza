@@ -1,13 +1,13 @@
 //
-//  menu_manage.h
+//  menu_manage.hpp
 //  pizza
 //
 //  Created by Sigurður Jökull on 29/11/2017.
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#ifndef menu_manage_h
-#define menu_manage_h
+#ifndef menu_manage_hpp
+#define menu_manage_hpp
 
 #include <stdio.h>
 
@@ -20,4 +20,4 @@ public:
     
 };
 
-#endif /* menu_manage_h */
+#endif /* menu_manage_hpp */

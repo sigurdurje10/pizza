@@ -1,35 +1,42 @@
-#ifndef PIZZA_PLACE_H
-#define PIZZA_PLACE_H
+//
+//  pizza_place.h
+//  pizza
+//
+//  Created by Sigurður Jökull on 29/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
 
-#include <string.h>
-#include <iostream>
+#ifndef pizza_place_h
+#define pizza_place_h
+
+#include <stdio.h>
+#include <string>
 
 using namespace std;
 
-class pizza_place
-{
-    public:
-        pizza_place();
-        pizza_place(string name, string addr);
-        virtual ~pizza_place();
-        void set_name(string name){
-            strcpy(this->name, name.c_str());
-        }
-        void set_address(string addr){
-            strcpy(this->address, addr.c_str());
-        }
-        char* get_name(){
-            return name;
-        }
-        char* get_address(){
-            return address;
-        }
-
-    protected:
-
-    private:
-        char name[20];
-        char address[30];
+class pizza_place {
+public:
+    pizza_place();
+    pizza_place(string name, string addr);
+    virtual ~pizza_place();
+    void set_name(string name){
+        strcpy(this->name, name.c_str());
+    }
+    void set_address(string addr){
+        strcpy(this->address, addr.c_str());
+    }
+    char* get_name(){
+        return name;
+    }
+    char* get_address(){
+        return address;
+    }
+    
+protected:
+    
+private:
+    char name[20];
+    char address[30];
 };
 
-#endif // PIZZA_PLACE_H
+#endif /* pizza_place_h */

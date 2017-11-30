@@ -1,35 +1,37 @@
-#ifndef SIDE_ORDER_H
-#define SIDE_ORDER_H
+//
+//  side_order.h
+//  pizza
+//
+//  Created by Sigurður Jökull on 29/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
 
-#include <string.h>
-#include <iostream>
+#ifndef side_order_h
+#define side_order_h
+
+#include <stdio.h>
+#include <string>
 
 using namespace std;
 
-class side_order
-{
-    public:
-        side_order();
-        virtual ~side_order();
-        side_order(int prize, string name);
-        void set_prize(int prize){
-            this->prize = prize;
-        }
-        void set_name(string name){
-            strcpy(this->name, name.c_str());
-        }
-        int get_prize(){
-            return prize;
-        }
-        char* get_name(){
-            return name;
-        }
-
-    protected:
-
-    private:
-        int prize;
-        char name[20];
+class side_order {
+public:
+    side_order();
+    virtual ~side_order();
+    side_order(int price, string name);
+    void set_side_order(int price, string name);
+    void set_price(int prize);
+    void set_name(string name);
+    int get_price() const;
+    string get_name() const;
+    friend ostream& operator << (ostream& out, const side_order& s_order);
+    friend istream& operator >> (istream& in, side_order& s_order);
+protected:
+    
+private:
+    int price;
+    char name[20];
 };
 
-#endif // SIDE_ORDER_H
+
+#endif /* side_order_h */

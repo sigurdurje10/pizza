@@ -1,16 +1,23 @@
-#ifndef MENU_H
-#define MENU_H
+//
+//  menu.hpp
+//  pizza
+//
+//  Created by Sigurður Jökull on 27/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
 
-#include <iostream>
-#include <string>
-using namespace std;
+#ifndef menu_hpp
+#define menu_hpp
+
+#include <stdio.h>
+
 class menu {
     private:
-
+    
     public:
         menu();
         void start_menu();
-
+        
 };
 
-#endif // MENU_H
+#endif /* menu_hpp */

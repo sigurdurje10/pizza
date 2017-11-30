@@ -11,11 +11,14 @@
 #include <string>
 #include "pizza_size.h"
 #include "manage.h"
-
+#include "topping.h"
+#include "side_order.h"
+#include "pizza.h"
+#include "menu_pizza.h"
 using namespace std;
 
 menu_manage::menu_manage() {
-    
+
 }
 
 void menu_manage::start_menu() {
@@ -44,14 +47,16 @@ void menu_manage::start_menu() {
             case 'b':
                 char action_u_b;
                 do {
-                    string bottom;
-                    int price;
-                    cout << "Nyr botn:  ";
-                    cin.ignore();
-                    getline(cin, bottom);
-                    cout << "Verd:  ";
-                    cin >> price;
-                    //u->new_bottom(bottom, price);
+                    /*pizza_bottom* b = new pizza_bottom();
+                    cin >> b[0];
+                    u->new_bottom(b);
+                    pizza_bottom* bottoms = u->get_bottoms();
+                    int arr_len = u->get_sizes_length();
+                    cout << "Botnar: " << endl;
+                    for(int i = 0; i < arr_len; i++) {
+                        cout << p[i];
+                    }*/
+                    
                     cout << "Veldu Nyjan botn(n) eda haetta(h): ";
                     cin >> action_u_b;
                 } while(action_u_b != 'h');
@@ -59,14 +64,15 @@ void menu_manage::start_menu() {
             case 'a':
                 char action_u_a;
                 do {
-                    string topping;
-                    int price;
-                    cout << "Nytt alegg:  ";
-                    cin.ignore();
-                    getline(cin, topping);
-                    cout << "Verd:  ";
-                    cin >> price;
-                    //u->new_topping(topping, price);
+                    topping* t = new topping();
+                    cin >> t[0];
+                    u->new_topping(t);
+                    topping* top = u->get_toppings();
+                    int arr_len = u->get_toppings_length();
+                    cout << "Alegg: " << endl;
+                    for(int i = 0; i < arr_len; i++) {
+                        cout << top[i];
+                    }
                     cout << "Veldu Nytt alegg(n) eda haetta(h): ";
                     cin >> action_u_a;
                 } while(action_u_a != 'h');
@@ -76,25 +82,22 @@ void menu_manage::start_menu() {
                 do {
                     string name;
                     int price;
-                    cout << "Ny pitsa a matsedli:  ";
+                    cout << "Ny pitsa a matsedli: ";
                     cin.ignore();
                     getline(cin, name);
-                    cout << "Verd:  ";
+                    cout << "Verd: ";
                     cin >> price;
-                    string toppings[10];
-                    string topping;
-                    char action_u_m_t;
-                    int top_count = 0;
-                    do {
-                        cout << "Alegg: ";
-                        cin.ignore();
-                        getline(cin, topping);
-                        toppings[top_count] = topping;
-                        top_count++;
-                        cout << "Nytt alegg(n) eda haetta(h): ";
-                        cin >> action_u_m_t;
-                    } while(action_u_m_t != 'h' && top_count < 10);
-                    //u->new_menu_item(name, price, toppings);
+                    menu_pizza* mp = new menu_pizza();
+                    pizza* p = mp->get_pizza();
+                    p->set_name(name);
+                    p->set_price(price);
+                    u->new_menu_item(p);
+                    pizza* men = u->get_menu();
+                    int arr_len = u->get_menu_length();
+                    cout << "Allar pitsur:" << endl;
+                    for(int i = 0; i < arr_len; i++) {
+                        cout << men[i];
+                    }
                     cout << "Veldu Nyja pitsu(n) eda haetta(h): ";
                     cin >> action_u_m;
                 } while(action_u_m != 'h');
@@ -102,14 +105,15 @@ void menu_manage::start_menu() {
             case 'e':
                 char action_u_e;
                 do {
-                    string side;
-                    int price;
-                    cout << "Nytt medlaeti:  ";
-                    cin.ignore();
-                    getline(cin, side);
-                    cout << "Verd:  ";
-                    cin >> price;
-                    //u->new_side(side, price);
+                    side_order* s = new side_order();
+                    cin >> s[0];
+                    u->new_side(s);
+                    side_order* sides = u->get_sides();
+                    int arr_len = u->get_sides_length();
+                    cout << "Medlaeti: " << endl;
+                    for(int i = 0; i < arr_len; i++) {
+                        cout << sides[i];
+                    }
                     cout << "Veldu Nytt medlaeti(n) eda haetta(h): ";
                     cin >> action_u_e;
                 } while(action_u_e != 'h');
@@ -117,11 +121,15 @@ void menu_manage::start_menu() {
             case 't':
                 char action_u_t;
                 do {
-                    string place;
-                    cout << "Nyr afhendingarstadur:  ";
-                    cin.ignore();
-                    getline(cin, place);
-                    //u->new_place(place);
+                    /*pizza_place* p = new pizza_place();
+                    cin >> p[0];
+                    u->new_place(t);
+                    pizza_place* places = u->get_places();
+                    int arr_len = u->get_places_length();
+                    cout << "Afhendingarstadir: " << endl;
+                    for(int i = 0; i < arr_len; i++) {
+                        cout << places[i];
+                    }*/
                     cout << "Veldu Nyjan afhendingarstad(n) eda haetta(h): ";
                     cin >> action_u_t;
                 } while(action_u_t != 'h');

@@ -1,5 +1,5 @@
 //
-//  umsjon.hpp
+//  umsjon.h
 //  pizza
 //
 //  Created by Sigurður Jökull on 28/11/2017.
@@ -11,21 +11,64 @@
 
 #include <stdio.h>
 #include "pizza_size.h"
-#include "pizza_data.h"
+#include "pizza_size_data.h"
+#include "topping.h"
+#include "pizza_bottom.h"
+#include "pizza_place.h"
+#include "side_order.h"
+#include "pizza.h"
 
 class manage {
 private:
     pizza_size* sizes;
     int sizes_length;
-    //pizza_size* s;
-    //pizza_data* d;
-    //pizza_data* p;
+    
+    topping* toppings;
+    int toppings_length;
+    
+    pizza_bottom* bottoms;
+    int bottoms_length;
+    
+    pizza_place* places;
+    int places_length;
+    
+    side_order* sides;
+    int sides_length;
+    
+    pizza* pizzas;
+    int pizzas_length;
 public:
     manage();
+    
     void new_size(pizza_size* s);
     pizza_size* get_sizes();
+    pizza_size find_size(int size);
     int get_sizes_length();
-    void delete_p();
+    
+    void new_topping(topping* t);
+    topping* get_toppings();
+    topping find_topping(string topping);
+    int get_toppings_length();
+    
+    void new_bottom(pizza_bottom* b);
+    pizza_bottom* get_bottoms();
+    pizza_bottom find_bottom(string bottom);
+    int get_bottoms_length();
+    
+    void new_place(pizza_place* p);
+    pizza_place* get_places();
+    int get_places_length();
+    
+    void new_side(side_order* s);
+    side_order* get_sides();
+    side_order find_side(string side_value);
+    int get_sides_length();
+    
+    void new_menu_item(pizza* p);
+    pizza* get_menu();
+    pizza find_menu_item(string pizza_name);
+    int get_menu_length();
+    
 };
 
-#endif /* umsjon_hpp */
+#endif /* umsjon_h */
