@@ -27,18 +27,14 @@ public:
     void set_address(string addr){
         strcpy(this->address, addr.c_str());
     }
-    char* get_name(){
-        return name;
-    }
-    char* get_address(){
-        return address;
-    }
-
+    string get_name() const;
+    string get_address() const;
+    
     friend ostream& operator << (ostream& out, const pizza_place& p_place);
     friend istream& operator >> (istream& in, pizza_place& p_place);
-
+    
 protected:
-
+    
 private:
     char name[20];
     char address[30];

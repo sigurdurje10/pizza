@@ -14,6 +14,7 @@ order::order() {
     this->side_count = 0;
     this->deliver = 0;
     this->id = -1;
+    this->comment[0] = '\0';
 }
 
 order::~order() {
@@ -25,9 +26,10 @@ order::order(string address, string phone) {
     this->side_count = 0;
     this->deliver = 0;
     this->id = -1;
+    this->comment[0] = '\0';
     strcpy(this->address, address.c_str());
     strcpy(this->phone_number, phone.c_str());
-
+    
 }
 
 void order::add_pizza(pizza p) {
@@ -38,7 +40,7 @@ void order::add_pizza(pizza p) {
 }
 
 void order::add_side(side_order s) {
-    if(side_count < 5){
+    if(side_count < 5) {
         this->side_list[side_count] = s;
     }
 }
@@ -85,12 +87,33 @@ int order::get_price() {
     return sum;
 }
 
+void order::set_place(pizza_place p) {
+    this->place = p;
+}
+
+pizza_place order::get_place() {
+    return this->place;
+}
+
+void order::set_comment(string s) {
+    strcpy(this->comment, s.c_str());
+}
+
+string order::get_comment() {
+    string str(this->comment);
+    return str;
+}
+
 pizza* order::get_pizzas() const {
     pizza* pizzas = new pizza[this->pizza_count];
     for(int i = 0; i < this->pizza_count; i++) {
         pizzas[i] = this->pizza_list[i];
     }
     return pizzas;
+}
+
+int order::get_pizzas_count() {
+    return this->pizza_count;
 }
 
 side_order* order::get_side() const {
@@ -123,6 +146,10 @@ ostream& operator << (ostream& out, const order& order) {
     if(order.paid) {
         out << "Buid ad greida." << endl;
     }
+    out << "Athugasemd: " << order.comment << endl;
+    if(order.place.get_name() != "") {
+        out << "Afhendingarstadur: " << order.place.get_name() << endl;
+    }
     pizza* pizzas = order.get_pizzas();
     for(int i = 0; i < order.pizza_count; i++) {
         out << pizzas[i];
@@ -135,6 +162,6 @@ ostream& operator << (ostream& out, const order& order) {
 }
 
 istream& operator >> (istream& in, order& order) {
-
+    
     return in;
 }

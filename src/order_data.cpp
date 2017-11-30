@@ -16,6 +16,17 @@ order_data::order_data() {
     this->order_file = "orders.dat";
 }
 
+void order_data::save_orders(order* list) {
+    ofstream fout;
+    order orders[this->get_orders_length()];
+    for(int i = 0; i < this->get_orders_length(); i++) {
+        orders[i] = list[i];
+    }
+    fout.open("orders.dat", ios::out|ios::binary);
+    fout.write((char*)(&orders), sizeof(order)*(this->get_orders_length()));
+    fout.close();
+}
+
 void order_data::save_order(order p, order* list) {
     ofstream fout;
     order orders[this->number_of_orders];

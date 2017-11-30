@@ -20,7 +20,7 @@
 
 
 manage::manage() {
-
+    
 }
 
 void manage::new_size(pizza_size* s) {
@@ -109,8 +109,8 @@ pizza_bottom manage::find_bottom(string bottom) {
 
 int manage::get_bottoms_length() {
     return this->bottoms_length;
-}
-*/
+}*/
+ 
 void manage::new_place(pizza_place* p) {
     pizza_place_data* d = new pizza_place_data();
     d->save_place(p);
@@ -128,6 +128,16 @@ pizza_place* manage::get_places() {
 
 int manage::get_places_length() {
     return this->places_length;
+}
+ 
+pizza_place manage::find_place(string place_value) {
+    pizza_place* places = this->get_places();
+    for(int i=0; i<this->get_places_length(); i++) {
+        if(place_value == places[i].get_name()) {
+            return places[i];
+        }
+    }
+    return (*new pizza_place());
 }
 
 void manage::new_side(side_order* s) {

@@ -140,10 +140,8 @@ void menu_sales::start_menu() {
                     char del;
                     cin >> del;
                     if(del == 'e') {
-                        //o->del();
                         o[0].del();
                     } else if(del == 'o') {
-                        //o->pickup();
                         o[0].pickup();
                     }
                     s->save_order(o[0]);
@@ -160,8 +158,8 @@ void menu_sales::start_menu() {
                     cin >> order_number;
                     order* o = new order[1];
                     o[0] = s->find_order(order_number);
-                    o->is_paid();
-                    //s->save_order(o);
+                    o[0].is_paid();
+                    s->save_order(o[0]);
                     cout << "Pontun hefur verid merkt greidd. " << endl;
                     cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                     cin >> action_s_g;
@@ -175,11 +173,23 @@ void menu_sales::start_menu() {
                     string place;
                     cout << "Pontunarnumer: ";
                     cin >> order_number;
-                    cout << "Afhendingarstardur: ";
-                    cin.ignore();
-                    getline(cin, place);
-                    //order* o = new order(order_number);
-                    //o->set_place(place);
+                    string place_value = "";
+                    pizza_place p;
+                    while(place_value == "") {
+                        cout << "Afhendingarstardur: ";
+                        cin.ignore();
+                        getline(cin, place);
+                        p = u->find_place(place);
+                        place_value = p.get_name();
+                        if(place_value == "") {
+                            cout << "Stadur finnst ekki." << endl;
+                        } else {
+                            cout << "Stadur '" << place_value << "' valinn." << endl;
+                        }
+                    }
+                    order o = s->find_order(order_number);
+                    o.set_place(p);
+                    s->save_order(o);
                     cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                     cin >> action_s_a;
                 } while(action_s_a != 'h');
@@ -195,8 +205,9 @@ void menu_sales::start_menu() {
                     cout << "Athugasemd: ";
                     cin.ignore();
                     getline(cin, comment);
-                    //order* o = new order(order_number);
-                    //o->set_comment(comment);
+                    order o = s->find_order(order_number);
+                    o.set_comment(comment);
+                    s->save_order(o);
                     cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                     cin >> action_s_t;
                 } while(action_s_t != 'h');

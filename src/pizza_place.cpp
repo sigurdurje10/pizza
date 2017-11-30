@@ -22,6 +22,15 @@ pizza_place::~pizza_place(){
     //dtor
 }
 
+string pizza_place::get_name() const {
+    string str(name);
+    return str;
+}
+string pizza_place::get_address() const {
+    string str(address);
+    return str;
+}
+
 ostream& operator << (ostream& out, const pizza_place& p_place) {
     out << "Pizzastadur: " << p_place.name << endl;
     out << "Heimilisfang: " << p_place.address << endl;
@@ -38,3 +47,4 @@ istream& operator >> (istream& in, pizza_place& p_place) {
     p_place.set_address(address);
     return in;
 }
+

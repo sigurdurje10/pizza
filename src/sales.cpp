@@ -29,7 +29,7 @@ void sales::save_order(order o) {
             orders[i] = o;
         }
     }
-    d->save_order(o, orders);
+    d->save_orders(orders);
     delete d;
 }
 

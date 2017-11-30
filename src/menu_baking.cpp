@@ -17,20 +17,35 @@ menu_baking::menu_baking() {
 }
 
 void menu_baking::start_menu() {
-    //locations* l = new locations();
-    //l->print_locations();
-    string location;
-    cout << "Veldu stad: ";
-    cin.ignore();
-    getline(cin, location);
+    manage* u = new manage();
+    pizza_place* places = u->get_places();
+    for(int i = 0; i<u->get_places_length(); i++) {
+        cout << places[i];
+    }
+    baking* b = new baking();
+    string location_value = "";
+    pizza_place place;
+    while(location_value == "") {
+        string location;
+        cout << "Veldu stad: ";
+        cin.ignore();
+        getline(cin, location);
+        place = u->find_place(location);
+        location_value = place.get_name();
+        if(location_value == "") {
+            cout << "Stadur finnst ekki." << endl;
+        } else {
+            cout << "Stadur '" << location_value << "' valinn." << endl;
+        }
+    }
+    
     char action_b;
     do {
         cout << "Lista pitsur(l), Syna pitsu(s), Merkja i vinnslu(v), Merkja tilbuna(t) eda haetta(h): ";
         cin >> action_b;
-        //orders* o = new orders(location);
         switch(action_b) {
             case 'l': {
-                //o->print_pizzas();
+                b->get_pizzas(place);
                 break;
             }
             case 's': {

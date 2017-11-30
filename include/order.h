@@ -32,6 +32,11 @@ public:
     void del();
     void pickup();
     void is_paid();
+    void set_place(pizza_place place);
+    pizza_place get_place();
+    void set_comment(string s);
+    string get_comment();
+    int get_pizzas_count();
     friend ostream& operator << (ostream& out, const order& order);
     friend istream& operator >> (istream& in, order& order);
 protected:
@@ -46,6 +51,8 @@ private:
     int id;
     int deliver;
     bool paid;
+    pizza_place place;
+    char comment[128];
 };
 
 #endif /* order_h */

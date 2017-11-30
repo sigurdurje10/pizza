@@ -57,6 +57,7 @@ public:
     
     void new_place(pizza_place* p);
     pizza_place* get_places();
+    pizza_place find_place(string place_value);
     int get_places_length();
     
     void new_side(side_order* s);

@@ -19,6 +19,7 @@ private:
     string order_file;
 public:
     order_data();
+    void save_orders(order* list);
     void save_order(order p, order* list);
     void save_order(order* p);
     order* get_orders();
