@@ -10,7 +10,8 @@
 #define pizza_bottom_h
 
 #include <stdio.h>
-#include <string>
+#include <string.h>
+#include <iostream>
 
 using namespace std;
 
@@ -32,9 +33,9 @@ public:
         string str(name);
         return str;
     }
-    
+
 protected:
-    
+
 private:
     int price;
     char name[20];

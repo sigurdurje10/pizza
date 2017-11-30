@@ -9,6 +9,7 @@
 #include "side_order.h"
 #include <iostream>
 #include <string>
+#include <string.h>
 
 side_order::side_order(){
     price = 0;

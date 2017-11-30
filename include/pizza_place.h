@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <string.h>
 
 using namespace std;
 
@@ -31,9 +32,12 @@ public:
     char* get_address(){
         return address;
     }
-    
+
+    friend ostream& operator << (ostream& out, const pizza_place& p_place);
+    friend istream& operator >> (istream& in, pizza_place& p_place);
+
 protected:
-    
+
 private:
     char name[20];
     char address[30];

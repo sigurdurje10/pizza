@@ -24,13 +24,13 @@ void side_order_data::save_side(side_order* s) {
             s_orders[i] = s_o[i];
         }
         s_orders[this->number_of_sides-1] = (*s);
-        fout.open(this->side_order_file, ios::out|ios::binary);
+        fout.open("side_orders.dat", ios::out|ios::binary);
         fout.write((char*)(&s_orders), sizeof(side_order)*(this->number_of_sides));
         fout.close();
     } else {
         side_order x[1];
         x[0].set_side_order(s->get_price(), s->get_name());
-        fout.open(this->side_order_file, ios::out|ios::binary);
+        fout.open("side_orders.dat", ios::out|ios::binary);
         fout.write((char*)(&x), sizeof(side_order));
         fout.close();
     }
@@ -38,7 +38,7 @@ void side_order_data::save_side(side_order* s) {
 
 bool side_order_data::is_empty() {
     ifstream fin;
-    fin.open(this->side_order_file, ios::binary);
+    fin.open("side_orders.dat", ios::binary);
     fin.seekg(0, std::ios::end);
     if (fin.tellg() == -1 || fin.tellg() == 0) {
         return true;
@@ -48,7 +48,7 @@ bool side_order_data::is_empty() {
 
 side_order* side_order_data::get_sides() {
     ifstream fin;
-    fin.open(this->side_order_file, ios::binary);
+    fin.open("side_orders.dat", ios::binary);
     fin.seekg(0, fin.end);
     int records = (fin.tellg() / sizeof(side_order));
     fin.seekg(0, fin.beg);

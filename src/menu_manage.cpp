@@ -56,7 +56,7 @@ void menu_manage::start_menu() {
                     for(int i = 0; i < arr_len; i++) {
                         cout << p[i];
                     }*/
-                    
+
                     cout << "Veldu Nyjan botn(n) eda haetta(h): ";
                     cin >> action_u_b;
                 } while(action_u_b != 'h');
@@ -121,7 +121,7 @@ void menu_manage::start_menu() {
             case 't':
                 char action_u_t;
                 do {
-                    /*pizza_place* p = new pizza_place();
+                    pizza_place* p = new pizza_place();
                     cin >> p[0];
                     u->new_place(t);
                     pizza_place* places = u->get_places();
@@ -129,7 +129,7 @@ void menu_manage::start_menu() {
                     cout << "Afhendingarstadir: " << endl;
                     for(int i = 0; i < arr_len; i++) {
                         cout << places[i];
-                    }*/
+                    }
                     cout << "Veldu Nyjan afhendingarstad(n) eda haetta(h): ";
                     cin >> action_u_t;
                 } while(action_u_t != 'h');

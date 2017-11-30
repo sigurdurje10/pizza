@@ -24,13 +24,13 @@ void topping_data::save_topping(topping* t) {
             p_toppings[i] = p_t[i];
         }
         p_toppings[this->number_of_toppings-1] = (*t);
-        fout.open(this->topping_file, ios::out|ios::binary);
+        fout.open("toppings.dat", ios::out|ios::binary);
         fout.write((char*)(&p_toppings), sizeof(topping)*(this->number_of_toppings));
         fout.close();
     } else {
         topping x[1];
         x[0].set_topping(t->get_price(), t->get_name());
-        fout.open(this->topping_file, ios::out|ios::binary);
+        fout.open("toppings.dat", ios::out|ios::binary);
         fout.write((char*)(&x), sizeof(topping));
         fout.close();
     }
@@ -38,7 +38,7 @@ void topping_data::save_topping(topping* t) {
 
 bool topping_data::is_empty() {
     ifstream fin;
-    fin.open(this->topping_file, ios::binary);
+    fin.open("toppings.dat", ios::binary);
     fin.seekg(0, std::ios::end);
     if (fin.tellg() == -1 || fin.tellg() == 0) {
         return true;
@@ -48,7 +48,7 @@ bool topping_data::is_empty() {
 
 topping* topping_data::get_toppings() {
     ifstream fin;
-    fin.open(this->topping_file, ios::binary);
+    fin.open("toppings.dat", ios::binary);
     fin.seekg(0, fin.end);
     int records = (fin.tellg() / sizeof(topping));
     fin.seekg(0, fin.beg);

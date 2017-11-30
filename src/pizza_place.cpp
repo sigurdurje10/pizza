@@ -21,3 +21,20 @@ pizza_place::pizza_place(string name, string addr){
 pizza_place::~pizza_place(){
     //dtor
 }
+
+ostream& operator << (ostream& out, const pizza_place& p_place) {
+    out << "Pizzastaður: " << p_place.name << endl;
+    out << "Heimilisfang: " << p_place.address << endl;
+    return out;
+}
+
+istream& operator >> (istream& in, pizza_place& p_place) {
+    string name, address;
+    cout << "Heiti pizzastaðs: ";
+    in >> name;
+    cout << "Heimilisfang: ";
+    in >> address;
+    p_place.set_name(name);
+    p_place.set_address(address);
+    return in;
+}

@@ -14,7 +14,7 @@
 using namespace std;
 
 pizza_size_data::pizza_size_data() {
-    
+
 }
 
 void pizza_size_data::save_size(pizza_size* p) {

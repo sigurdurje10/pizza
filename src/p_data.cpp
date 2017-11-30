@@ -23,13 +23,13 @@ void p_data::save_pizza(pizza* p) {
             pizzas[i] = p_m[i];
         }
         pizzas[this->number_of_pizzas-1] = (*p);
-        fout.open(this->pizza_file, ios::out|ios::binary);
+        fout.open("pizzas.dat", ios::out|ios::binary);
         fout.write((char*)(&pizzas), sizeof(pizza)*(this->number_of_pizzas));
         fout.close();
     } else {
         pizza x[1];
         x[0] = p[0];
-        fout.open(this->pizza_file, ios::out|ios::binary);
+        fout.open("pizzas.dat", ios::out|ios::binary);
         fout.write((char*)(&x), sizeof(pizza));
         fout.close();
     }
@@ -37,7 +37,7 @@ void p_data::save_pizza(pizza* p) {
 
 bool p_data::is_empty() {
     ifstream fin;
-    fin.open(this->pizza_file, ios::binary);
+    fin.open("pizzas.dat", ios::binary);
     fin.seekg(0, std::ios::end);
     if (fin.tellg() == -1 || fin.tellg() == 0) {
         return true;
@@ -47,7 +47,7 @@ bool p_data::is_empty() {
 
 pizza* p_data::get_pizzas() {
     ifstream fin;
-    fin.open(this->pizza_file, ios::binary);
+    fin.open("pizzas.dat", ios::binary);
     fin.seekg(0, fin.end);
     int records = (fin.tellg() / sizeof(pizza));
     fin.seekg(0, fin.beg);
