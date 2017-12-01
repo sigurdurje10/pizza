@@ -20,6 +20,7 @@ private:
     string pizza_file;
 public:
     p_data();
+    void save_pizzas(pizza* list);
     void save_pizza(pizza* p);
     pizza* get_pizzas();
     int get_pizzas_length();

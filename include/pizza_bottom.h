@@ -18,24 +18,28 @@ using namespace std;
 class pizza_bottom {
 public:
     pizza_bottom();
-    pizza_bottom(int prize, string name);
+    pizza_bottom(int price, string name);
     virtual ~pizza_bottom();
-    void set_prize(int prize){
-        this->price = prize;
+    void set_price(int price){
+        this->price = price;
     }
     void set_name(string name){
         strcpy(this->name, name.c_str());
     }
-    int get_prize(){
+    int get_price(){
         return price;
     }
     string get_name(){
         string str(name);
         return str;
     }
-
+    void set_pizza_bottom(string name, int price);
+    
+    friend ostream& operator << (ostream& out, const pizza_bottom& p_bottom);
+    friend istream& operator >> (istream& in, pizza_bottom& p_bottom);
+    
 protected:
-
+    
 private:
     int price;
     char name[20];

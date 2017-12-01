@@ -7,7 +7,6 @@
 //
 
 #include "order.h"
-#include "side_order.h"
 
 order::order() {
     this->pizza_count = 0;
@@ -15,6 +14,9 @@ order::order() {
     this->deliver = 0;
     this->id = -1;
     this->comment[0] = '\0';
+    this->address[0] = '\0';
+    this->phone_number[0] = '\0';
+    this->delivered = false;
 }
 
 order::~order() {
@@ -27,6 +29,7 @@ order::order(string address, string phone) {
     this->deliver = 0;
     this->id = -1;
     this->comment[0] = '\0';
+    this->delivered = false;
     strcpy(this->address, address.c_str());
     strcpy(this->phone_number, phone.c_str());
     
@@ -37,6 +40,10 @@ void order::add_pizza(pizza p) {
         this->pizza_list[pizza_count] = p;
         pizza_count++;
     }
+}
+
+void order::set_pizza(pizza p, int pizza_count) {
+    this->pizza_list[pizza_count] = p;
 }
 
 void order::add_side(side_order s) {
@@ -132,6 +139,14 @@ string order::get_address() {
 string order::get_phone() {
     string str(this->phone_number);
     return str;
+}
+
+bool order::get_delivered() {
+    return this->delivered;
+}
+
+void order::set_delivered(bool d) {
+    this->delivered = d;
 }
 
 ostream& operator << (ostream& out, const order& order) {

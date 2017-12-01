@@ -7,6 +7,11 @@
 //
 
 #include "pizza_place.h"
+#include <iostream>
+#include <string>
+#include <string.h>
+
+using namespace std;
 
 pizza_place::pizza_place(){
     name[0] = '\0';
@@ -38,13 +43,29 @@ ostream& operator << (ostream& out, const pizza_place& p_place) {
 }
 
 istream& operator >> (istream& in, pizza_place& p_place) {
-    string name, address;
-    cout << "Heiti pizzastads: ";
-    in >> name;
-    cout << "Heimilisfang: ";
-    in >> address;
+    bool accepted = true;
+    string name = "";
+    string address = "";
+    in.ignore();
+    do {
+        cout << "Heiti pizzastads: ";
+        getline(in, name);
+        if(!in) {
+            in.clear();
+            in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            accepted = false;
+        }
+        if(accepted && name != "") {
+            cout << "Heimilisfang: ";
+            getline(in, address);
+            if(!in) {
+                in.clear();
+                in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        }
+    } while(!accepted || name == "" || address == "");
     p_place.set_name(name);
     p_place.set_address(address);
     return in;
 }
-

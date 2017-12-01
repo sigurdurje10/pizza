@@ -26,8 +26,16 @@ menu::menu() {
 void menu::start_menu() {
     char action;
     do {
-        cout << "Veldu Umsjon(u), Sala(s), Bakstur(b), Afhending(a) eda haetta(h): ";
-        cin >> action;
+        bool accepted = true;
+        do {
+            cout << "Veldu Umsjon(u), Sala(s), Bakstur(b), Afhending(a) eda haetta(h): ";
+            cin >> action;
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        } while(!accepted);
         switch(action) {
             case 'u': {
                 menu_manage* manage = new menu_manage();

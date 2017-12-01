@@ -1,13 +1,13 @@
 //
-//  menu_delivery.hpp
+//  menu_delivery.h
 //  pizza
 //
 //  Created by Sigurður Jökull on 29/11/2017.
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#ifndef menu_delivery_hpp
-#define menu_delivery_hpp
+#ifndef menu_delivery_h
+#define menu_delivery_h
 
 #include <stdio.h>
 
@@ -20,4 +20,4 @@ public:
     
 };
 
-#endif /* menu_delivery_hpp */
+#endif /* menu_delivery_h */

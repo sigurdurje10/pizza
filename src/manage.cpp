@@ -15,8 +15,8 @@
 #include "side_order.h"
 #include "side_order_data.h"
 #include "p_data.h"
-#include "pizza_place.h"
 #include "pizza_place_data.h"
+#include "pizza_bottom_data.h"
 
 
 manage::manage() {
@@ -82,7 +82,7 @@ int manage::get_toppings_length() {
 }
 
 
-/*void manage::new_bottom(pizza_bottom* b) {
+void manage::new_bottom(pizza_bottom* b) {
     pizza_bottom_data* d = new pizza_bottom_data();
     d->save_bottom(b);
     delete b;
@@ -104,12 +104,12 @@ pizza_bottom manage::find_bottom(string bottom) {
             return bottoms[i];
         }
     }
-    return (*new bottom());
+    return (*new pizza_bottom());
 }
 
 int manage::get_bottoms_length() {
     return this->bottoms_length;
-}*/
+}
  
 void manage::new_place(pizza_place* p) {
     pizza_place_data* d = new pizza_place_data();

@@ -25,8 +25,16 @@ void menu_manage::start_menu() {
     char action_u;
     manage* u = new manage();
     do {
-        cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t) eda haetta(h): ";
-        cin >> action_u;
+        bool accepted = true;
+        do {
+            cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t) eda haetta(h): ";
+            cin >> action_u;
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        } while(!accepted);
         switch(action_u) {
             case 's':
                 char action_u_s;
@@ -40,25 +48,40 @@ void menu_manage::start_menu() {
                     for(int i = 0; i < arr_len; i++) {
                         cout << p[i];
                     }
-                    cout << "Veldu Nyja staerd(n) eda haetta(h): ";
-                    cin >> action_u_s;
+                    bool accepted = true;
+                    do {
+                        cout << "Veldu Nyja staerd(n) eda haetta(h): ";
+                        cin >> action_u_s;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
                 } while(action_u_s != 'h');
                 break;
             case 'b':
                 char action_u_b;
                 do {
-                    /*pizza_bottom* b = new pizza_bottom();
+                    pizza_bottom* b = new pizza_bottom();
                     cin >> b[0];
                     u->new_bottom(b);
                     pizza_bottom* bottoms = u->get_bottoms();
-                    int arr_len = u->get_sizes_length();
+                    int arr_len = u->get_bottoms_length();
                     cout << "Botnar: " << endl;
                     for(int i = 0; i < arr_len; i++) {
-                        cout << p[i];
-                    }*/
-
-                    cout << "Veldu Nyjan botn(n) eda haetta(h): ";
-                    cin >> action_u_b;
+                        cout << bottoms[i];
+                    }
+                    bool accepted = true;
+                    do {
+                        cout << "Veldu Nyjan botn(n) eda haetta(h): ";
+                        cin >> action_u_b;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
                 } while(action_u_b != 'h');
                 break;
             case 'a':
@@ -73,21 +96,47 @@ void menu_manage::start_menu() {
                     for(int i = 0; i < arr_len; i++) {
                         cout << top[i];
                     }
-                    cout << "Veldu Nytt alegg(n) eda haetta(h): ";
-                    cin >> action_u_a;
+                    bool accepted = true;
+                    do {
+                        cout << "Veldu Nytt alegg(n) eda haetta(h): ";
+                        cin >> action_u_a;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
                 } while(action_u_a != 'h');
                 break;
             case 'm':
                 char action_u_m;
                 do {
-                    string name;
-                    int price;
-                    cout << "Ny pitsa a matsedli: ";
-                    cin.ignore();
-                    getline(cin, name);
-                    cout << "Verd: ";
-                    cin >> price;
-                    menu_pizza* mp = new menu_pizza();
+                    bool accepted = true;
+                    string name = "";
+                    int price = -1;
+                    menu_pizza* mp;
+                    do {
+                        cout << "Ny pitsa a matsedli: ";
+                        cin.ignore();
+                        getline(cin, name);
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                        if(accepted) {
+                            cout << "Verd: ";
+                            cin >> price;
+                            if(!cin) {
+                                cin.clear();
+                                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                accepted = false;
+                            }
+                            if(accepted) {
+                                mp = new menu_pizza();
+                            }
+                        }
+                    } while(!accepted || name == "" || price == -1);
                     pizza* p = mp->get_pizza();
                     p->set_name(name);
                     p->set_price(price);
@@ -98,8 +147,16 @@ void menu_manage::start_menu() {
                     for(int i = 0; i < arr_len; i++) {
                         cout << men[i];
                     }
-                    cout << "Veldu Nyja pitsu(n) eda haetta(h): ";
-                    cin >> action_u_m;
+                    accepted = true;
+                    do {
+                        cout << "Veldu Nyja pitsu(n) eda haetta(h): ";
+                        cin >> action_u_m;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
                 } while(action_u_m != 'h');
                 break;
             case 'e':
@@ -114,8 +171,16 @@ void menu_manage::start_menu() {
                     for(int i = 0; i < arr_len; i++) {
                         cout << sides[i];
                     }
-                    cout << "Veldu Nytt medlaeti(n) eda haetta(h): ";
-                    cin >> action_u_e;
+                    bool accepted = true;
+                    do {
+                        cout << "Veldu Nytt medlaeti(n) eda haetta(h): ";
+                        cin >> action_u_e;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
                 } while(action_u_e != 'h');
                 break;
             case 't':
@@ -130,8 +195,16 @@ void menu_manage::start_menu() {
                     for(int i = 0; i < arr_len; i++) {
                         cout << places[i];
                     }
-                    cout << "Veldu Nyjan afhendingarstad(n) eda haetta(h): ";
-                    cin >> action_u_t;
+                    bool accepted = true;
+                    do {
+                        cout << "Veldu Nyjan afhendingarstad(n) eda haetta(h): ";
+                        cin >> action_u_t;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
                 } while(action_u_t != 'h');
                 break;
         }

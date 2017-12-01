@@ -1,3 +1,11 @@
+//
+//  pizza_place_data.cpp
+//  pizza
+//
+//  Created by Sigurður Jökull on 30/11/2017.
+//  Copyright © 2017 Sigurður Jökull. All rights reserved.
+//
+
 #include "pizza_place_data.h"
 
 pizza_place_data::pizza_place_data()
@@ -62,7 +70,3 @@ pizza_place* pizza_place_data::get_places() {
 int pizza_place_data::get_places_length() {
     return this->number_of_places-1;
 }
-
-
-
-

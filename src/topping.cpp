@@ -49,13 +49,29 @@ ostream& operator << (ostream& out, const topping& p_topping) {
 }
 
 istream& operator >> (istream& in, topping& p_topping) {
-    string topping;
-    int price;
-    cout << "Alegg: ";
-    in.ignore();
-    getline(in, topping);
-    cout << "Verd: ";
-    in >> price;
+    bool accepted = true;
+    string topping = "";
+    int price = -1;
+    do {
+        accepted = true;
+        cout << "Alegg: ";
+        in.ignore();
+        getline(in, topping);
+        if(!in) {
+            in.clear();
+            in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            accepted = false;
+        }
+        if(accepted) {
+            cout << "Verd: ";
+            in >> price;
+            if(!in) {
+                in.clear();
+                in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        }
+    } while(!accepted || topping == "" || price == -1);
     p_topping.set_name(topping);
     p_topping.set_price(price);
     return in;

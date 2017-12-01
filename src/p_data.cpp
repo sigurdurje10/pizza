@@ -14,6 +14,17 @@ p_data::p_data() {
     this->pizza_file = "pizzas.dat";
 }
 
+void p_data::save_pizzas(pizza* list) {
+    ofstream fout;
+    pizza pizzas[this->get_pizzas_length()];
+    for(int i = 0; i < this->get_pizzas_length(); i++) {
+        pizzas[i] = list[i];
+    }
+    fout.open("orders.dat", ios::out|ios::binary);
+    fout.write((char*)(&pizzas), sizeof(pizza)*(this->get_pizzas_length()));
+    fout.close();
+}
+
 void p_data::save_pizza(pizza* p) {
     ofstream fout;
     if(!this->is_empty()) {

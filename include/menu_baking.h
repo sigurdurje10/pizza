@@ -1,13 +1,13 @@
 //
-//  menu_baking.hpp
+//  menu_baking.h
 //  pizza
 //
 //  Created by Sigurður Jökull on 29/11/2017.
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#ifndef menu_baking_hpp
-#define menu_baking_hpp
+#ifndef menu_baking_h
+#define menu_baking_h
 
 #include <stdio.h>
 
@@ -20,4 +20,4 @@ public:
     
 };
 
-#endif /* menu_baking_hpp */
+#endif /* menu_baking_h */

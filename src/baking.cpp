@@ -28,9 +28,39 @@ pizza* baking::get_pizzas(pizza_place place) {
     for(int i = 0; i<ord_count; i++) {
         pizza_count += place_orders[i].get_pizzas_count();
     }
-    pizza* pizzas = new pizza[pizza_count];
+    this->pizzas_length = pizza_count;
+    this->pizzas = new pizza[pizza_count];
+    this->orders = new order[pizza_count];
+    int counter = 0;
     for(int i = 0; i<ord_count; i++) {
-        place_orders[i].get_pizzas();
+        pizza* p = place_orders[i].get_pizzas();
+        for(int j=0; j<place_orders[i].get_pizzas_count(); j++) {
+            this->pizzas[counter] = p[j];
+            this->pizzas[counter].set_id(counter);
+            this->pizzas[counter].set_p_count(j);
+            this->orders[counter] = place_orders[i];
+            counter++;
+        }
     }
     return this->pizzas;
+}
+
+pizza baking::get_pizza(int id, pizza_place place) {
+    pizza* pizzas = this->get_pizzas(place);
+    for(int i = 0; i<this->pizzas_length; i++) {
+        if(i == id) {
+            pizzas[i].set_id(i);
+            this->current_order = this->orders[i];
+            return pizzas[i];
+        }
+    }
+    return (*new pizza());
+}
+
+int baking::get_pizzas_length() {
+    return this->pizzas_length;
+}
+
+order baking::get_current_order() {
+    return this->current_order;
 }

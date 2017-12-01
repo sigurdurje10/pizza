@@ -1,5 +1,5 @@
 //
-//  baking.hpp
+//  baking.h
 //  pizza
 //
 //  Created by Sigurður Jökull on 30/11/2017.
@@ -13,15 +13,21 @@
 #include "pizza.h"
 #include "pizza_place.h"
 #include "manage.h"
+#include "order.h"
 
 class baking {
 private:
     pizza* pizzas;
     int pizzas_length;
+    order* orders;
+    int order_length;
+    order current_order;
 public:
     baking();
     pizza* get_pizzas(pizza_place place);
-    
+    pizza get_pizza(int id, pizza_place place);
+    int get_pizzas_length();
+    order get_current_order();
 };
 
-#endif /* baking_hpp */
+#endif /* baking_h */

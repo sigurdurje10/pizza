@@ -9,6 +9,10 @@
 #include "menu_baking.h"
 #include <iostream>
 #include <string>
+#include "pizza_place.h"
+#include "baking.h"
+#include "menu_place.h"
+#include "sales.h"
 
 using namespace std;
 
@@ -18,55 +22,97 @@ menu_baking::menu_baking() {
 
 void menu_baking::start_menu() {
     manage* u = new manage();
-    pizza_place* places = u->get_places();
-    for(int i = 0; i<u->get_places_length(); i++) {
-        cout << places[i];
-    }
     baking* b = new baking();
-    string location_value = "";
-    pizza_place place;
-    while(location_value == "") {
-        string location;
-        cout << "Veldu stad: ";
-        cin.ignore();
-        getline(cin, location);
-        place = u->find_place(location);
-        location_value = place.get_name();
-        if(location_value == "") {
-            cout << "Stadur finnst ekki." << endl;
-        } else {
-            cout << "Stadur '" << location_value << "' valinn." << endl;
-        }
-    }
+    sales* s = new sales();
+    menu_place* mp = new menu_place();
+    pizza_place place = mp->get_place();
     
     char action_b;
     do {
-        cout << "Lista pitsur(l), Syna pitsu(s), Merkja i vinnslu(v), Merkja tilbuna(t) eda haetta(h): ";
-        cin >> action_b;
+        bool accepted = true;
+        do {
+            cout << "Lista pitsur(l), Syna pitsu(s), Merkja i vinnslu(v), Merkja tilbuna(t) eda haetta(h): ";
+            cin >> action_b;
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        } while(!accepted);
         switch(action_b) {
             case 'l': {
-                b->get_pizzas(place);
+                pizza* pizzas = b->get_pizzas(place);
+                for(int i = 0; i<b->get_pizzas_length(); i++) {
+                    cout << pizzas[i];
+                }
                 break;
             }
             case 's': {
-                int pizza_id;
-                cout << "Pitsunumer: ";
-                cin >> pizza_id;
-                //o->show_pizza(pizza_id);
+                bool accepted = true;
+                int pizza_id = -1;
+                do {
+                    cout << "Pitsunumer: ";
+                    cin >> pizza_id;
+                    if(!cin) {
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        accepted = false;
+                    }
+                } while(!accepted);
+                pizza p = b->get_pizza(pizza_id, place);
+                if(p.get_id() == -1) {
+                    cout << "Pitsa fannst ekki." << endl;
+                } else {
+                    cout << p;
+                }
                 break;
             }
             case 'v': {
-                int pizza_id;
-                cout << "Pitsunumer: ";
-                cin >> pizza_id;
-                //o->get_pizza(pizza_id)->in_progress();
+                bool accepted = true;
+                int pizza_id = -1;
+                do {
+                    cout << "Pitsunumer: ";
+                    cin >> pizza_id;
+                    if(!cin) {
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        accepted = false;
+                    }
+                } while(!accepted);
+                pizza p = b->get_pizza(pizza_id, place);
+                if(p.get_id() == -1) {
+                    cout << "Pitsa fannst ekki." << endl;
+                } else {
+                    p.set_progress(true);
+                    order o = b->get_current_order();
+                    o.set_pizza(p, p.get_p_count());
+                    s->save_order(o);
+                    cout << "Pitsa merkt i vinnslu." << endl;
+                }
                 break;
             }
             case 't': {
+                bool accepted = true;
                 int pizza_id;
-                cout << "Pitsunumer: ";
-                cin >> pizza_id;
-                //o->get_pizza(pizza_id)->ready();
+                do {
+                    cout << "Pitsunumer: ";
+                    cin >> pizza_id;
+                    if(!cin) {
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        accepted = false;
+                    }
+                } while(!accepted);
+                pizza p = b->get_pizza(pizza_id, place);
+                if(p.get_id() == -1) {
+                    cout << "Pitsa fannst ekki." << endl;
+                } else {
+                    p.set_ready(true);
+                    order o = b->get_current_order();
+                    o.set_pizza(p, p.get_p_count());
+                    s->save_order(o);
+                    cout << "Pitsa merkt tilbuin" << endl;
+                }
                 break;
             }
         }

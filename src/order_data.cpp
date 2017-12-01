@@ -5,12 +5,10 @@
 //  Created by Sigurður Jökull on 30/11/2017.
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
+
+#include "order_data.h"
 #include <iostream>
 #include <fstream>
-#include "order_data.h"
-
-
-using namespace std;
 
 order_data::order_data() {
     this->order_file = "orders.dat";
@@ -24,17 +22,6 @@ void order_data::save_orders(order* list) {
     }
     fout.open("orders.dat", ios::out|ios::binary);
     fout.write((char*)(&orders), sizeof(order)*(this->get_orders_length()));
-    fout.close();
-}
-
-void order_data::save_order(order p, order* list) {
-    ofstream fout;
-    order orders[this->number_of_orders];
-    for(int i = 0; i < this->number_of_orders; i++) {
-        orders[i] = list[i];
-    }
-    fout.open("orders.dat", ios::out|ios::binary);
-    fout.write((char*)(&orders), sizeof(order)*(this->number_of_orders));
     fout.close();
 }
 

@@ -30,6 +30,14 @@ public:
     void calculate_price();
     string get_name() const;
     int get_price() const;
+    void set_id(int id);
+    int get_id();
+    bool get_progress();
+    void set_progress(bool progress);
+    bool get_ready();
+    void set_ready(bool ready);
+    int get_p_count();
+    void set_p_count(int p);
     friend ostream& operator << (ostream& out, const pizza& pizza);
     friend istream& operator >> (istream& in, pizza& pizza);
     
@@ -42,6 +50,10 @@ private:
     int price;
     int curr_toppings;
     char name[64];
+    int id;
+    bool in_progress;
+    bool ready;
+    int p_count;
 };
 
 #endif /* pizza_h */

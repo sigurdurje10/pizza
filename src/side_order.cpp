@@ -54,13 +54,28 @@ ostream& operator << (ostream& out, const side_order& s_order) {
 }
 
 istream& operator >> (istream& in, side_order& s_order) {
-    string name;
-    int price;
-    cout << "Heiti: ";
-    in.ignore();
-    getline(in, name);
-    cout << "Verd: ";
-    in >> price;
+    bool accepted = true;
+    string name = "";
+    int price = -1;
+    do {
+        in.ignore();
+        cout << "Heiti: ";
+        getline(in, name);
+        if(!cin) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            accepted = false;
+        }
+        if(accepted) {
+            cout << "Verd: ";
+            in >> price;
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        }
+    } while(!accepted || name == "" || price == -1);
     s_order.set_name(name);
     s_order.set_price(price);
     return in;

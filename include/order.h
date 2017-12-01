@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "pizza.h"
 #include "side_order.h"
+#include "pizza_place.h"
 
 class order {
 public:
@@ -19,6 +20,7 @@ public:
     virtual ~order();
     order(string address, string phone);
     void add_pizza(pizza p);
+    void set_pizza(pizza p, int pizza_count);
     void add_side(side_order s);
     void set_address(string address);
     void set_phone(string phone);
@@ -37,6 +39,8 @@ public:
     void set_comment(string s);
     string get_comment();
     int get_pizzas_count();
+    bool get_delivered();
+    void set_delivered(bool d);
     friend ostream& operator << (ostream& out, const order& order);
     friend istream& operator >> (istream& in, order& order);
 protected:
@@ -53,6 +57,7 @@ private:
     bool paid;
     pizza_place place;
     char comment[128];
+    bool delivered;
 };
 
 #endif /* order_h */

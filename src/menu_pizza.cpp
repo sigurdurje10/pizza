@@ -17,26 +17,42 @@ menu_pizza::menu_pizza() {
 pizza* menu_pizza::get_pizza() {
     pizza* p = new pizza();
     manage* u = new manage();
-    /*string bottom_found = "";
-     while(bottom_found == "") {
-     string bottom;
-     cout << "Botn: ";
-     cin.ignore();
-     getline(cin, bottom);
-     pizza_bottom bottom_obj = u->find_bottom(bottom);
-     bottom_found = bottom_obj.get_name();
-     p->set_pizza_bottom(bottom_obj);
-     if(bottom_found == "") {
-     cout << "Botn ekki fundinn." << endl;
-     } else {
-     cout << "Botn '" << bottom_found << "' valinn." << endl;
-     }
-     }*/
+    string bottom_found = "";
+    cin.ignore();
+    while(bottom_found == "") {
+        bool accepted = true;
+        string bottom = "";
+        do {
+            cout << "Botn: ";
+            getline(cin, bottom);
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        } while(!accepted || bottom == "");
+        pizza_bottom bottom_obj = u->find_bottom(bottom);
+        bottom_found = bottom_obj.get_name();
+        p->set_pizza_bottom(bottom_obj);
+        if(bottom_found == "") {
+            cout << "Botn ekki fundinn." << endl;
+        } else {
+            cout << "Botn '" << bottom_found << "' valinn." << endl;
+        }
+    }
     int size_found = 0;
     while(size_found == 0) {
-        int size;
-        cout << "Staerd: ";
-        cin >> size;
+        bool accepted = true;
+        int size = -1;
+        do {
+            cout << "Staerd: ";
+            cin >> size;
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        } while(!accepted || size == -1);
         pizza_size size_obj = u->find_size(size);
         size_found = size_obj.get_size();
         p->set_pizza_size(size_obj);
@@ -48,11 +64,19 @@ pizza* menu_pizza::get_pizza() {
     }
     char action_u_m_t;
     int top_count = 0;
-    string topping_value;
     do {
-        cout << "Alegg: ";
+        string topping_value = "";
+        bool accepted = true;
         cin.ignore();
-        getline(cin, topping_value);
+        do {
+            cout << "Alegg: ";
+            getline(cin, topping_value);
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        } while(!accepted || topping_value == "");
         topping top_obj = u->find_topping(topping_value);
         if(top_obj.get_name() != "") {
             p->add_topping(top_obj);
@@ -60,9 +84,16 @@ pizza* menu_pizza::get_pizza() {
         } else {
             cout << "Alegg ekki fundid." << endl;
         }
-        //delete top_obj;
-        cout << "Nytt alegg(n) eda haetta(h): ";
-        cin >> action_u_m_t;
+        accepted = true;
+        do {
+            cout << "Nytt alegg(n) eda haetta(h): ";
+            cin >> action_u_m_t;
+            if(!cin) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        } while(!accepted);
     } while(action_u_m_t != 'h' && top_count < 10);
     return p;
 }

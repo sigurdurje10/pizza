@@ -47,11 +47,28 @@ ostream& operator << (ostream& out, const pizza_size& p_size) {
 }
 
 istream& operator >> (istream& in, pizza_size& p_size) {
-    int size, price;
-    cout << "Staerd: ";
-    in >> size;
-    cout << "Verd: ";
-    in >> price;
+    int size = -1;
+    int price = -1;
+    bool accepted = true;
+    do {
+        accepted = true;
+        cout << "Staerd: ";
+        in >> size;
+        if(!in) {
+            in.clear();
+            in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            accepted = false;
+        }
+        if(accepted) {
+            cout << "Verd: ";
+            in >> price;
+            if(!in) {
+                in.clear();
+                in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                accepted = false;
+            }
+        }
+    } while(!accepted || size == -1 || price == -1);
     p_size.set_size(size);
     p_size.set_price(price);
     return in;

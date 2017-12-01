@@ -1,13 +1,13 @@
 //
-//  menu.hpp
+//  menu.h
 //  pizza
 //
 //  Created by Sigurður Jökull on 27/11/2017.
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#ifndef menu_hpp
-#define menu_hpp
+#ifndef menu_h
+#define menu_h
 
 #include <stdio.h>
 
@@ -20,4 +20,4 @@ class menu {
         
 };
 
-#endif /* menu_hpp */
+#endif /* menu_h */
