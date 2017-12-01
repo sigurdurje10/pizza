@@ -13,11 +13,11 @@
 #include "baking.h"
 #include "menu_place.h"
 #include "sales.h"
-
+#include <limits>
 using namespace std;
 
 menu_baking::menu_baking() {
-    
+
 }
 
 void menu_baking::start_menu() {
@@ -26,7 +26,7 @@ void menu_baking::start_menu() {
     sales* s = new sales();
     menu_place* mp = new menu_place();
     pizza_place place = mp->get_place();
-    
+
     char action_b;
     do {
         bool accepted = true;

@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <limits>
 
 side_order::side_order(){
     price = 0;

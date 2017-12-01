@@ -14,11 +14,12 @@
 #include "pizza_place.h"
 #include "delivery.h"
 #include "sales.h"
+#include <limits>
 
 using namespace std;
 
 menu_delivery::menu_delivery() {
-    
+
 }
 
 void menu_delivery::start_menu() {
@@ -26,7 +27,7 @@ void menu_delivery::start_menu() {
     delivery* d = new delivery;
     menu_place* mp = new menu_place();
     pizza_place place = mp->get_place();
-    
+
     char action_a;
     do {
         bool accepted = true;

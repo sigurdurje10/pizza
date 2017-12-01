@@ -7,11 +7,12 @@
 //
 
 #include "pizza_size.h"
+#include <limits>
 
 using namespace std;
 
 pizza_size::pizza_size() {
-    
+
 }
 
 pizza_size::pizza_size(int size, int price) {

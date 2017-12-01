@@ -7,6 +7,7 @@
 //
 
 #include "pizza_bottom.h"
+#include <limits>
 
 pizza_bottom::pizza_bottom(){
     name[0] = '\0';
