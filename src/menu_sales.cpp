@@ -30,7 +30,7 @@ void menu_sales::start_menu() {
     do {
         bool accepted = true;
         do {
-            cout << "Skra pontun(p), Sja heildarverd(v), Skra pontun senta/sotta(s), Merkja pontun greidda(g), Merkja afhendingarstad(a), Skra athugasemd(t), Sja allar pantanir(n) eda haetta(h): ";
+            cout << "Skra pontun(p), Skra pontun flytileid(f), Sja heildarverd(v), Skra pontun senta/sotta(s), Merkja pontun greidda(g), Merkja afhendingarstad(a), Skra athugasemd(t), Sja allar pantanir(n) eda haetta(h): ";
             cin >> action_s;
             if(!cin) {
                 cin.clear();
@@ -39,6 +39,12 @@ void menu_sales::start_menu() {
             }
         } while(!accepted);
         switch(action_s) {
+            case 'f': {
+                order* o;
+                menu_shorthand* shorthand = new menu_shorthand();
+                o = shorthand->get_shorthand();
+                break;
+            }
             case 'p': {
                 char action_s_p;
                 do {
@@ -132,6 +138,7 @@ void menu_sales::start_menu() {
                             cout << "Medlaeti ekki til stadar." << endl;
                         } else {
                             cout << "Medlaeti '" << side_name << "' valid." << endl;
+                            o->add_side(s);
                         }
                         side_count++;
                         bool accepted = true;
@@ -145,6 +152,7 @@ void menu_sales::start_menu() {
                             }
                         } while(!accepted);
                     } while(action_s_p_s != 'h' && side_count < 10);
+                    
                     int id = 0;
                     if(!s->orders_empty()) {
                         order* orders = s->get_orders();

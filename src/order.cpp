@@ -32,10 +32,11 @@ order::order(string address, string phone) {
     this->delivered = false;
     strcpy(this->address, address.c_str());
     strcpy(this->phone_number, phone.c_str());
-
+    
 }
 
 void order::add_pizza(pizza p) {
+    p.calculate_price();
     if(pizza_count < 5) {
         this->pizza_list[pizza_count] = p;
         pizza_count++;
@@ -47,7 +48,7 @@ void order::set_pizza(pizza p, int pizza_count) {
 }
 
 void order::add_side(side_order s) {
-    if(side_count < 5){
+    if(side_count < 5) {
         this->side_list[side_count] = s;
     }
 }
@@ -177,6 +178,6 @@ ostream& operator << (ostream& out, const order& order) {
 }
 
 istream& operator >> (istream& in, order& order) {
-
+    
     return in;
 }

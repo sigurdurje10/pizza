@@ -18,9 +18,10 @@ private:
     int orders_length;
 public:
     sales();
-    void new_order(order* o);
+    int new_order(order* o);
     void save_order(order o);
     order* get_orders();
+    order* get_old_orders();
     order find_order(int id);
     int get_orders_length();
     bool orders_empty();

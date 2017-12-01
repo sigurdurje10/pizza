@@ -21,9 +21,13 @@ public:
     order_data();
     void save_orders(order* list);
     void save_order(order* p);
+    void save_old_order(order* p);
     order* get_orders();
+    order* get_old_orders();
     int get_orders_length();
     bool is_empty();
+    bool is_old_empty();
 };
+
 
 #endif /* order_data_h */

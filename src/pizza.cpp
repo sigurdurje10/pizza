@@ -14,6 +14,7 @@ pizza::pizza() {
     this->in_progress = false;
     this->id = -1;
     this->curr_toppings = 0;
+    this->name[0] = '\0';
 }
 
 pizza::~pizza() {

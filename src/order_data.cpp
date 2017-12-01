@@ -46,9 +46,40 @@ void order_data::save_order(order* p) {
     }
 }
 
+void order_data::save_old_order(order* p) {
+    ofstream fout;
+    if(!this->is_old_empty()) {
+        order* p_m = this->get_old_orders();
+        order orders[this->number_of_orders+1];
+        for(int i = 0; i < this->number_of_orders; i++) {
+            orders[i] = p_m[i];
+        }
+        orders[this->number_of_orders-1] = (*p);
+        fout.open("orders_old.dat", ios::out|ios::binary);
+        fout.write((char*)(&orders), sizeof(order)*(this->number_of_orders));
+        fout.close();
+    } else {
+        order x[1];
+        x[0] = p[0];
+        fout.open("orders_old.dat", ios::out|ios::binary);
+        fout.write((char*)(&x), sizeof(order));
+        fout.close();
+    }
+}
+
 bool order_data::is_empty() {
     ifstream fin;
     fin.open("orders.dat", ios::binary);
+    fin.seekg(0, std::ios::end);
+    if (fin.tellg() == -1 || fin.tellg() == 0) {
+        return true;
+    }
+    return false;
+}
+
+bool order_data::is_old_empty() {
+    ifstream fin;
+    fin.open("orders_old.dat", ios::binary);
     fin.seekg(0, std::ios::end);
     if (fin.tellg() == -1 || fin.tellg() == 0) {
         return true;
@@ -73,8 +104,24 @@ order* order_data::get_orders() {
     return this->orders;
 }
 
+order* order_data::get_old_orders() {
+    ifstream fin;
+    fin.open("orders_old.dat", ios::binary);
+    fin.seekg(0, fin.end);
+    int records = (fin.tellg() / sizeof(order));
+    fin.seekg(0, fin.beg);
+    this->number_of_orders = records+1;
+    order p_m[records+1];
+    fin.read((char*)(&p_m), sizeof(order)*(records));
+    this->orders = new order[records+1];
+    for(int i = 0; i < records; i++) {
+        this->orders[i] = p_m[i];
+    }
+    fin.close();
+    return this->orders;
+}
+
 int order_data::get_orders_length() {
     return this->number_of_orders-1;
 }
-
 
