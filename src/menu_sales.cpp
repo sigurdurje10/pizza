@@ -16,7 +16,7 @@
 #include "order.h"
 #include "side_order.h"
 #include <limits>
-
+#include <menu_shorthand.h>
 using namespace std;
 
 menu_sales::menu_sales() {
@@ -152,7 +152,7 @@ void menu_sales::start_menu() {
                             }
                         } while(!accepted);
                     } while(action_s_p_s != 'h' && side_count < 10);
-                    
+
                     int id = 0;
                     if(!s->orders_empty()) {
                         order* orders = s->get_orders();
