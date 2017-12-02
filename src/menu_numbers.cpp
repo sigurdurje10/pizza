@@ -19,7 +19,7 @@ void menu_numbers::start_menu() {
     do {
         bool accepted = true;
         do {
-            cout << "Veldu Fjolda pantana(p), Fjolda pitsna(i), Heildarvelta(v), Skoda fra dagsetningu(d), Skoda a dagsetningu(a) eda haetta(h): ";
+            cout << "Veldu Fjolda pantana(p), Fjolda pitsna(i), Heildarvelta(v), Fjoldi vidskiptavina(s), Skoda fra dagsetningu(d), Skoda a dagsetningu(a) eda haetta(h): ";
             cin >> action;
             if(!cin) {
                 cin.clear();
@@ -62,6 +62,11 @@ void menu_numbers::start_menu() {
             case 'i': {
                 int pizza_numbers = s->pizza_numbers();
                 cout << "Fjoldi pitsna: " << pizza_numbers << endl;
+                break;
+            }
+            case 's': {
+                int people_numbers = s->people_numbers();
+                cout << "Fjoldi vidskiptavina: " << people_numbers << endl;
                 break;
             }
             case 'v': {

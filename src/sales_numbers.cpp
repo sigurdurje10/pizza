@@ -120,3 +120,57 @@ int sales_numbers::total_sales() {
     }
     return sum;
 }
+
+struct sales_numbers::people {
+    string phone;
+    int count;
+    people() {
+        phone = "";
+        count = 0;
+    }
+};
+
+int sales_numbers::people_numbers() {
+    int sum = 0;
+    people* list = new people[this->order_numbers()];
+    for(int i=0; i<this->active_length; i++) {
+        string p = this->active_orders[i].get_phone();
+        bool found = false;
+        int list_count = 0;
+        for(int j=0; j<this->active_length; j++) {
+            if(list[j].phone == p) {
+                list[j].count++;
+                found = true;
+            } else if(list[j].phone == "") {
+                list_count = j;
+            }
+        }
+        if(!found) {
+            list[list_count].phone = p;
+            list[list_count].count = 0;
+        }
+    }
+    for(int i=0; i<this->old_length; i++) {
+        string p = this->old_orders[i].get_phone();
+        bool found = false;
+        int list_count = 0;
+        for(int j=0; j<this->old_length; j++) {
+            if(list[j].phone == p) {
+                list[j].count++;
+                found = true;
+            } else if(list[j].phone == "") {
+                list_count = j;
+            }
+        }
+        if(!found) {
+            list[list_count].phone = p;
+            list[list_count].count = 0;
+        }
+    }
+    for(int i=0; i<this->order_numbers(); i++) {
+        if(list[i].phone != "") {
+            sum++;
+        }
+    }
+    return sum;
+}
