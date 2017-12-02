@@ -30,6 +30,21 @@ order* delivery::get_orders(pizza_place place) {
     return orders_place;
 }
 
+order* delivery::get_old_orders(pizza_place place) {
+    sales* s = new sales();
+    order* orders = s->get_old_orders();
+    order* orders_place = new order[s->get_orders_length()];
+    int order_count = 0;
+    for(int i=0; i<s->get_orders_length(); i++) {
+        if(orders[i].get_place().get_name() == place.get_name()) {
+            orders_place[order_count] = orders[i];
+            order_count++;
+        }
+    }
+    this->orders_length = order_count;
+    return orders_place;
+}
+
 int delivery::get_orders_length() {
     return this->orders_length;
 }

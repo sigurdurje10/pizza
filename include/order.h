@@ -34,13 +34,23 @@ public:
     void del();
     void pickup();
     void is_paid();
+    bool get_paid();
     void set_place(pizza_place place);
     pizza_place get_place();
     void set_comment(string s);
     string get_comment();
     int get_pizzas_count();
+    int get_sides_count();
     bool get_delivered();
     void set_delivered(bool d);
+    void set_time();
+    int get_time();
+    bool get_late();
+    int get_deliver();
+    void set_deliver(int del);
+    int get_day();
+    int get_month();
+    int get_year();
     friend ostream& operator << (ostream& out, const order& order);
     friend istream& operator >> (istream& in, order& order);
 protected:
@@ -58,6 +68,12 @@ private:
     pizza_place place;
     char comment[128];
     bool delivered;
+    int time_o;
+    bool late;
+    bool damaged;
+    int day;
+    int month;
+    int year;
 };
 
 #endif /* order_h */

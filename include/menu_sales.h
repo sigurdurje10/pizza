@@ -10,13 +10,14 @@
 #define menu_sales_h
 
 #include <stdio.h>
+#include "user.h"
 
 class menu_sales {
 private:
     
 public:
     menu_sales();
-    void start_menu();
+    void start_menu(user current_user);
     
 };
 

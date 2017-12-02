@@ -29,5 +29,4 @@ public:
     bool is_old_empty();
 };
 
-
 #endif /* order_data_h */

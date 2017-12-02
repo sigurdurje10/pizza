@@ -13,7 +13,7 @@
 #include <limits>
 
 menu_place::menu_place() {
-
+    
 }
 
 pizza_place menu_place::get_place() {
@@ -24,7 +24,6 @@ pizza_place menu_place::get_place() {
     }
     string location_value = "";
     pizza_place place;
-    cin.ignore();
     while(location_value == "") {
         bool accepted = true;
         string location = "";
@@ -36,6 +35,7 @@ pizza_place menu_place::get_place() {
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 accepted = false;
             }
+            cout << location << endl;
         } while(!accepted || location == "");
         place = u->find_place(location);
         location_value = place.get_name();

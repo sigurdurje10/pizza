@@ -7,6 +7,10 @@
 //
 
 #include "order.h"
+#include <ctime>
+#include <chrono>
+
+using namespace std;
 
 order::order() {
     this->pizza_count = 0;
@@ -17,6 +21,10 @@ order::order() {
     this->address[0] = '\0';
     this->phone_number[0] = '\0';
     this->delivered = false;
+    this->late = false;
+    this->set_time();
+    this->damaged = false;
+    this->paid = false;
 }
 
 order::~order() {
@@ -30,9 +38,12 @@ order::order(string address, string phone) {
     this->id = -1;
     this->comment[0] = '\0';
     this->delivered = false;
+    this->late = false;
     strcpy(this->address, address.c_str());
     strcpy(this->phone_number, phone.c_str());
-
+    this->set_time();
+    this->damaged = false;
+    this->paid = false;
 }
 
 void order::add_pizza(pizza p) {
@@ -48,8 +59,9 @@ void order::set_pizza(pizza p, int pizza_count) {
 }
 
 void order::add_side(side_order s) {
-    if(side_count < 5){
-        this->side_list[side_count] = s;
+    if(side_count < 5) {
+        this->side_list[this->side_count] = s;
+        this->side_count++;
     }
 }
 
@@ -124,6 +136,10 @@ int order::get_pizzas_count() {
     return this->pizza_count;
 }
 
+int order::get_sides_count() {
+    return this->side_count;
+}
+
 side_order* order::get_side() const {
     side_order* sides = new side_order[this->side_count];
     for(int i = 0; i < this->side_count; i++) {
@@ -150,6 +166,56 @@ void order::set_delivered(bool d) {
     this->delivered = d;
 }
 
+void order::set_time() {
+    time_t now = time(0);
+    struct tm tstruct = *localtime(&now);
+    this->time_o = tstruct.tm_hour * 60 * 60 + tstruct.tm_min * 60 + tstruct.tm_sec;
+    this->day = tstruct.tm_mday;
+    this->month = tstruct.tm_mon + 1; // Month is 0 - 11, add 1 to get a jan-dec 1-12 concept
+    this->year = tstruct.tm_year + 1900;
+}
+
+int order::get_day() {
+    return this->day;
+}
+
+int order::get_month() {
+    return this->month;
+}
+
+int order::get_year() {
+    return this->year;
+}
+
+int order::get_time() {
+    return this->time_o;
+}
+
+bool order::get_late() {
+    time_t now = time(0);
+    struct tm tstruct = *localtime(&now);
+    int seconds = tstruct.tm_hour * 60 * 60 + tstruct.tm_min * 60 + tstruct.tm_sec;
+    if((seconds - this->time_o) > (30*60)) {
+        this->late = true;
+    }
+    if((seconds - this->time_o) > (60*60)) {
+        this->damaged = true;
+    }
+    return this->late;
+}
+
+void order::set_deliver(int del) {
+    this->deliver = del;
+}
+
+int order::get_deliver() {
+    return this->deliver;
+}
+
+bool order::get_paid() {
+    return this->paid;
+}
+
 ostream& operator << (ostream& out, const order& order) {
     out << "Id: " << order.id << endl;
     out << "Simanumer: " << order.phone_number << endl;
@@ -161,6 +227,12 @@ ostream& operator << (ostream& out, const order& order) {
     }
     if(order.paid) {
         out << "Buid ad greida." << endl;
+    }
+    if(order.late) {
+        out << "Sein." << endl;
+    }
+    if(order.damaged) {
+        out << "Ónýt." << endl;
     }
     out << "Athugasemd: " << order.comment << endl;
     if(order.place.get_name() != "") {
@@ -177,7 +249,8 @@ ostream& operator << (ostream& out, const order& order) {
     return out;
 }
 
-istream& operator >> (istream& in, order& order) {
 
+istream& operator >> (istream& in, order& order) {
+    
     return in;
 }

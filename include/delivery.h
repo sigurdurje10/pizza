@@ -21,6 +21,7 @@ private:
 public:
     delivery();
     order* get_orders(pizza_place place);
+    order* get_old_orders(pizza_place place);
     int get_orders_length();
     order* get_orders_ready(pizza_place place);
     int get_orders_ready_length();

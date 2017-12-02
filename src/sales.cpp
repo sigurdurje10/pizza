@@ -17,7 +17,7 @@ sales::sales() {
 int sales::new_order(order* o) {
     order_data* d = new order_data();
     d->save_order(o);
-    delete o;
+    //delete o;
     delete d;
     return o->get_id();
 }
@@ -48,10 +48,28 @@ void sales::save_order(order o) {
     delete d;
 }
 
+void sales::delete_order(order o) {
+    order_data* d = new order_data();
+    order* orders = d->get_orders();
+    order* orders_n = new order[d->get_orders_length()-1];
+    int order_count = 0;
+    for(int i = 0; i<d->get_orders_length(); i++) {
+        if(orders[i].get_id() == o.get_id()) {
+        } else {
+            orders_n[order_count] = orders[i];
+            order_count++;
+        }
+    }
+    d->save_orders(orders_n);
+}
+
 order* sales::get_orders() {
     order_data* d = new order_data();
     this->orders = d->get_orders();
     this->orders_length = d->get_orders_length();
+    for(int i=0; i<this->get_orders_length(); i++) {
+        this->orders[i].get_late();
+    }
     delete d;
     return this->orders;
 }

@@ -105,23 +105,27 @@ order* order_data::get_orders() {
 }
 
 order* order_data::get_old_orders() {
-    ifstream fin;
-    fin.open("orders_old.dat", ios::binary);
-    fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(order));
-    fin.seekg(0, fin.beg);
-    this->number_of_orders = records+1;
-    order p_m[records+1];
-    fin.read((char*)(&p_m), sizeof(order)*(records));
-    this->orders = new order[records+1];
-    for(int i = 0; i < records; i++) {
-        this->orders[i] = p_m[i];
+    this->number_of_orders = 1;
+    if(!this->is_old_empty()) {
+        ifstream fin;
+        fin.open("orders_old.dat", ios::binary);
+        fin.seekg(0, fin.end);
+        int records = (fin.tellg() / sizeof(order));
+        fin.seekg(0, fin.beg);
+        this->number_of_orders = records+1;
+        order p_m[records+1];
+        fin.read((char*)(&p_m), sizeof(order)*(records));
+        this->orders = new order[records+1];
+        for(int i = 0; i < records; i++) {
+            this->orders[i] = p_m[i];
+        }
+        fin.close();
     }
-    fin.close();
     return this->orders;
 }
 
 int order_data::get_orders_length() {
     return this->number_of_orders-1;
 }
+
 

@@ -19,20 +19,28 @@
 using namespace std;
 
 menu_delivery::menu_delivery() {
-
+    
 }
 
-void menu_delivery::start_menu() {
+void menu_delivery::start_menu(user current_user) {
+    
     sales* s = new sales();
     delivery* d = new delivery;
     menu_place* mp = new menu_place();
-    pizza_place place = mp->get_place();
-
+    string username = current_user.get_username();
+    pizza_place place;
+    if(username == "") {
+        cin.ignore();
+        place = mp->get_place();
+    } else {
+        place = current_user.get_place();
+    }
+    
     char action_a;
     do {
         bool accepted = true;
         do {
-            cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a) eda haetta(h): ";
+            cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a), Lista af afhentum pontunum(h) eda haetta(h): ";
             cin >> action_a;
             if(!cin) {
                 cin.clear();
@@ -41,6 +49,13 @@ void menu_delivery::start_menu() {
             }
         } while(!accepted);
         switch(action_a) {
+            case 'h': {
+                order* orders = d->get_old_orders(place);
+                for(int i=0; i<d->get_orders_length(); i++) {
+                    cout << orders[i];
+                }
+                break;
+            }
             case 'l': {
                 order* orders = d->get_orders(place);
                 for(int i=0; i<d->get_orders_length(); i++) {

@@ -20,6 +20,7 @@ public:
     sales();
     int new_order(order* o);
     void save_order(order o);
+    void delete_order(order o);
     order* get_orders();
     order* get_old_orders();
     order find_order(int id);

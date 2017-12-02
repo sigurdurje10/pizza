@@ -49,7 +49,7 @@ string side_order::get_name() const {
 }
 
 ostream& operator << (ostream& out, const side_order& s_order) {
-    out << "Heiti: " << s_order.get_name() << endl;
+    out << "Medlaeti: " << s_order.get_name() << endl;
     out << "Verd: " << s_order.get_price() << endl;
     return out;
 }

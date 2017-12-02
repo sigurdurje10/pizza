@@ -17,6 +17,7 @@
 #include "pizza_place.h"
 #include "side_order.h"
 #include "pizza.h"
+#include "user.h"
 
 class manage {
 private:
@@ -37,6 +38,10 @@ private:
     
     pizza* pizzas;
     int pizzas_length;
+    
+    user* users;
+    int users_length;
+    user current_user;
 public:
     manage();
     
@@ -70,6 +75,12 @@ public:
     pizza find_menu_item(string pizza_name);
     int get_menu_length();
     
+    void new_user(user* p);
+    user* get_users();
+    user find_user(string username, string password);
+    int get_users_length();
+    void set_user(user u);
+    user get_user();
 };
 
 #endif /* umsjon_h */

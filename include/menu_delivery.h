@@ -10,13 +10,14 @@
 #define menu_delivery_h
 
 #include <stdio.h>
+#include "user.h"
 
 class menu_delivery {
 private:
     
 public:
     menu_delivery();
-    void start_menu();
+    void start_menu(user current_user);
     
 };
 

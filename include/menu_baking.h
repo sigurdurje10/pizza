@@ -10,13 +10,14 @@
 #define menu_baking_h
 
 #include <stdio.h>
+#include "user.h"
 
 class menu_baking {
 private:
     
 public:
     menu_baking();
-    void start_menu();
+    void start_menu(user current_user);
     
 };
 

@@ -15,22 +15,29 @@
 #include "sales.h"
 #include "order.h"
 #include "side_order.h"
+#include "menu_shorthand.h"
 #include <limits>
-#include <menu_shorthand.h>
+#include "user.h"
+#include "pizza_place.h"
+
 using namespace std;
 
 menu_sales::menu_sales() {
-
+    
 }
 
-void menu_sales::start_menu() {
+void menu_sales::start_menu(user current_user) {
     manage* u = new manage();
     sales* s = new sales();
+    pizza_place place;
+    if(current_user.get_username() != "") {
+        place = current_user.get_place();
+    }
     char action_s;
     do {
         bool accepted = true;
         do {
-            cout << "Skra pontun(p), Skra pontun flytileid(f), Sja heildarverd(v), Skra pontun senta/sotta(s), Merkja pontun greidda(g), Merkja afhendingarstad(a), Skra athugasemd(t), Sja allar pantanir(n) eda haetta(h): ";
+            cout << "Skra pontun(p), Skra pontun flytileid(f), Sja heildarverd(v), Skra pontun senta/sotta(s), Merkja pontun greidda(g), Merkja afhendingarstad(a), Skra athugasemd(t), Sja allar pantanir(n), Eyda pontun(e) eda haetta(h): ";
             cin >> action_s;
             if(!cin) {
                 cin.clear();
@@ -43,6 +50,15 @@ void menu_sales::start_menu() {
                 order* o;
                 menu_shorthand* shorthand = new menu_shorthand();
                 o = shorthand->get_shorthand();
+                if(place.get_address() != "") {
+                    o->set_place(place);
+                }
+                char stadfest;
+                cout << "Stadfesta pontun(j/n): ";
+                cin >> stadfest;
+                if(stadfest == 'j') {
+                    s->new_order(o);
+                }
                 break;
             }
             case 'p': {
@@ -152,11 +168,14 @@ void menu_sales::start_menu() {
                             }
                         } while(!accepted);
                     } while(action_s_p_s != 'h' && side_count < 10);
-
+                    
                     int id = 0;
                     if(!s->orders_empty()) {
                         order* orders = s->get_orders();
                         id = s->get_orders_length();
+                    }
+                    if(place.get_address() != "") {
+                        o->set_place(place);
                     }
                     o->set_id(id);
                     s->new_order(o);
@@ -387,12 +406,46 @@ void menu_sales::start_menu() {
                 } while(action_s_t != 'h');
                 break;
             }
-            case 'n':
+            case 'n': {
                 order* orders = s->get_orders();
                 for(int i = 0; i < s->get_orders_length(); i++) {
                     cout << orders[i];
                 }
                 break;
+            }
+            case 'e': {
+                char action_s_t;
+                do {
+                    int order_number = -1;
+                    do {
+                        cout << "Pontunarnumer: ";
+                        cin >> order_number;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted || order_number == -1);
+                    order o = s->find_order(order_number);
+                    if(o.get_id() != -1) {
+                        s->delete_order(o);
+                        cout << "Faersla '" << order_number << "' eydd." << endl;
+                    } else {
+                        cout << "Faersla fannst ekki. " << endl;
+                    }
+                    bool accepted = true;
+                    do {
+                        cout << "Veldu Nyja pontun(n) eda haetta(h): ";
+                        cin >> action_s_t;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
+                } while(action_s_t != 'h');
+                break;
+            }
         }
     } while(action_s != 'h');
 }

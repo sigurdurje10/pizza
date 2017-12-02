@@ -17,6 +17,8 @@
 #include "p_data.h"
 #include "pizza_place_data.h"
 #include "pizza_bottom_data.h"
+#include "user.h"
+#include "user_data.h"
 
 
 manage::manage() {
@@ -196,4 +198,41 @@ pizza manage::find_menu_item(string pizza_name) {
 
 int manage::get_menu_length() {
     return this->pizzas_length;
+}
+
+void manage::new_user(user* p) {
+    user_data* d = new user_data();
+    d->save_user(p);
+    delete p;
+    delete d;
+}
+
+user* manage::get_users() {
+    user_data* p = new user_data();
+    this->users = p->get_users();
+    this->users_length = p->get_users_length();
+    delete p;
+    return this->users;
+}
+
+user manage::find_user(string username, string password) {
+    user* users = this->get_users();
+    for(int i=0; i<this->get_users_length(); i++) {
+        if(username == users[i].get_username() && password == users[i].get_password()) {
+            return users[i];
+        }
+    }
+    return (*new user());
+}
+
+int manage::get_users_length() {
+    return this->users_length;
+}
+
+void manage::set_user(user u) {
+    this->current_user = u;
+}
+
+user manage::get_user() {
+    return this->current_user;
 }

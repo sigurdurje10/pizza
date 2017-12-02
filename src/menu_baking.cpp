@@ -13,20 +13,28 @@
 #include "baking.h"
 #include "menu_place.h"
 #include "sales.h"
-#include <limits>
+#include "user.h"
+
 using namespace std;
 
 menu_baking::menu_baking() {
-
+    
 }
 
-void menu_baking::start_menu() {
+void menu_baking::start_menu(user current_user) {
     manage* u = new manage();
     baking* b = new baking();
     sales* s = new sales();
     menu_place* mp = new menu_place();
-    pizza_place place = mp->get_place();
-
+    string username = current_user.get_username();
+    pizza_place place;
+    if(username == "") {
+        cin.ignore();
+        place = mp->get_place();
+    } else {
+        place = current_user.get_place();
+    }
+    
     char action_b;
     do {
         bool accepted = true;
