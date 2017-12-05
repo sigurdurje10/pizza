@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "user.h"
+#include "exception.h"
 
 class menu_baking {
 private:
@@ -20,5 +21,6 @@ public:
     void start_menu(user current_user);
     
 };
+
 
 #endif /* menu_baking_h */

@@ -40,12 +40,20 @@ void menu_delivery::start_menu(user current_user) {
     do {
         bool accepted = true;
         do {
-            cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a), Lista af afhentum pontunum(h) eda haetta(h): ";
-            cin >> action_a;
-            if(!cin) {
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                accepted = false;
+            try {
+                cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a), Lista af afhentum pontunum(h) eda haetta(h): ";
+                cin >> action_a;
+                if(!cin) {
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    accepted = false;
+                    throw delivery_exception();
+                }
+                if(!isalpha(action_a)) {
+                    throw delivery_exception();
+                }
+            } catch(delivery_exception) {
+                cout << "Valdmynds inntak tharf ad vera bokstafur.";
             }
         } while(!accepted);
         switch(action_a) {
@@ -74,12 +82,17 @@ void menu_delivery::start_menu(user current_user) {
                 bool accepted = true;
                 int order_id;
                 do {
-                    cout << "Pontunarnumer: ";
-                    cin >> order_id;
-                    if(!cin) {
-                        cin.clear();
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        accepted = false;
+                    try {
+                        cout << "Pontunarnumer: ";
+                        cin >> order_id;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                            throw ordernum_exception();
+                        }
+                    } catch(ordernum_exception) {
+                        cout << "Pontunarnumer tharf ad vera tala." << endl;
                     }
                 } while(!accepted);
                 order order = s->find_order(order_id);
@@ -94,12 +107,17 @@ void menu_delivery::start_menu(user current_user) {
                 bool accepted = true;
                 int order_id;
                 do {
-                    cout << "Pontunarnumer: ";
-                    cin >> order_id;
-                    if(!cin) {
-                        cin.clear();
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        accepted = false;
+                    try {
+                        cout << "Pontunarnumer: ";
+                        cin >> order_id;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                            throw ordernum_exception();
+                        }
+                    } catch(ordernum_exception) {
+                        cout << "Pontunarnumer tharf ad vera tala." << endl;
                     }
                 } while(!accepted);
                 order order = s->find_order(order_id);
@@ -116,12 +134,17 @@ void menu_delivery::start_menu(user current_user) {
                 bool accepted = true;
                 int order_id;
                 do {
-                    cout << "Pontunarnumer: ";
-                    cin >> order_id;
-                    if(!cin) {
-                        cin.clear();
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        accepted = false;
+                    try {
+                        cout << "Pontunarnumer: ";
+                        cin >> order_id;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                            throw ordernum_exception();
+                        }
+                    } catch(ordernum_exception) {
+                        cout << "Pontunarnumer tharf ad vera tala." << endl;
                     }
                 } while(!accepted);
                 order order = s->find_order(order_id);

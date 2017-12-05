@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "user.h"
+#include "exception.h"
 
 class menu_sales {
 private:

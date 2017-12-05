@@ -11,6 +11,7 @@
 #include <string>
 #include <string.h>
 #include <limits>
+#include "exception.h"
 
 side_order::side_order(){
     price = 0;
@@ -22,7 +23,8 @@ side_order::~side_order(){
 }
 
 side_order::side_order(int price, string name){
-    this->price = price;
+    //this->price = price;
+    this->set_price(price);
     strcpy(this->name, name.c_str());
 }
 
@@ -32,6 +34,9 @@ void side_order::set_side_order(int price, string name) {
 }
 
 void side_order::set_price(int price){
+    if(price < 0) {
+        throw price_exception();
+    }
     this->price = price;
 }
 
@@ -74,10 +79,12 @@ istream& operator >> (istream& in, side_order& s_order) {
                 cin.clear();
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 accepted = false;
+                throw price_exception();
             }
         }
     } while(!accepted || name == "" || price == -1);
     s_order.set_name(name);
     s_order.set_price(price);
+   
     return in;
 }

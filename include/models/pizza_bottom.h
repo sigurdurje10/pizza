@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include "exception.h"
 
 using namespace std;
 
@@ -21,6 +22,9 @@ public:
     pizza_bottom(int price, string name);
     virtual ~pizza_bottom();
     void set_price(int price){
+        if(price < 0) {
+            throw price_exception();
+        }
         this->price = price;
     }
     void set_name(string name){

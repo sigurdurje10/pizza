@@ -39,12 +39,17 @@ void menu_baking::start_menu(user current_user) {
     do {
         bool accepted = true;
         do {
-            cout << "Lista pitsur(l), Syna pitsu(s), Merkja i vinnslu(v), Merkja tilbuna(t) eda haetta(h): ";
-            cin >> action_b;
-            if(!cin) {
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                accepted = false;
+            try {
+                cout << "Lista pitsur(l), Syna pitsu(s), Merkja i vinnslu(v), Merkja tilbuna(t) eda haetta(h): ";
+                cin >> action_b;
+                if(!cin || !isalpha(action_b)) {
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    accepted = false;
+                    throw baking_exception();
+                }
+            } catch(baking_exception) {
+                cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
             }
         } while(!accepted);
         switch(action_b) {
@@ -59,12 +64,17 @@ void menu_baking::start_menu(user current_user) {
                 bool accepted = true;
                 int pizza_id = -1;
                 do {
-                    cout << "Pitsunumer: ";
-                    cin >> pizza_id;
-                    if(!cin) {
-                        cin.clear();
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        accepted = false;
+                    try {
+                        cout << "Pitsunumer: ";
+                        cin >> pizza_id;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                            throw pizzanum_exception();
+                        }
+                    } catch(pizzanum_exception) {
+                        cout << "Pitsunumer tharf ad vera tala." << endl;
                     }
                 } while(!accepted);
                 pizza p = b->get_pizza(pizza_id, place);
@@ -79,12 +89,17 @@ void menu_baking::start_menu(user current_user) {
                 bool accepted = true;
                 int pizza_id = -1;
                 do {
-                    cout << "Pitsunumer: ";
-                    cin >> pizza_id;
-                    if(!cin) {
-                        cin.clear();
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        accepted = false;
+                    try {
+                        cout << "Pitsunumer: ";
+                        cin >> pizza_id;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                            throw pizzanum_exception();
+                        }
+                    } catch(pizzanum_exception) {
+                        cout << "Pitsunumer tharf ad vera tala." << endl;
                     }
                 } while(!accepted);
                 pizza p = b->get_pizza(pizza_id, place);
@@ -103,12 +118,17 @@ void menu_baking::start_menu(user current_user) {
                 bool accepted = true;
                 int pizza_id;
                 do {
-                    cout << "Pitsunumer: ";
-                    cin >> pizza_id;
-                    if(!cin) {
-                        cin.clear();
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        accepted = false;
+                    try {
+                        cout << "Pitsunumer: ";
+                        cin >> pizza_id;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                            throw pizzanum_exception();
+                        }
+                    } catch(pizzanum_exception) {
+                        cout << "Pitsunumer tharf ad vera tala." << endl;
                     }
                 } while(!accepted);
                 pizza p = b->get_pizza(pizza_id, place);
