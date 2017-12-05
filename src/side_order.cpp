@@ -58,8 +58,8 @@ istream& operator >> (istream& in, side_order& s_order) {
     bool accepted = true;
     string name = "";
     int price = -1;
+    in.ignore();
     do {
-        in.ignore();
         cout << "Heiti: ";
         getline(in, name);
         if(!cin) {

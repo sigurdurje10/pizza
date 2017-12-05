@@ -38,10 +38,10 @@ istream& operator >> (istream& in, pizza_bottom& p_bottom) {
     bool accepted = true;
     string name = "";
     int price = -1;
+    in.ignore();
     do {
         accepted = true;
         cout << "Tegund botns: ";
-        in.ignore();
         getline(in, name);
         if(!in) {
             in.clear();

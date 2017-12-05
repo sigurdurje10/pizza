@@ -116,9 +116,9 @@ void menu_manage::start_menu() {
                     string name = "";
                     int price = -1;
                     menu_pizza* mp;
+                    cin.ignore();
                     do {
                         cout << "Ny pitsa a matsedli: ";
-                        cin.ignore();
                         getline(cin, name);
                         if(!cin) {
                             cin.clear();

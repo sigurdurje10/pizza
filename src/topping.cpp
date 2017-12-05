@@ -53,10 +53,10 @@ istream& operator >> (istream& in, topping& p_topping) {
     bool accepted = true;
     string topping = "";
     int price = -1;
+    in.ignore();
     do {
         accepted = true;
         cout << "Alegg: ";
-        in.ignore();
         getline(in, topping);
         if(!in) {
             in.clear();
