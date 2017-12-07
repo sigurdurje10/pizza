@@ -18,7 +18,7 @@ int main(int argc, const char * argv[]) {
     menu* m = new menu();
     m->start_menu();
     delete m;
-    
+
     /*int t = 1;
     int* x = &t;*/
     return 0;

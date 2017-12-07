@@ -9,13 +9,14 @@
 #include "menu_login.h"
 #include <string.h>
 #include <iostream>
+#include <limits>
 #include "manage.h"
 #include "menu_place.h"
 
 using namespace std;
 
 menu_login::menu_login() {
-    
+
 }
 
 void menu_login::start_menu() {

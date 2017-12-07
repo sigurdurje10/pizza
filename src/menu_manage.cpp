@@ -15,6 +15,7 @@
 #include "side_order.h"
 #include "pizza.h"
 #include "menu_pizza.h"
+#include "menu_special.h"
 #include <limits>
 using namespace std;
 
@@ -28,7 +29,7 @@ void menu_manage::start_menu() {
     do {
         bool accepted = true;
         do {
-            cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t) eda haetta(h): ";
+            cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t), Skra tilbod(i) eda haetta(h): ";
             cin >> action_u;
             if(!cin) {
                 cin.clear();
@@ -208,6 +209,23 @@ void menu_manage::start_menu() {
                     } while(!accepted);
                 } while(action_u_t != 'h');
                 break;
+            case 'i':
+                char action_u_i;
+                do {
+                    menu_special * m_special =new menu_special();
+                    m_special->start_menu();
+                    bool accepted =true;
+                    do {
+                        cout << "Gerdu nytt tilbod(n) eda haetta(h): ";
+                        cin >> action_u_i;
+                        if(!cin) {
+                            cin.clear();
+                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            accepted = false;
+                        }
+                    } while(!accepted);
+
+                }while(action_u_i != 'h');
         }
     } while(action_u != 'h');
 }

@@ -19,10 +19,11 @@
 #include "pizza_bottom_data.h"
 #include "user.h"
 #include "user_data.h"
-
+#include "pizza_special.h"
+#include "special_data.h"
 
 manage::manage() {
-    
+
 }
 
 void manage::new_size(pizza_size* s) {
@@ -112,7 +113,7 @@ pizza_bottom manage::find_bottom(string bottom) {
 int manage::get_bottoms_length() {
     return this->bottoms_length;
 }
- 
+
 void manage::new_place(pizza_place* p) {
     pizza_place_data* d = new pizza_place_data();
     d->save_place(p);
@@ -131,7 +132,7 @@ pizza_place* manage::get_places() {
 int manage::get_places_length() {
     return this->places_length;
 }
- 
+
 pizza_place manage::find_place(string place_value) {
     pizza_place* places = this->get_places();
     for(int i=0; i<this->get_places_length(); i++) {
@@ -208,7 +209,7 @@ void manage::new_user(user* p) {
 }
 
 user* manage::get_users() {
-    user_data* p = new user_data();
+    ;user_data*p =new user_data();
     this->users = p->get_users();
     this->users_length = p->get_users_length();
     delete p;
@@ -236,3 +237,31 @@ void manage::set_user(user u) {
 user manage::get_user() {
     return this->current_user;
 }
+void manage::new_special(pizza_special* p) {
+    special_data* d = new special_data();
+    d->save_special(p);
+    delete p;
+    delete d;
+}/*
+
+user* manage::get_specials() {
+    ;user_data*p =new user_data();
+    this->users = p->get_users();
+    this->users_length = p->get_users_length();
+    delete p;
+    return this->users;
+}
+
+user manage::find_user(string username, string password) {
+    user* users = this->get_users();
+    for(int i=0; i<this->get_users_length(); i++) {
+        if(username == users[i].get_username() && password == users[i].get_password()) {
+            return users[i];
+        }
+    }
+    return (*new user());
+}
+
+int manage::get_users_length() {
+    return this->users_length;
+}*/

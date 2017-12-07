@@ -59,7 +59,7 @@ void order::set_pizza(pizza p, int pizza_count) {
 }
 
 void order::add_side(side_order s) {
-    if(side_count < 5) {
+    if(side_count < 5){
         this->side_list[this->side_count] = s;
         this->side_count++;
     }
@@ -251,6 +251,6 @@ ostream& operator << (ostream& out, const order& order) {
 
 
 istream& operator >> (istream& in, order& order) {
-    
+
     return in;
 }
