@@ -6,9 +6,10 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "order.h"
+#include "models/order.h"
 #include <ctime>
 #include <chrono>
+#include "exception/exception.h"
 
 using namespace std;
 
@@ -40,7 +41,8 @@ order::order(string address, string phone) {
     this->delivered = false;
     this->late = false;
     strcpy(this->address, address.c_str());
-    strcpy(this->phone_number, phone.c_str());
+    //strcpy(this->phone_number, phone.c_str());
+    this->set_phone(phone);
     this->set_time();
     this->damaged = false;
     this->paid = false;
@@ -82,6 +84,15 @@ void order::set_address(string address) {
 }
 
 void order::set_phone(string phone) {
+    bool valid = true;
+    for(int i=0; i<phone.length(); i++) {
+        if(!isdigit(phone[i])) {
+            valid = false;
+        }
+    }
+    if(!valid) {
+        throw phone_exception();
+    }
     strcpy(this->phone_number, phone.c_str());
 }
 

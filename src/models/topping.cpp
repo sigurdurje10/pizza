@@ -9,6 +9,7 @@
 #include "topping.h"
 #include <string>
 #include <limits>
+#include "exception.h"
 
 topping::topping(){
     name[0] = '\0';
@@ -17,7 +18,8 @@ topping::topping(){
 
 topping::topping(int price, string name){
     strcpy(this->name, name.c_str());
-    this->price = price;
+    //this->price = price;
+    this->set_price(price);
 }
 
 void topping::set_topping(int price, string name) {
@@ -33,6 +35,9 @@ void topping::set_name(string name){
     strcpy(this->name, name.c_str());
 }
 void topping::set_price(int price){
+    if(price < 0) {
+        throw price_exception();
+    }
     this->price = price;
 }
 string topping::get_name() const {
@@ -53,10 +58,10 @@ istream& operator >> (istream& in, topping& p_topping) {
     bool accepted = true;
     string topping = "";
     int price = -1;
+    in.ignore();
     do {
         accepted = true;
         cout << "Alegg: ";
-        in.ignore();
         getline(in, topping);
         if(!in) {
             in.clear();
@@ -70,8 +75,10 @@ istream& operator >> (istream& in, topping& p_topping) {
                 in.clear();
                 in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 accepted = false;
+                throw price_exception();
             }
         }
+    
     } while(!accepted || topping == "" || price == -1);
     p_topping.set_name(topping);
     p_topping.set_price(price);

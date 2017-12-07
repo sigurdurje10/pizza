@@ -7,6 +7,7 @@
 //
 
 #include "pizza.h"
+#include "exception.h"
 
 pizza::pizza() {
     this->price = 0;
@@ -53,6 +54,9 @@ topping* pizza::get_pizza_toppings() const {
 }
 
 void pizza::set_price(int price) {
+    if(price < 0) {
+        throw price_exception();
+    }
     this->price = price;
 }
 
@@ -133,6 +137,6 @@ ostream& operator << (ostream& out, const pizza& pizza) {
 }
 
 istream& operator >> (istream& in, pizza& pizza) {
-    
+
     return in;
 }

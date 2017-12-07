@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "order.h"
+#include "exception.h"
 
 class menu_shorthand {
 private:
@@ -20,5 +21,6 @@ public:
     order* get_shorthand();
     
 };
+
 
 #endif /* menu_shorthand_h */

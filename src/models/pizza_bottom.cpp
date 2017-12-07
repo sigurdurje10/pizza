@@ -8,6 +8,7 @@
 
 #include "pizza_bottom.h"
 #include <limits>
+#include "exception.h"
 
 pizza_bottom::pizza_bottom(){
     name[0] = '\0';
@@ -16,6 +17,9 @@ pizza_bottom::pizza_bottom(){
 
 pizza_bottom::pizza_bottom(int price, string name){
     strcpy(this->name, name.c_str());
+    if(price < 0) {
+        throw price_exception();
+    }
     this->price = price;
 }
 
@@ -38,10 +42,10 @@ istream& operator >> (istream& in, pizza_bottom& p_bottom) {
     bool accepted = true;
     string name = "";
     int price = -1;
+    in.ignore();
     do {
         accepted = true;
         cout << "Tegund botns: ";
-        in.ignore();
         getline(in, name);
         if(!in) {
             in.clear();
@@ -55,6 +59,7 @@ istream& operator >> (istream& in, pizza_bottom& p_bottom) {
                 in.clear();
                 in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 accepted = false;
+                throw price_exception();
             }
         }
     } while(!accepted || name == "" || price == -1);

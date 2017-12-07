@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
+#include "exception/exception.h"
 
 using namespace std;
 
@@ -21,6 +22,9 @@ public:
     pizza_bottom(int price, string name);
     virtual ~pizza_bottom();
     void set_price(int price){
+        if(price < 0) {
+            throw price_exception();
+        }
         this->price = price;
     }
     void set_name(string name){
@@ -34,12 +38,12 @@ public:
         return str;
     }
     void set_pizza_bottom(string name, int price);
-    
+
     friend ostream& operator << (ostream& out, const pizza_bottom& p_bottom);
     friend istream& operator >> (istream& in, pizza_bottom& p_bottom);
-    
+
 protected:
-    
+
 private:
     int price;
     char name[20];

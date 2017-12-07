@@ -34,10 +34,16 @@ order* menu_shorthand::get_shorthand() {
     string delimiter = ";";
     int position_s = command.find("s:");
     int position_semi = command.find(";");
+    if(position_s == -1 || position_semi == -1) {
+        throw short_exception();
+    }
     string phone = command.substr(position_s+2, position_semi-2);
     command = command.substr(position_semi+1, command.length());
     int position_h = command.find("h:");
     position_semi = command.find(";");
+    if(position_h == -1 || position_semi == -1) {
+        throw short_exception();
+    }
     string address = command.substr(position_h+2, position_semi-3);
     command = command.substr(position_semi+1, command.length());
     o->set_phone(phone);
@@ -47,6 +53,9 @@ order* menu_shorthand::get_shorthand() {
     pizza m;
     while(position_m != -1) {
         position_semi = command.find(";");
+        if(position_m == -1 || position_semi == -1) {
+            throw short_exception();
+        }
         string pizza_name = command.substr(position_m+2, position_semi-3);
         command = command.substr(position_semi+1, command.length());
         m = u->find_menu_item(pizza_name);
@@ -59,6 +68,9 @@ order* menu_shorthand::get_shorthand() {
     while(position_p != -1) {
         int position_b = command.find("b:");
         position_semi = command.find(";");
+        if(position_p == -1 || position_b == -1 || position_semi == -1) {
+            throw short_exception();
+        }
         string bottom = command.substr(position_b+2, position_semi-5);
         command = command.substr(position_semi+1, command.length());
         pizza_bottom bottom_obj = u->find_bottom(bottom);
@@ -66,6 +78,9 @@ order* menu_shorthand::get_shorthand() {
         
         int position_size = command.find("s:");
         position_semi = command.find(";");
+        if(position_size == -1 || position_semi == -1) {
+            throw short_exception();
+        }
         string size = command.substr(position_size+2, position_semi-3);
         int size_int = stoi(size);
         command = command.substr(position_semi+1, command.length());
@@ -76,6 +91,9 @@ order* menu_shorthand::get_shorthand() {
         topping t;
         while(position_a != -1) {
             position_semi = command.find(";");
+            if(position_a == -1 || position_semi == -1) {
+                throw short_exception();
+            }
             string top = command.substr(position_a+2, position_semi-3);
             command = command.substr(position_semi+1, command.length());
             topping top_obj = u->find_topping(top);
@@ -85,15 +103,23 @@ order* menu_shorthand::get_shorthand() {
         
         position_semi = command.find(";");
         command = command.substr(position_semi+1, command.length());
-        
+        if(position_semi == -1) {
+            throw short_exception();
+        }
         o->add_pizza(p);
         position_p = command.find("p:");
+        if(position_p == -1) {
+            throw short_exception();
+        }
     }
     
     int position_e = command.find("e:");
     side_order s;
     while(position_e != -1) {
         position_semi = command.find(";");
+        if(position_e == -1 || position_semi == -1) {
+            throw short_exception();
+        }
         string side = command.substr(position_e+2, position_semi-3);
         command = command.substr(position_semi+1, command.length());
         s = u->find_side(side);

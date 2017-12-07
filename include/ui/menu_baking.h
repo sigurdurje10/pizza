@@ -1,24 +1,26 @@
 //
-//  menu_delivery.h
+//  menu_baking.h
 //  pizza
 //
 //  Created by Sigurður Jökull on 29/11/2017.
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#ifndef menu_delivery_h
-#define menu_delivery_h
+#ifndef menu_baking_h
+#define menu_baking_h
 
 #include <stdio.h>
 #include "user.h"
+#include "exception.h"
 
-class menu_delivery {
+class menu_baking {
 private:
     
 public:
-    menu_delivery();
+    menu_baking();
     void start_menu(user current_user);
     
 };
 
-#endif /* menu_delivery_h */
+
+#endif /* menu_baking_h */

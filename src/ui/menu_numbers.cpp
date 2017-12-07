@@ -8,7 +8,11 @@
 
 #include "menu_numbers.h"
 #include "sales_numbers.h"
+
 #include <limits>
+
+#include "exception.h"
+
 
 menu_numbers::menu_numbers() {
 
@@ -30,29 +34,55 @@ void menu_numbers::start_menu() {
         } while(!accepted);
         switch(action) {
             case 'd': {
-                int month = 0;
-                int day = 0;
-                int year = 0;
-                cout << "Ar: ";
-                cin >> year;
-                cout << "Manudur: ";
-                cin >> month;
-                cout << "Dagur: ";
-                cin >> day;
-                s = new sales_numbers(day, month, year, 1);
+                try {
+                    int month = 0;
+                    int day = 0;
+                    int year = 0;
+                    cout << "Ar: ";
+                    cin >> year;
+                    if(year < 1900 || year > 2017) {
+                        throw date_exception();
+                    }
+                    cout << "Manudur: ";
+                    cin >> month;
+                    if(month < 1 || month > 12) {
+                        throw date_exception();
+                    }
+                    cout << "Dagur: ";
+                    cin >> day;
+                    if(day < 1 || day > 31) {
+                        throw date_exception();
+                    }
+                    s = new sales_numbers(day, month, year, 1);
+                } catch(date_exception) {
+                    cout << "Villa in dagsetningu." << endl;
+                }
                 break;
             }
             case 'a': {
                 int month = 0;
                 int day = 0;
                 int year = 0;
-                cout << "Ar: ";
-                cin >> year;
-                cout << "Manudur: ";
-                cin >> month;
-                cout << "Dagur: ";
-                cin >> day;
-                s = new sales_numbers(day, month, year, 2);
+                try {
+                    cout << "Ar: ";
+                    cin >> year;
+                    if(year < 1900 || year > 2017) {
+                        throw date_exception();
+                    }
+                    cout << "Manudur: ";
+                    cin >> month;
+                    if(month < 1 || month > 12) {
+                        throw date_exception();
+                    }
+                    cout << "Dagur: ";
+                    cin >> day;
+                    if(day < 1 || day > 31) {
+                        throw date_exception();
+                    }
+                    s = new sales_numbers(day, month, year, 2);
+                } catch(date_exception) {
+                    cout << "Villa in dagsetningu." << endl;
+                }
                 break;
             }
             case 'p': {

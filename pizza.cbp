@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -40,11 +42,14 @@
 		<Unit filename="include/menu.h" />
 		<Unit filename="include/menu_baking.h" />
 		<Unit filename="include/menu_delivery.h" />
+		<Unit filename="include/menu_login.h" />
 		<Unit filename="include/menu_manage.h" />
+		<Unit filename="include/menu_numbers.h" />
 		<Unit filename="include/menu_pizza.h" />
 		<Unit filename="include/menu_place.h" />
 		<Unit filename="include/menu_sales.h" />
 		<Unit filename="include/menu_shorthand.h" />
+		<Unit filename="include/menu_special.h" />
 		<Unit filename="include/order.h" />
 		<Unit filename="include/order_data.h" />
 		<Unit filename="include/p_data.h" />
@@ -60,11 +65,16 @@
 		<Unit filename="include/pizza_place_data.h" />
 		<Unit filename="include/pizza_size.h" />
 		<Unit filename="include/pizza_size_data.h" />
+		<Unit filename="include/pizza_special.h" />
 		<Unit filename="include/sales.h" />
+		<Unit filename="include/sales_numbers.h" />
 		<Unit filename="include/side_order.h" />
 		<Unit filename="include/side_order_data.h" />
+		<Unit filename="include/special_data.h" />
 		<Unit filename="include/topping.h" />
 		<Unit filename="include/topping_data.h" />
+		<Unit filename="include/user.h" />
+		<Unit filename="include/user_data.h" />
 		<Unit filename="src/.DS_Store" />
 		<Unit filename="src/baking.cpp" />
 		<Unit filename="src/delivery.cpp" />
@@ -73,11 +83,14 @@
 		<Unit filename="src/menu.cpp" />
 		<Unit filename="src/menu_baking.cpp" />
 		<Unit filename="src/menu_delivery.cpp" />
+		<Unit filename="src/menu_login.cpp" />
 		<Unit filename="src/menu_manage.cpp" />
+		<Unit filename="src/menu_numbers.cpp" />
 		<Unit filename="src/menu_pizza.cpp" />
 		<Unit filename="src/menu_place.cpp" />
 		<Unit filename="src/menu_sales.cpp" />
 		<Unit filename="src/menu_shorthand.cpp" />
+		<Unit filename="src/menu_special.cpp" />
 		<Unit filename="src/order.cpp" />
 		<Unit filename="src/order_data.cpp" />
 		<Unit filename="src/p_data.cpp" />
@@ -89,11 +102,16 @@
 		<Unit filename="src/pizza_place_data.cpp" />
 		<Unit filename="src/pizza_size.cpp" />
 		<Unit filename="src/pizza_size_data.cpp" />
+		<Unit filename="src/pizza_special.cpp" />
 		<Unit filename="src/sales.cpp" />
+		<Unit filename="src/sales_numbers.cpp" />
 		<Unit filename="src/side_order.cpp" />
 		<Unit filename="src/side_order_data.cpp" />
+		<Unit filename="src/special_data.cpp" />
 		<Unit filename="src/topping.cpp" />
 		<Unit filename="src/topping_data.cpp" />
+		<Unit filename="src/user.cpp" />
+		<Unit filename="src/user_data.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -10,9 +10,10 @@
 #include "pizza.h"
 #include "manage.h"
 #include <limits>
+#include "exception.h"
 
 menu_pizza::menu_pizza() {
-    
+
 }
 
 pizza* menu_pizza::get_pizza() {
@@ -87,12 +88,17 @@ pizza* menu_pizza::get_pizza() {
         }
         accepted = true;
         do {
-            cout << "Nytt alegg(n) eda haetta(h): ";
-            cin >> action_u_m_t;
-            if(!cin) {
-                cin.clear();
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                accepted = false;
+            try {
+                cout << "Nytt alegg(n) eda haetta(h): ";
+                cin >> action_u_m_t;
+                if(!cin || !isalpha(action_u_m_t)) {
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    accepted = false;
+                    throw topping_exception();
+                }
+            } catch(topping_exception) {
+                cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
             }
         } while(!accepted);
     } while(action_u_m_t != 'h' && top_count < 10);
