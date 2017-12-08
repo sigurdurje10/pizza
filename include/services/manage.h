@@ -10,15 +10,15 @@
 #define umsjon_h
 
 #include <stdio.h>
-#include "pizza_size.h"
-#include "pizza_size_data.h"
-#include "topping.h"
-#include "pizza_bottom.h"
-#include "pizza_place.h"
-#include "side_order.h"
-#include "pizza.h"
-#include "user.h"
-#include "pizza_special.h"
+#include "models/pizza_size.h"
+#include "repositories/pizza_size_data.h"
+#include "models/topping.h"
+#include "models/pizza_bottom.h"
+#include "models/pizza_place.h"
+#include "models/side_order.h"
+#include "models/pizza.h"
+#include "models/user.h"
+#include "models/pizza_special.h"
 
 class manage {
 private:

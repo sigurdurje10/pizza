@@ -6,13 +6,13 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "delivery.h"
-#include "order.h"
-#include "manage.h"
-#include "sales.h"
+#include "services/delivery.h"
+#include "models/order.h"
+#include "services/manage.h"
+#include "services/sales.h"
 
 delivery::delivery() {
-    
+
 }
 
 order* delivery::get_orders(pizza_place place) {

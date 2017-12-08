@@ -6,11 +6,11 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_pizza.h"
-#include "pizza.h"
-#include "manage.h"
+#include "ui/menu_pizza.h"
+#include "models/pizza.h"
+#include "services/manage.h"
 #include <limits>
-#include "exception.h"
+#include "exception/exception.h"
 
 menu_pizza::menu_pizza() {
 

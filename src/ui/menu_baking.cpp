@@ -6,15 +6,15 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_baking.h"
+#include "ui/menu_baking.h"
 #include <iostream>
 #include <string>
 #include <limits>
-#include "pizza_place.h"
-#include "baking.h"
-#include "menu_place.h"
-#include "sales.h"
-#include "user.h"
+#include "models/pizza_place.h"
+#include "services/baking.h"
+#include "ui/menu_place.h"
+#include "services/sales.h"
+#include "models/user.h"
 
 using namespace std;
 

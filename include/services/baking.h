@@ -10,10 +10,10 @@
 #define baking_h
 
 #include <stdio.h>
-#include "pizza.h"
-#include "pizza_place.h"
-#include "manage.h"
-#include "order.h"
+#include "models/pizza.h"
+#include "models/pizza_place.h"
+#include "services/manage.h"
+#include "models/order.h"
 
 class baking {
 private:

@@ -10,15 +10,15 @@
 #define menu_pizza_h
 
 #include <stdio.h>
-#include "pizza.h"
+#include "models/pizza.h"
 
 class menu_pizza {
 private:
-    
+
 public:
     menu_pizza();
     pizza* get_pizza();
-    
+
 };
 
 

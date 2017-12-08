@@ -6,24 +6,24 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu.h"
+#include "ui/menu.h"
 #include <iostream>
 #include <string>
-#include "manage.h"
-#include "pizza_size.h"
-#include "menu_manage.h"
-#include "menu_sales.h"
-#include "menu_baking.h"
-#include "menu_delivery.h"
-#include "menu_numbers.h"
-#include "menu_login.h"
+#include "services/manage.h"
+#include "models/pizza_size.h"
+#include "ui/menu_manage.h"
+#include "ui/menu_sales.h"
+#include "ui/menu_baking.h"
+#include "ui/menu_delivery.h"
+#include "ui/menu_numbers.h"
+#include "ui/menu_login.h"
 #include <limits>
 
 
 using namespace std;
 
 menu::menu() {
-    
+
 }
 
 void menu::start_menu() {

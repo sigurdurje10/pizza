@@ -6,8 +6,8 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza_bottom_data.h"
-#include "pizza_bottom.h"
+#include "repositories/pizza_bottom_data.h"
+#include "models/pizza_bottom.h"
 #include <iostream>
 #include <fstream>
 

@@ -6,14 +6,14 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_place.h"
-#include "pizza_place.h"
+#include "ui/menu_place.h"
+#include "models/pizza_place.h"
 #include <string.h>
-#include "manage.h"
+#include "services/manage.h"
 #include <limits>
 
 menu_place::menu_place() {
-    
+
 }
 
 pizza_place menu_place::get_place() {

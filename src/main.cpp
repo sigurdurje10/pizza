@@ -7,10 +7,10 @@
 //
 
 #include <iostream>
-#include "menu.h"
+#include "ui/menu.h"
 #include <iostream>
 #include <fstream>
-#include "pizza_size.h"
+#include "models/pizza_size.h"
 
 using namespace std;
 

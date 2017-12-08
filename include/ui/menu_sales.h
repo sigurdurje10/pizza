@@ -10,16 +10,16 @@
 #define menu_sales_h
 
 #include <stdio.h>
-#include "user.h"
-#include "exception.h"
+#include "models/user.h"
+#include "exception/exception.h"
 
 class menu_sales {
 private:
-    
+
 public:
     menu_sales();
     void start_menu(user current_user);
-    
+
 };
 
 

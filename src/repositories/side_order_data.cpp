@@ -6,8 +6,8 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "side_order_data.h"
-#include "side_order.h"
+#include "repositories/side_order_data.h"
+#include "models/side_order.h"
 #include <iostream>
 #include <fstream>
 

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza_menu.h"
+#include "models/pizza_menu.h"
 
 pizza_menu::pizza_menu() {
     //ctor

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "user_data.h"
-#include "user.h"
+#include "repositories/user_data.h"
+#include "models/user.h"
 #include <iostream>
 #include <fstream>
 

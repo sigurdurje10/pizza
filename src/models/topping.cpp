@@ -6,10 +6,10 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "topping.h"
+#include "models/topping.h"
 #include <string>
 #include <limits>
-#include "exception.h"
+#include "exception/exception.h"
 
 topping::topping(){
     name[0] = '\0';
@@ -78,7 +78,7 @@ istream& operator >> (istream& in, topping& p_topping) {
                 throw price_exception();
             }
         }
-    
+
     } while(!accepted || topping == "" || price == -1);
     p_topping.set_name(topping);
     p_topping.set_price(price);

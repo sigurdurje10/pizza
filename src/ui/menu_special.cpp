@@ -1,9 +1,9 @@
-#include "menu_special.h"
+#include "ui/menu_special.h"
 #include <limits>
 #include <string.h>
 #include <iostream>
-#include "pizza_special.h"
-#include "manage.h"
+#include "models/pizza_special.h"
+#include "services/manage.h"
 
 using namespace std;
 

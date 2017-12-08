@@ -10,16 +10,16 @@
 #define menu_delivery_h
 
 #include <stdio.h>
-#include "user.h"
-#include "exception.h"
+#include "models/user.h"
+#include "exception/exception.h"
 
 class menu_delivery {
 private:
-    
+
 public:
     menu_delivery();
     void start_menu(user current_user);
-    
+
 };
 
 #endif /* menu_delivery_h */

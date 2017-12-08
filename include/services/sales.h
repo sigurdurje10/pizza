@@ -10,7 +10,7 @@
 #define sales_h
 
 #include <stdio.h>
-#include "order.h"
+#include "models/order.h"
 
 class sales {
 private:
@@ -26,7 +26,7 @@ public:
     order find_order(int id);
     int get_orders_length();
     bool orders_empty();
-    
+
 };
 
 #endif /* sales_h */

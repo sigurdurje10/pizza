@@ -6,12 +6,12 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "side_order.h"
+#include "models/side_order.h"
 #include <iostream>
 #include <string>
 #include <string.h>
 #include <limits>
-#include "exception.h"
+#include "exception/exception.h"
 
 side_order::side_order(){
     price = 0;
@@ -85,6 +85,6 @@ istream& operator >> (istream& in, side_order& s_order) {
     } while(!accepted || name == "" || price == -1);
     s_order.set_name(name);
     s_order.set_price(price);
-   
+
     return in;
 }

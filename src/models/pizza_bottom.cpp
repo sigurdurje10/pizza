@@ -6,9 +6,9 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza_bottom.h"
+#include "models/pizza_bottom.h"
 #include <limits>
-#include "exception.h"
+#include "exception/exception.h"
 
 pizza_bottom::pizza_bottom(){
     name[0] = '\0';

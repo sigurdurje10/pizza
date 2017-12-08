@@ -6,8 +6,8 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "sales_numbers.h"
-#include "sales.h"
+#include "services/sales_numbers.h"
+#include "services/sales.h"
 
 sales_numbers::sales_numbers(int day, int month, int year, int date_switch) {
     this->s = new sales();

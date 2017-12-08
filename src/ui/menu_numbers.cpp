@@ -6,12 +6,12 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_numbers.h"
-#include "sales_numbers.h"
+#include "ui/menu_numbers.h"
+#include "services/sales_numbers.h"
 
 #include <limits>
 
-#include "exception.h"
+#include "exception/exception.h"
 
 
 menu_numbers::menu_numbers() {

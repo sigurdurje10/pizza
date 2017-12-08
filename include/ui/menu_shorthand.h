@@ -10,16 +10,16 @@
 #define menu_shorthand_h
 
 #include <stdio.h>
-#include "order.h"
-#include "exception.h"
+#include "models/order.h"
+#include "exception/exception.h"
 
 class menu_shorthand {
 private:
-    
+
 public:
     menu_shorthand();
     order* get_shorthand();
-    
+
 };
 
 

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza.h"
-#include "exception.h"
+#include "models/pizza.h"
+#include "exception/exception.h"
 
 pizza::pizza() {
     this->price = 0;

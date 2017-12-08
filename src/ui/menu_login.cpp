@@ -6,12 +6,12 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_login.h"
+#include "ui/menu_login.h"
 #include <string.h>
 #include <iostream>
 #include <limits>
-#include "manage.h"
-#include "menu_place.h"
+#include "services/manage.h"
+#include "ui/menu_place.h"
 
 using namespace std;
 

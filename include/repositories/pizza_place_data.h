@@ -9,7 +9,7 @@
 #ifndef pizza_place_data_h
 #define pizza_place_data_h
 
-#include "pizza_place.h"
+#include "models/pizza_place.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -23,13 +23,13 @@ public:
     pizza_place* get_places();
     int get_places_length();
     bool is_empty();
-    
+
 protected:
-    
+
 private:
     int number_of_places;
     pizza_place* p_p;
-    
+
 };
 
 #endif /* pizza_place_data_h */

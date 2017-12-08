@@ -6,21 +6,21 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "manage.h"
-#include "pizza_size.h"
-#include "pizza_size_data.h"
+#include "services/manage.h"
+#include "models/pizza_size.h"
+#include "repositories/pizza_size_data.h"
 #include <iostream>
-#include "topping.h"
-#include "topping_data.h"
-#include "side_order.h"
-#include "side_order_data.h"
-#include "p_data.h"
-#include "pizza_place_data.h"
-#include "pizza_bottom_data.h"
-#include "user.h"
-#include "user_data.h"
-#include "pizza_special.h"
-#include "special_data.h"
+#include "models/topping.h"
+#include "repositories/topping_data.h"
+#include "models/side_order.h"
+#include "repositories/side_order_data.h"
+#include "repositories/p_data.h"
+#include "repositories/pizza_place_data.h"
+#include "repositories/pizza_bottom_data.h"
+#include "models/user.h"
+#include "repositories/user_data.h"
+#include "models/pizza_special.h"
+#include "repositories/special_data.h"
 
 manage::manage() {
 

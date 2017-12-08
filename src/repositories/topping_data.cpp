@@ -6,8 +6,8 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "topping_data.h"
-#include "topping.h"
+#include "repositories/topping_data.h"
+#include "models/topping.h"
 #include <iostream>
 #include <fstream>
 

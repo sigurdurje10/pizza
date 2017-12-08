@@ -6,17 +6,17 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_shorthand.h"
-#include "order.h"
+#include "ui/menu_shorthand.h"
+#include "models/order.h"
 #include <string.h>
-#include "pizza.h"
-#include "manage.h"
-#include "sales.h"
+#include "models/pizza.h"
+#include "services/manage.h"
+#include "services/sales.h"
 
 using namespace std;
 
 menu_shorthand::menu_shorthand() {
-    
+
 }
 
 order* menu_shorthand::get_shorthand() {
@@ -26,7 +26,7 @@ order* menu_shorthand::get_shorthand() {
     cout << "Skráðu simanumer og heimilisfang" << endl;
     cout << "Fyrir pitsu af matsedli: s:(simanumer); h:(heimilisfang); m:(heiti pitsu); m:(onnur pitsa); e:(medlaeti);" << endl;
     cout << "Fyrir servalda pitsu: s:(simanumer); h:(heimilisfang); p:b:(botn); s:(staerd); a:(alegg);; e:(medlaeti);" << endl;
-    
+
     string command = "";
     cin.ignore();
     getline(cin, command);
@@ -48,7 +48,7 @@ order* menu_shorthand::get_shorthand() {
     command = command.substr(position_semi+1, command.length());
     o->set_phone(phone);
     o->set_address(address);
-    
+
     int position_m = command.find("m:");
     pizza m;
     while(position_m != -1) {
@@ -62,7 +62,7 @@ order* menu_shorthand::get_shorthand() {
         o->add_pizza(m);
         position_m = command.find("m:");
     }
-    
+
     int position_p = command.find("p:");
     pizza p;
     while(position_p != -1) {
@@ -75,7 +75,7 @@ order* menu_shorthand::get_shorthand() {
         command = command.substr(position_semi+1, command.length());
         pizza_bottom bottom_obj = u->find_bottom(bottom);
         p.set_pizza_bottom(bottom_obj);
-        
+
         int position_size = command.find("s:");
         position_semi = command.find(";");
         if(position_size == -1 || position_semi == -1) {
@@ -86,7 +86,7 @@ order* menu_shorthand::get_shorthand() {
         command = command.substr(position_semi+1, command.length());
         pizza_size size_obj = u->find_size(size_int);
         p.set_pizza_size(size_obj);
-        
+
         int position_a = command.find("a:");
         topping t;
         while(position_a != -1) {
@@ -100,7 +100,7 @@ order* menu_shorthand::get_shorthand() {
             p.add_topping(top_obj);
             position_a = command.find("a:");
         }
-        
+
         position_semi = command.find(";");
         command = command.substr(position_semi+1, command.length());
         if(position_semi == -1) {
@@ -112,7 +112,7 @@ order* menu_shorthand::get_shorthand() {
             throw short_exception();
         }
     }
-    
+
     int position_e = command.find("e:");
     side_order s;
     while(position_e != -1) {

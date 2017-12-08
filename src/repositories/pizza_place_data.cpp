@@ -6,7 +6,7 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza_place_data.h"
+#include "repositories/pizza_place_data.h"
 
 pizza_place_data::pizza_place_data()
 {

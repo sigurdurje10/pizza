@@ -6,15 +6,15 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza_size_data.h"
-#include "pizza_size.h"
+#include "repositories/pizza_size_data.h"
+#include "models/pizza_size.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 pizza_size_data::pizza_size_data() {
-    
+
 }
 
 void pizza_size_data::save_size(pizza_size* p) {

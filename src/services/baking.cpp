@@ -6,11 +6,11 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "baking.h"
-#include "sales.h"
+#include "services/baking.h"
+#include "services/sales.h"
 
 baking::baking() {
-    
+
 }
 
 pizza* baking::get_pizzas(pizza_place place) {

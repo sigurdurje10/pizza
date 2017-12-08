@@ -6,12 +6,12 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "sales.h"
-#include "order.h"
-#include "order_data.h"
+#include "services/sales.h"
+#include "models/order.h"
+#include "repositories/order_data.h"
 
 sales::sales() {
-    
+
 }
 
 int sales::new_order(order* o) {

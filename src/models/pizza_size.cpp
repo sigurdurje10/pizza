@@ -6,14 +6,14 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza_size.h"
+#include "models/pizza_size.h"
 #include <limits>
-#include "exception.h"
+#include "exception/exception.h"
 
 using namespace std;
 
 pizza_size::pizza_size() {
-    
+
 }
 
 pizza_size::pizza_size(int size, int price) {
@@ -78,7 +78,7 @@ istream& operator >> (istream& in, pizza_size& p_size) {
                 throw price_exception();
             }
         }
-        
+
     } while(!accepted || size == -1 || price == -1);
     p_size.set_size(size);
     p_size.set_price(price);

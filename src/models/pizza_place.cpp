@@ -6,7 +6,7 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "pizza_place.h"
+#include "models/pizza_place.h"
 #include <iostream>
 #include <string>
 #include <string.h>

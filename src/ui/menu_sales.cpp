@@ -6,19 +6,19 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_sales.h"
-#include "menu_pizza.h"
-#include "pizza.h"
+#include "ui/menu_sales.h"
+#include "ui/menu_pizza.h"
+#include "models/pizza.h"
 #include <iostream>
 #include <string>
-#include "manage.h"
-#include "sales.h"
-#include "order.h"
-#include "side_order.h"
-#include "menu_shorthand.h"
+#include "services/manage.h"
+#include "services/sales.h"
+#include "models/order.h"
+#include "models/side_order.h"
+#include "ui/menu_shorthand.h"
 #include <limits>
-#include "user.h"
-#include "pizza_place.h"
+#include "models/user.h"
+#include "models/pizza_place.h"
 
 using namespace std;
 

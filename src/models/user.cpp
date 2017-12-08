@@ -6,10 +6,10 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "user.h"
+#include "models/user.h"
 
 user::user() {
-    
+
 }
 
 user::user(string username, string password, pizza_place place) {

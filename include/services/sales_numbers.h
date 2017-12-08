@@ -10,8 +10,8 @@
 #define sales_numbers_h
 
 #include <stdio.h>
-#include "order.h"
-#include "sales.h"
+#include "models/order.h"
+#include "services/sales.h"
 
 class sales_numbers {
 private:

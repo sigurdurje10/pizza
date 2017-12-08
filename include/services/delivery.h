@@ -10,8 +10,8 @@
 #define delivery_h
 
 #include <stdio.h>
-#include "order.h"
-#include "pizza_place.h"
+#include "models/order.h"
+#include "models/pizza_place.h"
 
 class delivery {
 private:

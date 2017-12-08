@@ -10,7 +10,7 @@
 #define user_data_h
 
 #include <stdio.h>
-#include "user.h"
+#include "models/user.h"
 
 class user_data {
 private:

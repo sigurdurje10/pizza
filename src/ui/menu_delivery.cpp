@@ -6,24 +6,24 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_delivery.h"
+#include "ui/menu_delivery.h"
 #include <iostream>
 #include <string>
-#include "manage.h"
-#include "menu_place.h"
-#include "pizza_place.h"
-#include "delivery.h"
-#include "sales.h"
+#include "services/manage.h"
+#include "ui/menu_place.h"
+#include "models/pizza_place.h"
+#include "services/delivery.h"
+#include "services/sales.h"
 #include <limits>
 
 using namespace std;
 
 menu_delivery::menu_delivery() {
-    
+
 }
 
 void menu_delivery::start_menu(user current_user) {
-    
+
     sales* s = new sales();
     delivery* d = new delivery;
     menu_place* mp = new menu_place();
@@ -35,7 +35,7 @@ void menu_delivery::start_menu(user current_user) {
     } else {
         place = current_user.get_place();
     }
-    
+
     char action_a;
     do {
         bool accepted = true;

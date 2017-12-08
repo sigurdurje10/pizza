@@ -6,18 +6,18 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_manage.h"
+#include "ui/menu_manage.h"
 #include <iostream>
 #include <string>
-#include "pizza_size.h"
-#include "manage.h"
-#include "topping.h"
-#include "side_order.h"
-#include "pizza.h"
-#include "menu_pizza.h"
+#include "models/pizza_size.h"
+#include "services/manage.h"
+#include "models/topping.h"
+#include "models/side_order.h"
+#include "models/pizza.h"
+#include "ui/menu_pizza.h"
 #include <limits>
-#include "exception.h"
-#include "menu_special.h"
+#include "exception/exception.h"
+#include "ui/menu_special.h"
 using namespace std;
 
 menu_manage::menu_manage() {
