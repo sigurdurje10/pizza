@@ -40,6 +40,7 @@ void menu_delivery::start_menu(user current_user) {
     do {
         bool accepted = true;
         do {
+            accepted = true;
             try {
                 cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a), Lista af afhentum pontunum(u) eda haetta(h): ";
                 cin >> action_a;
@@ -82,6 +83,7 @@ void menu_delivery::start_menu(user current_user) {
                 bool accepted = true;
                 int order_id;
                 do {
+                accepted = true;
                     try {
                         cout << "Pontunarnumer: ";
                         cin >> order_id;
@@ -107,6 +109,7 @@ void menu_delivery::start_menu(user current_user) {
                 bool accepted = true;
                 int order_id;
                 do {
+                    accepted = true;
                     try {
                         cout << "Pontunarnumer: ";
                         cin >> order_id;
@@ -134,6 +137,7 @@ void menu_delivery::start_menu(user current_user) {
                 bool accepted = true;
                 int order_id;
                 do {
+                    accepted = true;
                     try {
                         cout << "Pontunarnumer: ";
                         cin >> order_id;

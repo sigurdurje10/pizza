@@ -9,6 +9,9 @@
 #include "services/sales_numbers.h"
 #include "services/sales.h"
 
+/*
+*Skráir inn dagsetningu sem skoðuð er.
+*/
 sales_numbers::sales_numbers(int day, int month, int year, int date_switch) {
     this->s = new sales();
     this->active_orders = this->s->get_orders();
@@ -93,12 +96,18 @@ sales_numbers::sales_numbers(int day, int month, int year, int date_switch) {
     }
 }
 
+/*
+*Sækja fjölda pantana.
+*/
 int sales_numbers::order_numbers() {
     int sum = this->active_length;
     sum += this->old_length;
     return sum;
 }
 
+/*
+*Sækir fjölda pitsna.
+*/
 int sales_numbers::pizza_numbers() {
     int sum = 0;
     for(int i=0; i<this->active_length; i++) {
@@ -110,6 +119,9 @@ int sales_numbers::pizza_numbers() {
     return sum;
 }
 
+/*
+*Sækir fjölda salna.
+*/
 int sales_numbers::total_sales() {
     int sum = 0;
     for(int i=0; i<this->active_length; i++) {
@@ -121,6 +133,9 @@ int sales_numbers::total_sales() {
     return sum;
 }
 
+/*
+*Umgjörð um símanúmer.
+*/
 struct sales_numbers::people {
     string phone;
     int count;
@@ -130,6 +145,9 @@ struct sales_numbers::people {
     }
 };
 
+/*
+*Sækja fjölda viðskiptavina.
+*/
 int sales_numbers::people_numbers() {
     int sum = 0;
     people* list = new people[this->order_numbers()];

@@ -26,6 +26,9 @@ manage::manage() {
 
 }
 
+/*
+*Skráir nýja stærð.
+*/
 void manage::new_size(pizza_size* s) {
     pizza_size_data* d = new pizza_size_data();
     d->save_size(s);
@@ -33,6 +36,9 @@ void manage::new_size(pizza_size* s) {
     delete d;
 }
 
+/*
+*Sækir allar stærðir.
+*/
 pizza_size* manage::get_sizes() {
     pizza_size_data* p = new pizza_size_data();
     this->sizes = p->get_sizes();
@@ -41,6 +47,9 @@ pizza_size* manage::get_sizes() {
     return this->sizes;
 }
 
+/*
+*Finna stærð.
+*/
 pizza_size manage::find_size(int size) {
     pizza_size* sz = this->get_sizes();
     for(int i=0; i<this->get_sizes_length(); i++) {
@@ -51,10 +60,16 @@ pizza_size manage::find_size(int size) {
     return (*new pizza_size());
 }
 
+/*
+*Sækir fjölda stærða.
+*/
 int manage::get_sizes_length() {
     return this->sizes_length;
 }
 
+/*
+*Nýtt álegg.
+*/
 void manage::new_topping(topping* t) {
     topping_data* d = new topping_data();
     d->save_topping(t);
@@ -62,6 +77,9 @@ void manage::new_topping(topping* t) {
     delete d;
 }
 
+/*
+*Sækir öll álegg.
+*/
 topping* manage::get_toppings() {
     topping_data* d = new topping_data();
     this->toppings = d->get_toppings();
@@ -70,6 +88,9 @@ topping* manage::get_toppings() {
     return this->toppings;
 }
 
+/*
+*Finnur álegg.
+*/
 topping manage::find_topping(string topping_value) {
     topping* top = this->get_toppings();
     for(int i=0; i<this->get_toppings_length(); i++) {
@@ -80,11 +101,17 @@ topping manage::find_topping(string topping_value) {
     return (*new topping());
 }
 
+/*
+*Sækir fjölda álegga.
+*/
 int manage::get_toppings_length() {
     return this->toppings_length;
 }
 
 
+/*
+*Skráir nýjan botn.
+*/
 void manage::new_bottom(pizza_bottom* b) {
     pizza_bottom_data* d = new pizza_bottom_data();
     d->save_bottom(b);
@@ -92,6 +119,9 @@ void manage::new_bottom(pizza_bottom* b) {
     delete d;
 }
 
+/*
+*Sækir allar botna.
+*/
 pizza_bottom* manage::get_bottoms() {
     pizza_bottom_data* d = new pizza_bottom_data();
     this->bottoms = d->get_bottoms();
@@ -100,6 +130,9 @@ pizza_bottom* manage::get_bottoms() {
     return this->bottoms;
 }
 
+/*
+*Finnur botn.
+*/
 pizza_bottom manage::find_bottom(string bottom) {
     pizza_bottom* bottoms = this->get_bottoms();
     for(int i = 0; i < this->get_bottoms_length(); i++) {
@@ -110,10 +143,16 @@ pizza_bottom manage::find_bottom(string bottom) {
     return (*new pizza_bottom());
 }
 
+/*
+*Sækir fjölda botna.
+*/
 int manage::get_bottoms_length() {
     return this->bottoms_length;
 }
 
+/*
+*Skráir nýjan stað.
+*/
 void manage::new_place(pizza_place* p) {
     pizza_place_data* d = new pizza_place_data();
     d->save_place(p);
@@ -121,6 +160,9 @@ void manage::new_place(pizza_place* p) {
     delete d;
 }
 
+/*
+*Sækir allar staði.
+*/
 pizza_place* manage::get_places() {
     pizza_place_data* d = new pizza_place_data();
     this->places = d->get_places();
@@ -129,10 +171,16 @@ pizza_place* manage::get_places() {
     return this->places;
 }
 
+/*
+*Sækir fjölda staða.
+*/
 int manage::get_places_length() {
     return this->places_length;
 }
 
+/*
+*Finnur stað.
+*/
 pizza_place manage::find_place(string place_value) {
     pizza_place* places = this->get_places();
     for(int i=0; i<this->get_places_length(); i++) {
@@ -143,6 +191,9 @@ pizza_place manage::find_place(string place_value) {
     return (*new pizza_place());
 }
 
+/*
+*Skrá nýja stærð.
+*/
 void manage::new_side(side_order* s) {
     side_order_data* d = new side_order_data();
     d->save_side(s);
@@ -150,6 +201,9 @@ void manage::new_side(side_order* s) {
     delete d;
 }
 
+/*
+*Sækir öll meðlæti.
+*/
 side_order* manage::get_sides() {
     side_order_data* d = new side_order_data();
     this->sides = d->get_sides();
@@ -158,6 +212,9 @@ side_order* manage::get_sides() {
     return this->sides;
 }
 
+/*
+*Finnur meðlæti.
+*/
 side_order manage::find_side(string side_value) {
     side_order* sides = this->get_sides();
     for(int i=0; i<this->get_sides_length(); i++) {
@@ -168,10 +225,16 @@ side_order manage::find_side(string side_value) {
     return (*new side_order());
 }
 
+/*
+*Sækir fjölda meðlæta.
+*/
 int manage::get_sides_length() {
     return this->sides_length;
 }
 
+/*
+*Ny pitsa a matsedli..
+*/
 void manage::new_menu_item(pizza* p) {
     p_data* d = new p_data();
     d->save_pizza(p);
@@ -179,6 +242,9 @@ void manage::new_menu_item(pizza* p) {
     delete d;
 }
 
+/*
+*Sækir allar pitsur af matsedli.
+*/
 pizza* manage::get_menu() {
     p_data* p = new p_data();
     this->pizzas = p->get_pizzas();
@@ -187,6 +253,9 @@ pizza* manage::get_menu() {
     return this->pizzas;
 }
 
+/*
+*Finna pitsu af matsedli.
+*/
 pizza manage::find_menu_item(string pizza_name) {
     pizza* pizzas = this->get_menu();
     for(int i=0; i<this->get_menu_length(); i++) {
@@ -197,10 +266,16 @@ pizza manage::find_menu_item(string pizza_name) {
     return (*new pizza());
 }
 
+/*
+*Sækir fjolda pitsna a matsedli.
+*/
 int manage::get_menu_length() {
     return this->pizzas_length;
 }
 
+/*
+*Skráir nýjan notanda.
+*/
 void manage::new_user(user* p) {
     user_data* d = new user_data();
     d->save_user(p);
@@ -208,6 +283,9 @@ void manage::new_user(user* p) {
     delete d;
 }
 
+/*
+*Sækir alla notanda.
+*/
 user* manage::get_users() {
     ;user_data*p =new user_data();
     this->users = p->get_users();
@@ -216,6 +294,9 @@ user* manage::get_users() {
     return this->users;
 }
 
+/*
+*Finnur notanda.
+*/
 user manage::find_user(string username, string password) {
     user* users = this->get_users();
     for(int i=0; i<this->get_users_length(); i++) {
@@ -226,24 +307,40 @@ user manage::find_user(string username, string password) {
     return (*new user());
 }
 
+/*
+*Sækir fjölda notanda.
+*/
 int manage::get_users_length() {
     return this->users_length;
 }
 
+/*
+*Stilla notanda.
+*/
 void manage::set_user(user u) {
     this->current_user = u;
 }
 
+/*
+*Sækja notanda.
+*/
 user manage::get_user() {
     return this->current_user;
 }
+
+/*
+*Skráir nýtt tilboð.
+*/
 void manage::new_special(pizza_special* p) {
     special_data* d = new special_data();
     d->save_special(p);
     delete p;
     delete d;
-}/*
+}
 
+/*
+*Sækir öll tilboð.
+*/
 user* manage::get_specials() {
     ;user_data*p =new user_data();
     this->users = p->get_users();
@@ -251,6 +348,9 @@ user* manage::get_specials() {
     delete p;
     return this->users;
 }
+/*
+/*
+*Finna tilboð.
 
 user manage::find_user(string username, string password) {
     user* users = this->get_users();

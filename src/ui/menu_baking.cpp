@@ -40,6 +40,7 @@ void menu_baking::start_menu(user current_user) {
     do {
         bool accepted = true;
         do {
+            accepted = true;
             try {
                 cout << "Lista pitsur(l), Syna pitsu(s), Merkja i vinnslu(v), Merkja tilbuna(t) eda haetta(h): ";
                 cin >> action_b;
@@ -65,6 +66,7 @@ void menu_baking::start_menu(user current_user) {
                 bool accepted = true;
                 int pizza_id = -1;
                 do {
+                accepted = true;
                     try {
                         cout << "Pitsunumer: ";
                         cin >> pizza_id;
@@ -90,6 +92,7 @@ void menu_baking::start_menu(user current_user) {
                 bool accepted = true;
                 int pizza_id = -1;
                 do {
+                    accepted = true;
                     try {
                         cout << "Pitsunumer: ";
                         cin >> pizza_id;
@@ -119,6 +122,7 @@ void menu_baking::start_menu(user current_user) {
                 bool accepted = true;
                 int pizza_id;
                 do {
+                    accepted = true;
                     try {
                         cout << "Pitsunumer: ";
                         cin >> pizza_id;

@@ -33,6 +33,7 @@ void menu::start_menu() {
     do {
         bool accepted = true;
         do {
+            accepted = true;
             cout << "Veldu Umsjon(u), Sala(s), Bakstur(b), Afhending(a), Solutolur(o), Innskraning(i), Nyskraning(n) eda haetta(h): ";
             cin >> action;
             if(!cin) {

@@ -29,6 +29,7 @@ void menu_login::start_menu() {
         string username = "";
         string password = "";
         do {
+            accepted = true;
             cout << "Notandanafn: ";
             getline(cin, username);
             if(!cin) {

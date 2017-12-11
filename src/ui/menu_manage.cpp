@@ -30,6 +30,7 @@ void menu_manage::start_menu() {
     do {
         bool accepted = true;
         do {
+            accepted = true;
             try {
                 cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t), Skra tilbod(i) eda haetta(h): ";
                 cin >> action_u;
@@ -64,6 +65,7 @@ void menu_manage::start_menu() {
                     }
                     bool accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nyja staerd(n) eda haetta(h): ";
                             cin >> action_u_s;
@@ -97,6 +99,7 @@ void menu_manage::start_menu() {
                     }
                     bool accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nyjan botn(n) eda haetta(h): ";
                             cin >> action_u_b;
@@ -133,6 +136,7 @@ void menu_manage::start_menu() {
                         }
                         bool accepted = true;
                         do {
+                            accepted = true;
                             try {
                                 cout << "Veldu Nytt alegg(n) eda haetta(h): ";
                                 cin >> action_u_a;
@@ -161,6 +165,7 @@ void menu_manage::start_menu() {
                         menu_pizza* mp;
                         cin.ignore();
                         do {
+                            accepted = true;
                             cout << "Ny pitsa a matsedli: ";
                             getline(cin, name);
                             if(!cin) {
@@ -195,6 +200,7 @@ void menu_manage::start_menu() {
                         }
                         accepted = true;
                         do {
+                            accepted = true;
                             try {
                                 cout << "Veldu Nyja pitsu(n) eda haetta(h): ";
                                 cin >> action_u_m;
@@ -231,6 +237,7 @@ void menu_manage::start_menu() {
                     }
                     bool accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nytt medlaeti(n) eda haetta(h): ";
                             cin >> action_u_e;
@@ -259,6 +266,7 @@ void menu_manage::start_menu() {
                     }
                     bool accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nyjan afhendingarstad(n) eda haetta(h): ";
                             cin >> action_u_t;
@@ -280,6 +288,7 @@ void menu_manage::start_menu() {
                     m_special->start_menu();
                     bool accepted =true;
                     do {
+                        accepted = true;
                         cout << "Gerdu nytt tilbod(n) eda haetta(h): ";
                         cin >> action_u_i;
                         if(!cin) {

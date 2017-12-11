@@ -37,6 +37,7 @@ void menu_sales::start_menu(user current_user) {
     do {
         bool accepted = true;
         do {
+            accepted = true;
             try {
                 cout << "Skra pontun(p), Skra pontun flytileid(f), Sja heildarverd(v), Skra pontun senta/sotta(s), Merkja pontun greidda(g), Merkja afhendingarstad(a), Skra athugasemd(t), Sja allar pantanir(n), Eyda pontun(e) eda haetta(h): ";
                 cin >> action_s;
@@ -93,6 +94,7 @@ void menu_sales::start_menu(user current_user) {
                         string phone = "";
                         string address = "";
                         do {
+                            accepted = true
                             cout << "Simanumer: ";
                             getline(cin, phone);
                             if(!cin) {
@@ -120,6 +122,7 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pitsa af matsedli(m) eda servalin(s):  ";
                             bool accepted = true;
                             do {
+                                accepted = true
                                 try {
                                     cin >> action_s_p_p;
                                     if(!cin || !isalpha(action_s_p_p)) {
@@ -160,6 +163,7 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Verd pitsu: " << p.get_price() << endl;
                             accepted = true;
                             do {
+                                accepted = true
                                 try {
                                     cout << "Nyja pitsu(n) eda haetta(h):  ";
                                     cin >> action_s_p_p;
@@ -194,6 +198,7 @@ void menu_sales::start_menu(user current_user) {
                             side_count++;
                             bool accepted = true;
                             do {
+                                accepted = true
                                 try {
                                     cout << "Nytt medlaeti(n) eda haetta(h):  ";
                                     cin >> action_s_p_s;
@@ -253,6 +258,7 @@ void menu_sales::start_menu(user current_user) {
                     bool accepted = true;
                     int order_number = -1;
                     do {
+                        accepted = true
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -266,15 +272,15 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pontunarnumer tharf ad vera tala.";
                         }
                     } while(!accepted || order_number == -1);
-                    order* o = new order[1];
-                    o[0] = s->find_order(order_number);
-                    if(o[0].get_id() != -1) {
-                        cout << "Heildarverd: " << o[0].get_price() << endl; //o->price();
+                    order o = s->find_order(order_number);
+                    if(o.get_id() != -1) {
+                        cout << "Heildarverd: " << o.get_price() << endl; //o->price();
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
                     }
                     accepted = true;
                     do {
+                        accepted = true
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_v;
@@ -297,6 +303,7 @@ void menu_sales::start_menu(user current_user) {
                     bool accepted = true;
                     int order_number = -1;
                     do {
+                        accepted = true
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -310,12 +317,12 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pontunarnumer tharf ad vera tala." << endl;
                         }
                     } while(!accepted || order_number == -1);
-                    order* o = new order[1];
-                    o[0] = s->find_order(order_number);
-                    if(o[0].get_id() != -1) {
+                    order o = s->find_order(order_number);
+                    if(o.get_id() != -1) {
                         bool accepted = true;
                         char del;
                         do {
+                            accepted = true
                             try {
                                 cout << "Skra senta(e) eda sotta(o): ";
                                 cin >> del;
@@ -329,16 +336,17 @@ void menu_sales::start_menu(user current_user) {
                             }
                         } while(!accepted);
                         if(del == 'e') {
-                            o[0].del();
+                            o.del();
                         } else if(del == 'o') {
-                            o[0].pickup();
+                            o.pickup();
                         }
-                        s->save_order(o[0]);
+                        s->save_order(o);
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
                     }
                     accepted = true;
                     do {
+                        accepted = true
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_s;
@@ -361,6 +369,7 @@ void menu_sales::start_menu(user current_user) {
                     bool accepted = true;
                     int order_number = -1;
                     do {
+                        accepted = true
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -373,11 +382,10 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pontunarnumer tharf ad vera tala." << endl;
                         }
                     } while(!accepted || order_number == -1);
-                    order* o = new order[1];
-                    o[0] = s->find_order(order_number);
-                    if(o[0].get_id() != -1) {
-                        o[0].is_paid();
-                        s->save_order(o[0]);
+                    order o = s->find_order(order_number);
+                    if(o.get_id() != -1) {
+                        o.is_paid();
+                        s->save_order(o);
                         cout << "Pontun hefur verid merkt greidd. " << endl;
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
@@ -406,6 +414,7 @@ void menu_sales::start_menu(user current_user) {
                     int order_number = -1;
                     string place = "";
                     do {
+                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -464,6 +473,7 @@ void menu_sales::start_menu(user current_user) {
                     int order_number = -1;
                     string comment = "";
                     do {
+                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -496,6 +506,7 @@ void menu_sales::start_menu(user current_user) {
                     }
                     bool accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_t;
@@ -524,6 +535,7 @@ void menu_sales::start_menu(user current_user) {
                 do {
                     int order_number = -1;
                     do {
+                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -546,6 +558,7 @@ void menu_sales::start_menu(user current_user) {
                     }
                     bool accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_t;

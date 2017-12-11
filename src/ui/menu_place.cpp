@@ -28,6 +28,7 @@ pizza_place menu_place::get_place() {
         bool accepted = true;
         string location = "";
         do {
+            accepted = true;
             cout << "Veldu stad: ";
             getline(cin, location);
             if(!cin) {

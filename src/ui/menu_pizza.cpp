@@ -25,6 +25,7 @@ pizza* menu_pizza::get_pizza() {
         bool accepted = true;
         string bottom = "";
         do {
+            accepted = true;
             cout << "Botn: ";
             getline(cin, bottom);
             if(!cin) {
@@ -47,6 +48,7 @@ pizza* menu_pizza::get_pizza() {
         bool accepted = true;
         int size = -1;
         do {
+            accepted = true;
             cout << "Staerd: ";
             cin >> size;
             if(!cin) {
@@ -71,6 +73,7 @@ pizza* menu_pizza::get_pizza() {
         bool accepted = true;
         cin.ignore();
         do {
+            accepted = true;
             cout << "Alegg: ";
             getline(cin, topping_value);
             if(!cin) {
@@ -88,6 +91,7 @@ pizza* menu_pizza::get_pizza() {
         }
         accepted = true;
         do {
+            accepted = true;
             try {
                 cout << "Nytt alegg(n) eda haetta(h): ";
                 cin >> action_u_m_t;

@@ -15,6 +15,9 @@ delivery::delivery() {
 
 }
 
+/*
+*Sækir allar óafhentar pantanir.
+*/
 order* delivery::get_orders(pizza_place place) {
     sales* s = new sales();
     order* orders = s->get_orders();
@@ -30,6 +33,9 @@ order* delivery::get_orders(pizza_place place) {
     return orders_place;
 }
 
+/*
+*Sækir allar afhentar pitsur.
+*/
 order* delivery::get_old_orders(pizza_place place) {
     sales* s = new sales();
     order* orders = s->get_old_orders();
@@ -45,10 +51,16 @@ order* delivery::get_old_orders(pizza_place place) {
     return orders_place;
 }
 
+/*
+*Sækir fjölda pantana.
+*/
 int delivery::get_orders_length() {
     return this->orders_length;
 }
 
+/*
+*Sækir allar tilbúnar pantanir.
+*/
 order* delivery::get_orders_ready(pizza_place place) {
     order* orders = this->get_orders(place);
     order* finished_orders = new order[this->get_orders_length()];
@@ -70,6 +82,9 @@ order* delivery::get_orders_ready(pizza_place place) {
     return finished_orders;
 }
 
+/*
+*Sækir fjolda tilbúna pantana.
+*/
 int delivery::get_orders_ready_length() {
     return this->orders_ready_length;
 }

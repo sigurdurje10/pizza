@@ -14,6 +14,9 @@ sales::sales() {
 
 }
 
+/*
+*Ská nýja pöntun.
+*/
 int sales::new_order(order* o) {
     order_data* d = new order_data();
     d->save_order(o);
@@ -22,6 +25,9 @@ int sales::new_order(order* o) {
     return o->get_id();
 }
 
+/*
+*Vista pöntun.
+*/
 void sales::save_order(order o) {
     order_data* d = new order_data();
     order* orders = d->get_orders();
@@ -48,6 +54,9 @@ void sales::save_order(order o) {
     delete d;
 }
 
+/*
+*Eyða pöntun.
+*/
 void sales::delete_order(order o) {
     order_data* d = new order_data();
     order* orders = d->get_orders();
@@ -63,6 +72,9 @@ void sales::delete_order(order o) {
     d->save_orders(orders_n);
 }
 
+/*
+*Sækja allar óafhentar pantanir.
+*/
 order* sales::get_orders() {
     order_data* d = new order_data();
     this->orders = d->get_orders();
@@ -74,6 +86,9 @@ order* sales::get_orders() {
     return this->orders;
 }
 
+/*
+*Sækja allar afhentar pantanir.
+*/
 order* sales::get_old_orders() {
     order_data* d = new order_data();
     this->orders = d->get_old_orders();
@@ -82,6 +97,9 @@ order* sales::get_old_orders() {
     return this->orders;
 }
 
+/*
+*Finna pöntun.
+*/
 order sales::find_order(int order_value) {
     order* ord = this->get_orders();
     for(int i=0; i<this->get_orders_length(); i++) {
@@ -92,10 +110,16 @@ order sales::find_order(int order_value) {
     return (*new order());
 }
 
+/*
+*Sækja fjölda pantana.
+*/
 int sales::get_orders_length() {
     return this->orders_length;
 }
 
+/*
+*Athugar hvort pantanalisti sé tómur.
+*/
 bool sales::orders_empty() {
     order_data* d = new order_data();
     return d->is_empty();

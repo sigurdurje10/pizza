@@ -12,7 +12,9 @@
 baking::baking() {
 
 }
-
+/*
+*Sækir allar pitsur.
+*/
 pizza* baking::get_pizzas(pizza_place place) {
     sales* s = new sales();
     order* orders = s->get_orders();
@@ -45,6 +47,9 @@ pizza* baking::get_pizzas(pizza_place place) {
     return this->pizzas;
 }
 
+/*
+*Sækir eima pitsu.
+*/
 pizza baking::get_pizza(int id, pizza_place place) {
     pizza* pizzas = this->get_pizzas(place);
     for(int i = 0; i<this->pizzas_length; i++) {
@@ -57,10 +62,16 @@ pizza baking::get_pizza(int id, pizza_place place) {
     return (*new pizza());
 }
 
+/*
+*Sækir fjoldi pitsna.
+*/
 int baking::get_pizzas_length() {
     return this->pizzas_length;
 }
 
+/*
+*Sækir núverandi pöntun.
+*/
 order baking::get_current_order() {
     return this->current_order;
 }
