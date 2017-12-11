@@ -41,7 +41,7 @@ void menu_delivery::start_menu(user current_user) {
         bool accepted = true;
         do {
             try {
-                cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a), Lista af afhentum pontunum(h) eda haetta(h): ";
+                cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a), Lista af afhentum pontunum(u) eda haetta(h): ";
                 cin >> action_a;
                 if(!cin) {
                     cin.clear();
@@ -57,7 +57,7 @@ void menu_delivery::start_menu(user current_user) {
             }
         } while(!accepted);
         switch(action_a) {
-            case 'h': {
+            case 'u': {
                 order* orders = d->get_old_orders(place);
                 for(int i=0; i<d->get_orders_length(); i++) {
                     cout << orders[i];

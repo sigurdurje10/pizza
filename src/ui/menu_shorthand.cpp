@@ -23,7 +23,7 @@ order* menu_shorthand::get_shorthand() {
     manage* u = new manage();
     sales* sales_class = new sales();
     order* o = new order();
-    cout << "Skráðu simanumer og heimilisfang" << endl;
+    cout << "Skradu simanumer og heimilisfang" << endl;
     cout << "Fyrir pitsu af matsedli: s:(simanumer); h:(heimilisfang); m:(heiti pitsu); m:(onnur pitsa); e:(medlaeti);" << endl;
     cout << "Fyrir servalda pitsu: s:(simanumer); h:(heimilisfang); p:b:(botn); s:(staerd); a:(alegg);; e:(medlaeti);" << endl;
 

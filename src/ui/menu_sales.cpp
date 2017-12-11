@@ -220,8 +220,8 @@ void menu_sales::start_menu(user current_user) {
                         o->set_id(id);
                         s->new_order(o);
                         cout << "Pontunarnumer: " << id << endl;
-                        accepted = true;
                         do {
+                            accepted = true;
                             try {
                                 cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                                 cin >> action_s_p;
@@ -382,8 +382,8 @@ void menu_sales::start_menu(user current_user) {
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
                     }
-                    accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_g;
@@ -440,8 +440,8 @@ void menu_sales::start_menu(user current_user) {
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
                     }
-                    accepted = true;
                     do {
+                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_a;
