@@ -15,6 +15,9 @@ topping_data::topping_data() {
     this->topping_file = "toppings.dat";
 }
 
+//Ef það er eitthvað fyrir í skránni þá er fyrst náð í topping úr skránni með get_toppings
+//svo er þessu topping bætt við og því er öllu síðan bombað í skránna.
+//ef það er ekkert í skránni þá er t skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
 void topping_data::save_topping(topping* t) {
     ofstream fout;
     if(!this->is_empty()) {
@@ -36,6 +39,7 @@ void topping_data::save_topping(topping* t) {
     }
 }
 
+//skoðar hvort toppings.dat sé tóm. Skilar true ef hún er tóm.
 bool topping_data::is_empty() {
     ifstream fin;
     fin.open("toppings.dat", ios::binary);
@@ -46,21 +50,22 @@ bool topping_data::is_empty() {
     return false;
 }
 
+//nær í öll topping í toppings.dat
 topping* topping_data::get_toppings() {
     ifstream fin;
     fin.open("toppings.dat", ios::binary);
     fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(topping));
+    int records = (fin.tellg() / sizeof(topping));//nýtir fin.end til að sjá fjölda tilvika af topping í toppings.dat
     fin.seekg(0, fin.beg);
     this->number_of_toppings = records+1;
     topping p_toppings[records+1];
-    fin.read((char*)(&p_toppings), sizeof(topping)*(records));
+    fin.read((char*)(&p_toppings), sizeof(topping)*(records));//les öll topping úr topping.dat í p_toppings
     this->toppings = new topping[records+1];
     for(int i = 0; i < records; i++) {
         this->toppings[i] = p_toppings[i];
     }
     fin.close();
-    return this->toppings;
+    return this->toppings;//skilar öllum topping tilvikum sem voru í skránni
 }
 
 int topping_data::get_toppings_length() {

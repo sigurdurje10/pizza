@@ -17,7 +17,9 @@ pizza_place_data::~pizza_place_data()
 {
     //dtor
 }
-
+//Ef það er eitthvað fyrir í skránni þá er fyrst náð í pizza_place úr skránni með get_places
+//svo er þessu tilviki af pizza_places bætt við og því er öllu síðan bombað í skránna.
+//ef það er ekkert í skránni þá er p skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
 void pizza_place_data::save_place(pizza_place* p) {
     ofstream fout;
     if(!this->is_empty()) {
@@ -40,6 +42,7 @@ void pizza_place_data::save_place(pizza_place* p) {
     }
 }
 
+//skoðar hvort places.dat sé tóm. Skilar true ef hún er tóm.
 bool pizza_place_data::is_empty() {
     ifstream fin;
     fin.open("places.dat", ios::binary);
@@ -50,21 +53,22 @@ bool pizza_place_data::is_empty() {
     return false;
 }
 
+//nær í alla pizza_place úr places.dat
 pizza_place* pizza_place_data::get_places() {
     ifstream fin;
     fin.open("places.dat", ios::binary);
     fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(pizza_place));
+    int records = (fin.tellg() / sizeof(pizza_place));//nýtir fin.end til að sjá fjölda tilvika af pizza_place í places.dat
     fin.seekg(0, fin.beg);
     this->number_of_places = records+1;
     pizza_place p_places[records+1];
-    fin.read((char*)(&p_places), sizeof(pizza_place)*(records));
+    fin.read((char*)(&p_places), sizeof(pizza_place)*(records));//les alla pizza_place úr places.dat í p_places
     this->p_p = new pizza_place[records+1];
     for(int i = 0; i < records; i++) {
         this->p_p[i] = p_places[i];
     }
     fin.close();
-    return p_p;
+    return p_p;//skilar öllum pizza_place tilvikunum sem voru í skránni
 }
 
 int pizza_place_data::get_places_length() {

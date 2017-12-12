@@ -84,6 +84,7 @@ public:
     user get_user();
 
     void new_special(pizza_special* p);
+    user* get_specials();
 };
 
 #endif /* umsjon_h */

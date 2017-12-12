@@ -16,11 +16,13 @@ class pizza_menu {
 public:
     pizza_menu();
     virtual ~pizza_menu();
+    //bætir við nýrri matseðilspizzu
     void add_pizza(pizza* the_pizza);
-    
+
 protected:
-    
+
 private:
+    //hámark 10 matseðilspizzur
     pizza menu_pizzas[10];
 };
 

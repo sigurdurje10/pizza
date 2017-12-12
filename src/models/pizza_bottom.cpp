@@ -32,12 +32,14 @@ void pizza_bottom::set_pizza_bottom(string name, int price) {
     this->price = price;
 }
 
+//skrifar ut heiti botns og verð
 ostream& operator << (ostream& out, const pizza_bottom& p_bottom) {
     out << "Botn: " << p_bottom.name << endl;
     out << "Verd: " << p_bottom.price << endl;
     return out;
 }
 
+//Biður notanda um að slá inn heiti botns og verð. Ef input er invalid þá loopast. Ef verð er skráð vitlaust þá er hent í exception.
 istream& operator >> (istream& in, pizza_bottom& p_bottom) {
     bool accepted = true;
     string name = "";

@@ -22,9 +22,13 @@ private:
     string topping_file;
 public:
     topping_data();
+    //vistar eitt álegg í skrá, bætir við þær sem fyrir voru
     void save_topping(topping* topping);
+    //nær í öll álegg
     topping* get_toppings();
+    //nær í number_of_toppings - 1
     int get_toppings_length();
+    //skilar true ef skrá er tóm
     bool is_empty();
 };
 

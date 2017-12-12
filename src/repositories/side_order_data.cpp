@@ -12,9 +12,11 @@
 #include <fstream>
 
 side_order_data::side_order_data() {
-    this->side_order_file = "side_orders.dat";
 }
 
+//Ef það er eitthvað fyrir í skránni þá er fyrst náð í side_order úr skránni með get_sides
+//svo er þessu side_order bætt við og því er öllu síðan bombað í skránna.
+//ef það er ekkert í skránni þá er s skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
 void side_order_data::save_side(side_order* s) {
     ofstream fout;
     if(!this->is_empty()) {
@@ -36,6 +38,7 @@ void side_order_data::save_side(side_order* s) {
     }
 }
 
+//skoðar hvort side_orders.dat sé tóm. Skilar true ef hún er tóm.
 bool side_order_data::is_empty() {
     ifstream fin;
     fin.open("side_orders.dat", ios::binary);
@@ -46,15 +49,16 @@ bool side_order_data::is_empty() {
     return false;
 }
 
+//nær í öll side_order í side_orders.dat
 side_order* side_order_data::get_sides() {
     ifstream fin;
     fin.open("side_orders.dat", ios::binary);
     fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(side_order));
+    int records = (fin.tellg() / sizeof(side_order));//nýtir fin.end til að sjá fjölda tilvika af side_order í side_orders.dat
     fin.seekg(0, fin.beg);
     this->number_of_sides = records+1;
     side_order s_orders[records+1];
-    fin.read((char*)(&s_orders), sizeof(side_order)*(records));
+    fin.read((char*)(&s_orders), sizeof(side_order)*(records));//les öll side_order úr side_orders.dat í s_orders
     this->sides = new side_order[records+1];
     for(int i = 0; i < records; i++) {
         this->sides[i] = s_orders[i];

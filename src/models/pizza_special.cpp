@@ -8,14 +8,12 @@
 
 using namespace std;
 
-pizza_special::pizza_special()
-{
+pizza_special::pizza_special(){
     name[0] = '\0';
     price = 0;
 }
 
-pizza_special::pizza_special(int price, string name)
-{
+pizza_special::pizza_special(int price, string name){
    strcpy(this->name, name.c_str());
     this->price = price;
 }
@@ -37,12 +35,14 @@ void pizza_special::set_special(int price, string name){
     strcpy(this->name, name.c_str());
     this->price = price;
 }
+//Yfirskrifar ostream virkjann. Skrifar út nafn og verð tilboðs.
 ostream& operator << (ostream& out, const pizza_special& p_special) {
-    out << "nafn tilbodar: " << p_special.get_name() << endl;
+    out << "Nafn tilbodar: " << p_special.get_name() << endl;
     out << "Verd: " << p_special.get_price() << endl;
     return out;
 }
 
+//Yfirskrifar istream virkjann. Loopar ef eitthvað af inputunum er invalid.
 istream& operator >> (istream& in, pizza_special& p_special){
     manage* u = new manage();
     bool accepted = true;
@@ -52,7 +52,7 @@ istream& operator >> (istream& in, pizza_special& p_special){
     int price = -1;
      do {
         accepted = true;
-        cout << "nafn tilbodar: ";
+        cout << "Nafn tilbods: ";
         in.ignore();
         getline(in, special);
         if(!in) {
@@ -69,7 +69,7 @@ istream& operator >> (istream& in, pizza_special& p_special){
                 accepted = false;
             }
             if(accepted){
-                cout << "lysing: ";
+                cout << "Lysing: ";
                 in.ignore();
                 getline(in, description);
                 if(!in){
@@ -78,7 +78,7 @@ istream& operator >> (istream& in, pizza_special& p_special){
                     accepted= false;
                 }
                 if(accepted){
-                    cout << "fjoldi pizza: ";
+                    cout << "Fjoldi pizza: ";
                     cin >> p_count;
                     if(!in){
                         in.clear();
@@ -110,5 +110,4 @@ istream& operator >> (istream& in, pizza_special& p_special){
     p_special.set_name(special);
     p_special.set_price(price);
     return in;
-
 }

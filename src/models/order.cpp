@@ -176,7 +176,7 @@ bool order::get_delivered() {
 void order::set_delivered(bool d) {
     this->delivered = d;
 }
-
+//nær í tíma með time. Þarf að gera smá til þess að koma koma tímanum á rétt format.
 void order::set_time() {
     time_t now = time(0);
     struct tm tstruct = *localtime(&now);
@@ -227,6 +227,8 @@ bool order::get_paid() {
     return this->paid;
 }
 
+//Skrifar út upl. um pöntun. Líka hvort hún sé sent, sótt. Hvort búið sé að borga, hvort hún sé sein, ónýt.
+//nýtir sér overloadaða operators í pizza og side_order til að skrifa út pizzur og side_orders.
 ostream& operator << (ostream& out, const order& order) {
     out << "Id: " << order.id << endl;
     out << "Simanumer: " << order.phone_number << endl;

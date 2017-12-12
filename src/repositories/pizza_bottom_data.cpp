@@ -12,9 +12,11 @@
 #include <fstream>
 
 pizza_bottom_data::pizza_bottom_data() {
-    this->pizza_bottom_file = "pizza_bottoms.dat";
 }
 
+//Ef það er eitthvað fyrir í skránni þá er fyrst náð í bottoms úr skránni með get_bottoms
+//svo er þessu tilviki af pizza_bottom bætt við og því er öllu síðan bombað í skránna.
+//ef það er ekkert í skránni þá er s skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
 void pizza_bottom_data::save_bottom(pizza_bottom* s) {
     ofstream fout;
     if(!this->is_empty()) {
@@ -36,6 +38,7 @@ void pizza_bottom_data::save_bottom(pizza_bottom* s) {
     }
 }
 
+//skoðar hvort pizza_bottoms.dat sé tóm. Skilar true ef hún er tóm.
 bool pizza_bottom_data::is_empty() {
     ifstream fin;
     fin.open("pizza_bottoms.dat", ios::binary);
@@ -46,21 +49,22 @@ bool pizza_bottom_data::is_empty() {
     return false;
 }
 
+//nær í alla bottoms í pizza_bottoms.dat
 pizza_bottom* pizza_bottom_data::get_bottoms() {
     ifstream fin;
     fin.open("pizza_bottoms.dat", ios::binary);
     fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(pizza_bottom));
+    int records = (fin.tellg() / sizeof(pizza_bottom)); //nýtir fin.end til að sjá fjölda tilvika af pizza_bottom í pizza_bottoms.dat
     fin.seekg(0, fin.beg);
     this->number_of_bottoms = records+1;
     pizza_bottom s_orders[records+1];
-    fin.read((char*)(&s_orders), sizeof(pizza_bottom)*(records));
+    fin.read((char*)(&s_orders), sizeof(pizza_bottom)*(records));//les alla pizza_bottom úr pizza_bottoms.dat í s_orders
     this->bottoms = new pizza_bottom[records+1];
     for(int i = 0; i < records; i++) {
         this->bottoms[i] = s_orders[i];
     }
     fin.close();
-    return this->bottoms;
+    return this->bottoms;//skilar öllum pizza_bottom tilvikunum sem voru í skránni
 }
 
 int pizza_bottom_data::get_bottoms_length() {

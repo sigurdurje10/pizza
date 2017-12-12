@@ -22,9 +22,13 @@ private:
     pizza_place place;
 public:
     user();
+    //engin set föll því constructorinn er notaður í það
     user(string username, string password, pizza_place place);
+    //nær í notendanafn
     string get_username();
+    //nær í passwordið
     string get_password();
+    //nær í pizzastaðinn sem notandinn vinnur hjá
     pizza_place get_place();
 };
 

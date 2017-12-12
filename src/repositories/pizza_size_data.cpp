@@ -16,7 +16,9 @@ using namespace std;
 pizza_size_data::pizza_size_data() {
 
 }
-
+//Ef það er eitthvað fyrir í skránni þá er fyrst náð í pizza_size úr skránni með get_sizes
+//svo er þessu pizza_size bætt við og því er öllu síðan bombað í skránna.
+//ef það er ekkert í skránni þá er p skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
 void pizza_size_data::save_size(pizza_size* p) {
     ofstream fout;
     if(!this->is_empty()) {
@@ -38,6 +40,7 @@ void pizza_size_data::save_size(pizza_size* p) {
     }
 }
 
+//skoðar hvort sized.dat sé tóm. Skilar true ef hún er tóm.
 bool pizza_size_data::is_empty() {
     ifstream fin;
     fin.open("sizes.dat", ios::binary);
@@ -48,21 +51,22 @@ bool pizza_size_data::is_empty() {
     return false;
 }
 
+//nær í öll pizza_sizes úr sizes.dat
 pizza_size* pizza_size_data::get_sizes() {
     ifstream fin;
     fin.open("sizes.dat", ios::binary);
     fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(pizza_size));
+    int records = (fin.tellg() / sizeof(pizza_size));//nýtir fin.end til að sjá fjölda tilvika af pizza_size í sizes.dat
     fin.seekg(0, fin.beg);
     this->number_of_sizes = records+1;
     pizza_size p_sizes[records+1];
-    fin.read((char*)(&p_sizes), sizeof(pizza_size)*(records));
+    fin.read((char*)(&p_sizes), sizeof(pizza_size)*(records));//les öll pizza_size úr sizes.dat í p_sizes
     this->p_z = new pizza_size[records+1];
     for(int i = 0; i < records; i++) {
         this->p_z[i] = p_sizes[i];
     }
     fin.close();
-    return p_z;
+    return p_z;//skilar öllum pizza_size tilvikunum sem voru í skránni
 }
 
 int pizza_size_data::get_sizes_length() {

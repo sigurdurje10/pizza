@@ -37,12 +37,15 @@ string pizza_place::get_address() const {
     return str;
 }
 
+//skrifar út pizzastað og heimilisfang þegar ostream virkinn er notaður
 ostream& operator << (ostream& out, const pizza_place& p_place) {
     out << "Pizzastadur: " << p_place.name << endl;
     out << "Heimilisfang: " << p_place.address << endl;
     return out;
 }
 
+//biður notanda um að skrifa inn pizzastað og heimilisfang
+//loopar ef input er ekki valid
 istream& operator >> (istream& in, pizza_place& p_place) {
     bool accepted = true;
     string name = "";

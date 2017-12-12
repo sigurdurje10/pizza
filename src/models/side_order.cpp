@@ -53,12 +53,15 @@ string side_order::get_name() const {
     return str;
 }
 
+//yfirskrifar ostream virkjann til þess að skrifa út innihald side_order
 ostream& operator << (ostream& out, const side_order& s_order) {
     out << "Medlaeti: " << s_order.get_name() << endl;
     out << "Verd: " << s_order.get_price() << endl;
     return out;
 }
 
+//biður notandann um að skrifa inn heiti og verð á meðlæti. Er með check til að koma í veg fyrir invalid input.
+//Ef input er invalid þá loopast.
 istream& operator >> (istream& in, side_order& s_order) {
     bool accepted = true;
     string name = "";

@@ -11,12 +11,19 @@ class pizza_special
     public:
         pizza_special();
         pizza_special(int price, string name);
+        //setur heiti á tilboði
         void set_name(string name);
+        //setur verð á tilboði
         void set_price(int price);
+        //nær í heiti á tilboði
         string get_name() const;
+        //nær í verð á tilboði
         int get_price() const;
+        //setur verð og heiti
         void set_special(int price, string name);
+        //yfirskrifar ostream virkjann
         friend ostream& operator << (ostream& out, const pizza_special& p_special);
+        //yfirskrifar istream virkjann
         friend istream& operator >> (istream& in, pizza_special& p_special);
 
     protected:

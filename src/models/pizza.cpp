@@ -115,7 +115,7 @@ int pizza::get_p_count() {
 void pizza::set_p_count(int p) {
     this->p_count = p;
 }
-
+//skrifar út pizzu upplýsingar, skrifar út ef hún er tilbúin eða í vinnslu.
 ostream& operator << (ostream& out, const pizza& pizza) {
     if(pizza.id != -1) {
         out << "Pitsa numer: " << pizza.id << endl;

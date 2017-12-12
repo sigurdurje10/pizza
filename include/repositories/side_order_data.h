@@ -16,11 +16,13 @@ class side_order_data {
 private:
     int number_of_sides;
     side_order* sides;
-    string side_order_file;
 public:
     side_order_data();
+    //vistar eitt meðlæti í skrá, bætir við þau sem voru
     void save_side(side_order* side);
+    //nær í öll meðlæti
     side_order* get_sides();
+    //nær í number_of_sides - 1
     int get_sides_length();
     bool is_empty();
 };

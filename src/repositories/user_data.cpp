@@ -14,7 +14,6 @@
 using namespace std;
 
 user_data::user_data() {
-    this->user_file = "users.dat";
 }
 
 void user_data::save_users(user* list) {
@@ -23,11 +22,15 @@ void user_data::save_users(user* list) {
     for(int i = 0; i < this->get_users_length(); i++) {
         users[i] = list[i];
     }
-    fout.open("orders.dat", ios::out|ios::binary);
-    fout.write((char*)(&users), sizeof(user)*(this->get_users_length()));
+    fout.open("users.dat", ios::out|ios::binary);
+    fout.write((char*)(&users), sizeof(user)*(this->get_users_length()));//skrifar alla users sem voru í list áður
+    //í users.dat. skrifar stærð user * fjöldi af user út í skránna
     fout.close();
 }
 
+//Ef það er eitthvað fyrir í skránni þá er fyrst náð í user úr skránni með get_users
+//svo er þessu user bætt við og því er öllu síðan bombað í skránna.
+//ef það er ekkert í skránni þá er p skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
 void user_data::save_user(user* p) {
     ofstream fout;
     if(!this->is_empty()) {
@@ -49,6 +52,7 @@ void user_data::save_user(user* p) {
     }
 }
 
+//skoðar hvort users.dat sé tóm. Skilar true ef hún er tóm.
 bool user_data::is_empty() {
     ifstream fin;
     fin.open("users.dat", ios::binary);
@@ -59,21 +63,22 @@ bool user_data::is_empty() {
     return false;
 }
 
+//nær í alla users í users.dat
 user* user_data::get_users() {
     ifstream fin;
     fin.open("users.dat", ios::binary);
     fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(user));
+    int records = (fin.tellg() / sizeof(user)); //nýtir fin.end til að sjá fjölda tilvika af user í users.dat
     fin.seekg(0, fin.beg);
     this->number_of_users = records+1;
     user p_m[records+1];
-    fin.read((char*)(&p_m), sizeof(user)*(records));
+    fin.read((char*)(&p_m), sizeof(user)*(records)); //les alla user úr users.dat í p_m
     this->users = new user[records+1];
     for(int i = 0; i < records; i++) {
         this->users[i] = p_m[i];
     }
     fin.close();
-    return this->users;
+    return this->users; //skilar öllum user tilvikunum sem voru í skránni
 }
 
 int user_data::get_users_length() {

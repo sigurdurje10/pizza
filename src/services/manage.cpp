@@ -342,15 +342,14 @@ void manage::new_special(pizza_special* p) {
 *Sækir öll tilboð.
 */
 user* manage::get_specials() {
-    ;user_data*p =new user_data();
+    user_data*p =new user_data();
     this->users = p->get_users();
     this->users_length = p->get_users_length();
     delete p;
     return this->users;
 }
 /*
-/*
-*Finna tilboð.
+Finna tilboð.
 
 user manage::find_user(string username, string password) {
     user* users = this->get_users();

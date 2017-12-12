@@ -10,9 +10,13 @@ private:
     pizza_special* p_z;
 public:
     special_data();
+    //vistar tilboð í skrá, bætir við þau sem voru
     void save_special(pizza_special* p);
+    //nær í öll tilboðin
     pizza_special* get_specials();
+    //nær í number_of_specials - 1
     int get_specials_length();
+    //er skráin tóm? skilar true ef svo er
     bool is_empty();
 };
 

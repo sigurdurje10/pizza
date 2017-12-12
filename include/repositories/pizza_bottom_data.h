@@ -16,11 +16,13 @@ class pizza_bottom_data {
 private:
     int number_of_bottoms;
     pizza_bottom* bottoms;
-    string pizza_bottom_file;
 public:
     pizza_bottom_data();
+    //vistar eitt tilvik af bottom í skrá, bætir við þær sem voru
     void save_bottom(pizza_bottom* bottom);
+    //nær í öll tilvik af pizza_bottom úr skrá
     pizza_bottom* get_bottoms();
+    //skilar number_of_bottoms - 1
     int get_bottoms_length();
     bool is_empty();
 };

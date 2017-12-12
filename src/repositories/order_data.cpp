@@ -14,6 +14,9 @@ order_data::order_data() {
     this->order_file = "orders.dat";
 }
 
+//savear lista, býr til order af fjölda get_orders_length(), objectið heitir orders.
+//copyar úr list í orders með for loop.
+//skrifar síðan úr orders í orders.dat
 void order_data::save_orders(order* list) {
     ofstream fout;
     order orders[this->get_orders_length()];
@@ -21,10 +24,15 @@ void order_data::save_orders(order* list) {
         orders[i] = list[i];
     }
     fout.open("orders.dat", ios::out|ios::binary);
-    fout.write((char*)(&orders), sizeof(order)*(this->get_orders_length()));
+    fout.write((char*)(&orders), sizeof(order)*(this->get_orders_length())); //char pointer(pointer á byte) á fyrsta order
+    // síðan stærð á order klasa margafaldað með fjölda af pöntunum. Sem sagt allt orders skrifar í orders.dat
+
     fout.close();
 }
 
+//sama gert og save_orders. Ef það er eitthvað fyrir í skránni þá er fyrst náð í orders úr skránni með get_orders
+//svo er þessu order bætt við og því er öllu síðan bombað í skránna.
+//ef það er ekkert í skránni þá er p skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
 void order_data::save_order(order* p) {
     ofstream fout;
     if(!this->is_empty()) {
@@ -46,6 +54,7 @@ void order_data::save_order(order* p) {
     }
 }
 
+//sama og í save_order nema hér er sett í order_old.dat.
 void order_data::save_old_order(order* p) {
     ofstream fout;
     if(!this->is_old_empty()) {
@@ -67,6 +76,7 @@ void order_data::save_old_order(order* p) {
     }
 }
 
+//skoðað hvort skráin sé tóm með því að skoða hvort að endinn á file skili 0 eða 1
 bool order_data::is_empty() {
     ifstream fin;
     fin.open("orders.dat", ios::binary);
@@ -77,6 +87,7 @@ bool order_data::is_empty() {
     return false;
 }
 
+//sama og is_empty nema fyrir orders_old.dat
 bool order_data::is_old_empty() {
     ifstream fin;
     fin.open("orders_old.dat", ios::binary);
@@ -87,23 +98,25 @@ bool order_data::is_old_empty() {
     return false;
 }
 
+//skilar öllum orders úr orders.dat
 order* order_data::get_orders() {
     ifstream fin;
     fin.open("orders.dat", ios::binary);
-    fin.seekg(0, fin.end);
-    int records = (fin.tellg() / sizeof(order));
-    fin.seekg(0, fin.beg);
+    fin.seekg(0, fin.end); //fer í enda skrár
+    int records = (fin.tellg() / sizeof(order)); //records er = fjöldi orders í orders.dat - 1
+    fin.seekg(0, fin.beg);//setur næsta char sem á að taka úr input stream í byrjun files
     this->number_of_orders = records+1;
     order p_m[records+1];
-    fin.read((char*)(&p_m), sizeof(order)*(records));
+    fin.read((char*)(&p_m), sizeof(order)*(records));//setur inní p_m það sem er í orders.dat
     this->orders = new order[records+1];
     for(int i = 0; i < records; i++) {
         this->orders[i] = p_m[i];
     }
     fin.close();
-    return this->orders;
+    return this->orders;//skilar því sem var í orders.dat
 }
 
+//sama og get_orders
 order* order_data::get_old_orders() {
     this->number_of_orders = 1;
     if(!this->is_old_empty()) {

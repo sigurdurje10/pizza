@@ -94,7 +94,7 @@ void menu_sales::start_menu(user current_user) {
                         string phone = "";
                         string address = "";
                         do {
-                            accepted = true
+                            accepted = true;
                             cout << "Simanumer: ";
                             getline(cin, phone);
                             if(!cin) {
@@ -122,7 +122,7 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pitsa af matsedli(m) eda servalin(s):  ";
                             bool accepted = true;
                             do {
-                                accepted = true
+                                accepted = true;
                                 try {
                                     cin >> action_s_p_p;
                                     if(!cin || !isalpha(action_s_p_p)) {
@@ -163,7 +163,7 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Verd pitsu: " << p.get_price() << endl;
                             accepted = true;
                             do {
-                                accepted = true
+                                accepted = true;
                                 try {
                                     cout << "Nyja pitsu(n) eda haetta(h):  ";
                                     cin >> action_s_p_p;
@@ -198,7 +198,7 @@ void menu_sales::start_menu(user current_user) {
                             side_count++;
                             bool accepted = true;
                             do {
-                                accepted = true
+                                accepted = true;
                                 try {
                                     cout << "Nytt medlaeti(n) eda haetta(h):  ";
                                     cin >> action_s_p_s;
@@ -258,7 +258,7 @@ void menu_sales::start_menu(user current_user) {
                     bool accepted = true;
                     int order_number = -1;
                     do {
-                        accepted = true
+                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -280,7 +280,7 @@ void menu_sales::start_menu(user current_user) {
                     }
                     accepted = true;
                     do {
-                        accepted = true
+                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_v;
@@ -303,7 +303,7 @@ void menu_sales::start_menu(user current_user) {
                     bool accepted = true;
                     int order_number = -1;
                     do {
-                        accepted = true
+                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -322,7 +322,7 @@ void menu_sales::start_menu(user current_user) {
                         bool accepted = true;
                         char del;
                         do {
-                            accepted = true
+                            accepted = true;
                             try {
                                 cout << "Skra senta(e) eda sotta(o): ";
                                 cin >> del;
@@ -346,7 +346,7 @@ void menu_sales::start_menu(user current_user) {
                     }
                     accepted = true;
                     do {
-                        accepted = true
+                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_s;
@@ -369,7 +369,7 @@ void menu_sales::start_menu(user current_user) {
                     bool accepted = true;
                     int order_number = -1;
                     do {
-                        accepted = true
+                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
