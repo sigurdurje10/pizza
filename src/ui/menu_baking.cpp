@@ -29,18 +29,20 @@ void menu_baking::start_menu(user current_user) {
     menu_place* mp = new menu_place();
     string username = current_user.get_username();
     pizza_place place;
+    //ef user er innskráður þá fer hann á þann stað sem hann er tengdur við
+    //ef user er ekki innskráður þá er hann beðinn um að velja stað
     if(username == "") {
         cin.ignore();
         place = mp->get_place();
     } else {
         place = current_user.get_place();
     }
-
     char action_b;
     do {
         bool accepted = true;
         do {
             accepted = true;
+            //setur exception ef inntakið er ekki bókstafur
             try {
                 cout << "Lista pitsur(l), Syna pitsu(s), Merkja i vinnslu(v), Merkja tilbuna(t) eda haetta(h): ";
                 cin >> action_b;
@@ -56,12 +58,15 @@ void menu_baking::start_menu(user current_user) {
         } while(!accepted);
         switch(action_b) {
             case 'l': {
+                //prentar allar pizzur sem eru í virkum pöntunum.
                 pizza* pizzas = b->get_pizzas(place);
                 for(int i = 0; i<b->get_pizzas_length(); i++) {
                     cout << pizzas[i];
                 }
                 break;
             }
+            //biður notanda um að setja inn id pizzu sem á að sýna
+            //setur exception ef ekki er sett inn tölu
             case 's': {
                 bool accepted = true;
                 int pizza_id = -1;
@@ -88,6 +93,8 @@ void menu_baking::start_menu(user current_user) {
                 }
                 break;
             }
+            //sama og 's', finnur pitsuna og merkir við hana ef hun finnst
+            //exception ef ekki er tala. ef pizza finnst þá er hún merkt í vinnslu
             case 'v': {
                 bool accepted = true;
                 int pizza_id = -1;
@@ -118,6 +125,7 @@ void menu_baking::start_menu(user current_user) {
                 }
                 break;
             }
+            //sama og seinustu tvö tilvik nema þetta merkir pizzu sem tilbúna ef númer er gilt og pizza finnst.
             case 't': {
                 bool accepted = true;
                 int pizza_id;
@@ -151,4 +159,8 @@ void menu_baking::start_menu(user current_user) {
             }
         }
     } while(action_b != 'h');
+    delete u;
+    delete b;
+    delete s;
+    delete mp;
 }

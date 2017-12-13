@@ -27,8 +27,10 @@ menu_manage::menu_manage() {
 void menu_manage::start_menu() {
     char action_u;
     manage* u = new manage();
+    //fyrsta loopan sem loopar í gegnum menueið. Hún hættir þegar notandi slær inn 'h' sem action_u inntakið.
     do {
         bool accepted = true;
+        //loopar á meðan inntakið er ekki valid
         do {
             accepted = true;
             try {
@@ -45,8 +47,12 @@ void menu_manage::start_menu() {
             }
         } while(!accepted);
         switch(action_u) {
+            //
             case 's':
                 char action_u_s;
+                //biður notanda um að slá inn verð og stærð.
+                //hendir í exception ef annað hvort er ekki rétt
+                //spyr síðan notanda ef hann vill gera nýja stærð
                 do {
                     try {
                         pizza_size* p_size = new pizza_size();
@@ -75,6 +81,9 @@ void menu_manage::start_menu() {
                                 accepted = false;
                                 throw menu_exception();
                             }
+                            else if(action_u_s != 'h' && action_u_s != 'n'){
+                                accepted = false;
+                            }
                         } catch(menu_exception) {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
@@ -82,6 +91,8 @@ void menu_manage::start_menu() {
                 } while(action_u_s != 'h');
                 break;
             case 'b':
+                //biður um heiti á botn og verð
+                //hendir í exception ef verð er ekki tala stærri en 0
                 char action_u_b;
                 do {
                     try {
@@ -101,6 +112,9 @@ void menu_manage::start_menu() {
                     do {
                         accepted = true;
                         try {
+                            //biður um að velja nýjan botn eða að hætta
+                            //hendir í exception ef það er ekki sett inn staf
+                            //loopar aftur ef hvort n né h er valið
                             cout << "Veldu Nyjan botn(n) eda haetta(h): ";
                             cin >> action_u_b;
                             if(!cin || !isalpha(action_u_b)) {
@@ -109,15 +123,19 @@ void menu_manage::start_menu() {
                                 accepted = false;
                                 throw menu_exception();
                             }
+                            else if(action_u_b != 'n' && action_u_b != 'h'){
+                                accepted = false;
+                            }
                         } catch(menu_exception) {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
-                        } catch(price_exception) {
-                            cout << "Verd verdur ad vera staerra en 0." << endl;
                         }
                     } while(!accepted);
                 } while(action_u_b != 'h');
                 break;
             case 'a':
+                //biður um heiti á áleggi og verð
+                //notandi beðinn um að gera nýtt álegg eða að hætta, hendir í exception ef inputið er ekki valid, loopar ef
+                //input er annar stafur en h eða n
                 char action_u_a;
                 do {
                     try {
@@ -146,6 +164,9 @@ void menu_manage::start_menu() {
                                     accepted = false;
                                     throw menu_exception();
                                 }
+                                else if(action_u_a != 'h' && action_u_a != 'n'){
+                                    accepted = false;
+                                }
                             } catch(menu_exception) {
                                 cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                             }
@@ -156,6 +177,9 @@ void menu_manage::start_menu() {
                 } while(action_u_a != 'h');
                 break;
             case 'm':
+                //biður notanda um verð og heiti á masteðilspizzu og nýtir sér síðan menu_pizza ui klasan til þess að skrá inn restina af pizzunni
+                //hendir í price exception ef skráð er verð sem er lægri en 0
+                //spurt er notanda hvort hann vilji búa til nýja pizzu eða hætta
                 char action_u_m;
                 do {
                     try {
@@ -210,6 +234,9 @@ void menu_manage::start_menu() {
                                     accepted = false;
                                     throw menu_exception();
                                 }
+                                else if(action_u_m != 'h' && action_u_m != 'n'){
+                                    accepted = false;
+                                }
                             } catch(menu_exception) {
                                 cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                             }
@@ -220,6 +247,9 @@ void menu_manage::start_menu() {
                 } while(action_u_m != 'h');
                 break;
             case 'e':
+                //sama og hin casein, biður um heiti og verð
+                //hendir í exception ef verð er ekki tala sem er 0 eða stærri
+                //hendir í exception action_u_e er ekki bókstafur, loopar ef þetta er annar bókstafur en n eða h
                 char action_u_e;
                 do {
                     try {
@@ -246,6 +276,9 @@ void menu_manage::start_menu() {
                                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                                 accepted = false;
                             }
+                            else if(action_u_e != 'h' && action_u_e != 'n'){
+                                accepted = false;
+                            }
                         } catch(menu_exception) {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
@@ -253,6 +286,8 @@ void menu_manage::start_menu() {
                 } while(action_u_e != 'h');
                 break;
             case 't':
+                //svipað og hin nema biður um heiti á stað og heimilisfang
+                //
                 char action_u_t;
                 do {
                     pizza_place* p = new pizza_place();
@@ -275,6 +310,9 @@ void menu_manage::start_menu() {
                                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                                 accepted = false;
                             }
+                            else if(action_u_t != 'n' && action_u_t != 'h'){
+                                accepted = false;
+                            }
                         } catch(menu_exception) {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
@@ -282,6 +320,8 @@ void menu_manage::start_menu() {
                 } while(action_u_t != 'h');
                 break;
             case 'i':
+                //býr til nýtt tilboð. Byrjar menu_special og gerir flest í gegnum það.
+                //spyr notandann ef hann vill búa til nýtt special eða hætta.
                 char action_u_i;
                 do {
                     menu_special * m_special =new menu_special();
@@ -296,10 +336,13 @@ void menu_manage::start_menu() {
                             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                             accepted = false;
                         }
+                        else if(action_u_i != 'h' && action_u_i != 'n'){
+                            accepted = false;
+                        }
                     } while(!accepted);
-
                 }while(action_u_i != 'h');
                 break;
         }
     } while(action_u != 'h');
+    delete u;
 }

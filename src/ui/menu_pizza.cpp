@@ -16,6 +16,8 @@ menu_pizza::menu_pizza() {
 
 }
 
+//farið í gegnum nokkrar inntaks lúppur til þess að búa til nýtt pizza
+//þegar notandi er búinn að slá inn gilt inntak all staðar þá er skilað tilviki af pizza
 pizza* menu_pizza::get_pizza() {
     pizza* p = new pizza();
     manage* u = new manage();

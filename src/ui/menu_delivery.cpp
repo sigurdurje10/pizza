@@ -29,6 +29,8 @@ void menu_delivery::start_menu(user current_user) {
     menu_place* mp = new menu_place();
     string username = current_user.get_username();
     pizza_place place;
+    //ef notandi er loggaður inn þá förum við á þann stað.
+    //ef notandi er ekki loggaður inn þá er hann beðinn um að velja stað
     if(username == "") {
         cin.ignore();
         place = mp->get_place();
@@ -41,6 +43,7 @@ void menu_delivery::start_menu(user current_user) {
         bool accepted = true;
         do {
             accepted = true;
+            //case, þarf að vera bókstafur annars er sent exception.
             try {
                 cout << "Lista af pontunum(l), Lista af tilbunum pontunum(t), Skoda pontun(s), Merkja pontun greidda(g), Merkja pontun afhenta(a), Lista af afhentum pontunum(u) eda haetta(h): ";
                 cin >> action_a;
@@ -57,7 +60,9 @@ void menu_delivery::start_menu(user current_user) {
                 cout << "Valdmynds inntak tharf ad vera bokstafur.";
             }
         } while(!accepted);
+        //mismunandi case sem eru tekin eftir inntaki, loopar aftur ef inntak er ekki til, hættir ef inntak er 'h'
         switch(action_a) {
+            //kallar á gömul orders úr skrá
             case 'u': {
                 order* orders = d->get_old_orders(place);
                 for(int i=0; i<d->get_orders_length(); i++) {
@@ -65,6 +70,7 @@ void menu_delivery::start_menu(user current_user) {
                 }
                 break;
             }
+            //kallar á virkar pantanir úr skrá
             case 'l': {
                 order* orders = d->get_orders(place);
                 for(int i=0; i<d->get_orders_length(); i++) {
@@ -72,6 +78,7 @@ void menu_delivery::start_menu(user current_user) {
                 }
                 break;
             }
+            //sækir allar pantanir sem eru tilbúnar úr skrá
             case 't': {
                 order* orders = d->get_orders_ready(place);
                 for(int i=0; i<d->get_orders_ready_length(); i++) {
@@ -79,6 +86,7 @@ void menu_delivery::start_menu(user current_user) {
                 }
                 break;
             }
+            //skrifar út pöntun ef hún er til. Hendir í exception ef input er ekki tala
             case 's': {
                 bool accepted = true;
                 int order_id;
@@ -105,6 +113,8 @@ void menu_delivery::start_menu(user current_user) {
                 }
                 break;
             }
+            //ef pöntun finnst þá er hún merkt greidd.
+            //exception ef pöntunarnr. er ekki tala
             case 'g': {
                 bool accepted = true;
                 int order_id;
@@ -133,6 +143,8 @@ void menu_delivery::start_menu(user current_user) {
                 }
                 break;
             }
+            //ef pöntun finnst þá er hún merkt afhend.
+            //exception ef pöntunarnr. er ekki tala
             case 'a': {
                 bool accepted = true;
                 int order_id;
@@ -163,4 +175,7 @@ void menu_delivery::start_menu(user current_user) {
             }
         }
     } while(action_a != 'h');
+    delete s;
+    delete d;
+    delete mp;
 }

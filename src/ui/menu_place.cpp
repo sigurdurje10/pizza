@@ -16,6 +16,8 @@ menu_place::menu_place() {
 
 }
 
+//skrifar út lista af stöðum frá skrá, biður síðan notanda um að velja einn af þeim stöðum
+//segir síðan notandanum hvort að staðurinn sem hann valdi fannst
 pizza_place menu_place::get_place() {
     manage* u = new manage();
     pizza_place* places = u->get_places();
@@ -46,5 +48,6 @@ pizza_place menu_place::get_place() {
             cout << "Stadur '" << location_value << "' valinn." << endl;
         }
     }
+    delete u;
     return place;
 }

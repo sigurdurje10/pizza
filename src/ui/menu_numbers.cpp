@@ -23,6 +23,7 @@ void menu_numbers::start_menu() {
     char action;
     do {
         bool accepted = true;
+        //biður notanda um að skrifa in karakter sem samsvararlistanum, loopar ef ekki inntakið er ekki gilt.
         do {
             cout << "Veldu Fjolda pantana(p), Fjolda pitsna(i), Heildarvelta(v), Fjoldi vidskiptavina(s), Skoda fra dagsetningu(d), Skoda a dagsetningu(a) eda haetta(h): ";
             cin >> action;
@@ -34,6 +35,9 @@ void menu_numbers::start_menu() {
         } while(!accepted);
         switch(action) {
             case 'd': {
+                //biður notanda um að skrifa inn dagsetningu
+                //exception ef dagsetning er ekki í lagi
+                //svo er sales numbers stillt frá dagsetningunni sem var sett inn
                 try {
                     int month = 0;
                     int day = 0;
@@ -53,6 +57,7 @@ void menu_numbers::start_menu() {
                     if(day < 1 || day > 31) {
                         throw date_exception();
                     }
+                    delete s;
                     s = new sales_numbers(day, month, year, 1);
                 } catch(date_exception) {
                     cout << "Villa in dagsetningu." << endl;
@@ -60,6 +65,9 @@ void menu_numbers::start_menu() {
                 break;
             }
             case 'a': {
+                //biður notanda um að skrifa inn dagsetningu
+                //exception ef dagsetning er ekki í lagi
+                //svo er sales_numbers stillt á dagsetninguna sem var inputtuð
                 int month = 0;
                 int day = 0;
                 int year = 0;
@@ -85,21 +93,25 @@ void menu_numbers::start_menu() {
                 }
                 break;
             }
+            //nær í fjölda pantana
             case 'p': {
                 int order_numbers = s->order_numbers();
                 cout << "Fjoldi pantana: " << order_numbers << endl;
                 break;
             }
+            //nær í fjölda pizza
             case 'i': {
                 int pizza_numbers = s->pizza_numbers();
                 cout << "Fjoldi pitsna: " << pizza_numbers << endl;
                 break;
             }
+            //nær í fjölda viðskiptavina
             case 's': {
                 int people_numbers = s->people_numbers();
                 cout << "Fjoldi vidskiptavina: " << people_numbers << endl;
                 break;
             }
+            //náð er í heildarveltu frá s
             case 'v': {
                 int total_sales = s->total_sales();
                 cout << "Heildarvelta: " << total_sales << endl;
@@ -107,4 +119,5 @@ void menu_numbers::start_menu() {
             }
         }
     } while(action != 'h');
+    delete s;
 }

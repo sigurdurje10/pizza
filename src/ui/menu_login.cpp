@@ -24,6 +24,7 @@ void menu_login::start_menu() {
     string username_value = "";
     user u;
     cin.ignore();
+    //loopar á meðan það er ekki búið að gefa username gildi
     while(username_value == "") {
         bool accepted = true;
         string username = "";
@@ -46,7 +47,8 @@ void menu_login::start_menu() {
                     accepted = false;
                 }
             }
-        } while(!accepted || username == "" || password == "");
+        } while(!accepted || username == "" || password == ""); //loopar á meðan inntak er ekki valid eða það er ekki búið að setja
+        //username eða password
         u = m->find_user(username, password);
         username_value = u.get_username();
         if(username_value == "") {
@@ -56,6 +58,7 @@ void menu_login::start_menu() {
             m->set_user(u);
         }
     }
+    delete this->m;
 }
 
 void menu_login::reg_menu() {
@@ -64,6 +67,7 @@ void menu_login::reg_menu() {
     string username_value = "";
     user u;
     cin.ignore();
+    //loopar á meðan username_value er ekki neitt
     while(username_value == "") {
         bool accepted = true;
         string username = "";
@@ -90,10 +94,13 @@ void menu_login::reg_menu() {
                     place = m_place->get_place();
                 }
             }
-        } while(!accepted || username == "" || password == "" || place.get_name() == "");
+        } while(!accepted || username == "" || password == "" || place.get_name() == "");//loopar á meðan notandi er ekki með place eða username
+        // eða password eða inntak er ekki gilt
         u = new user(username, password, place);
         username_value = username;
         m->new_user(u);
         cout << "Notandi nyskradur." << endl;
     }
+    delete m;
+    delete m_place;
 }

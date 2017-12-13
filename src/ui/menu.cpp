@@ -32,6 +32,7 @@ void menu::start_menu() {
     char action;
     do {
         bool accepted = true;
+        //loopar í gegnum á meðan cin er ekki valid. Fer í switch case ef input er valid.
         do {
             accepted = true;
             cout << "Veldu Umsjon(u), Sala(s), Bakstur(b), Afhending(a), Solutolur(o), Innskraning(i), Nyskraning(n) eda haetta(h): ";
@@ -42,6 +43,8 @@ void menu::start_menu() {
                 accepted = false;
             }
         } while(!accepted);
+        //kallar á menu eftir hvert inputið er. Loopar ef case sem er til er ekki valið.
+        //h hættir keyrslu forritsins
         switch(action) {
             case 'u': {
                 menu_manage* manage = new menu_manage();
@@ -79,6 +82,7 @@ void menu::start_menu() {
             }
         }
     } while(action != 'h');
+    delete login;
 }
 
 
