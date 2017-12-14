@@ -18,6 +18,7 @@ user_data::user_data() {
 
 void user_data::save_users(user* list) {
     ofstream fout;
+    user* p_m = this->get_users();
     user users[this->get_users_length()];
     for(int i = 0; i < this->get_users_length(); i++) {
         users[i] = list[i];

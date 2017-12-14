@@ -19,6 +19,7 @@ order_data::order_data() {
 //skrifar síðan úr orders í orders.dat
 void order_data::save_orders(order* list) {
     ofstream fout;
+    order* p_m = this->get_orders();
     order orders[this->get_orders_length()];
     for(int i = 0; i < this->get_orders_length(); i++) {
         orders[i] = list[i];

@@ -89,7 +89,7 @@ void menu_numbers::start_menu() {
                     }
                     s = new sales_numbers(day, month, year, 2);
                 } catch(date_exception) {
-                    cout << "Villa in dagsetningu." << endl;
+                    cout << "Villa i dagsetningu." << endl;
                 }
                 break;
             }

@@ -15,6 +15,7 @@ p_data::p_data() {
 
 void p_data::save_pizzas(pizza* list) {
     ofstream fout;
+    pizza* p_m = this->get_pizzas();
     pizza pizzas[this->get_pizzas_length()];
     for(int i = 0; i < this->get_pizzas_length(); i++) {
         pizzas[i] = list[i];
