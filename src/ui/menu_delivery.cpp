@@ -91,7 +91,7 @@ void menu_delivery::start_menu(user current_user) {
                 bool accepted = true;
                 int order_id;
                 do {
-                accepted = true;
+                    accepted = true;
                     try {
                         cout << "Pontunarnumer: ";
                         cin >> order_id;

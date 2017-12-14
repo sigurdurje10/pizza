@@ -19,6 +19,9 @@ menu_shorthand::menu_shorthand() {
 
 }
 
+/*
+*   Gerir kleyft að skrifa inn pöntun í einni línu.
+*/
 order* menu_shorthand::get_shorthand() {
     manage* u = new manage();
     sales* sales_class = new sales();
@@ -31,6 +34,9 @@ order* menu_shorthand::get_shorthand() {
     cin.ignore();
     getline(cin, command);
 
+    /*
+    *   Finnur stadsetningu a s: og ; og finnur gildið þar á milli.
+    */
     string delimiter = ";";
     int position_s = command.find("s:");
     int position_semi = command.find(";");
@@ -39,6 +45,9 @@ order* menu_shorthand::get_shorthand() {
     }
     string phone = command.substr(position_s+2, position_semi-2);
     command = command.substr(position_semi+1, command.length());
+    /*
+    *   Finnur stadsetningu a h: og ; og finnur gildið þar á milli.
+    */
     int position_h = command.find("h:");
     position_semi = command.find(";");
     if(position_h == -1 || position_semi == -1) {
@@ -49,6 +58,9 @@ order* menu_shorthand::get_shorthand() {
     o->set_phone(phone);
     o->set_address(address);
 
+    /*
+    *   Finnur staðsetningar a m: og ; og finnur gildin þar á milli.
+    */
     int position_m = command.find("m:");
     pizza m;
     while(position_m != -1) {
@@ -62,10 +74,15 @@ order* menu_shorthand::get_shorthand() {
         o->add_pizza(m);
         position_m = command.find("m:");
     }
-
+    /*
+    *   Finnur staðsetningar a p: og ; og finnur gildin þar á milli.
+    */
     int position_p = command.find("p:");
     pizza p;
     while(position_p != -1) {
+        /*
+        *   Finnur stadsetningu a b: og ; og finnur gildið þar á milli.
+        */
         int position_b = command.find("b:");
         position_semi = command.find(";");
         if(position_p == -1 || position_b == -1 || position_semi == -1) {
@@ -75,7 +92,9 @@ order* menu_shorthand::get_shorthand() {
         command = command.substr(position_semi+1, command.length());
         pizza_bottom bottom_obj = u->find_bottom(bottom);
         p.set_pizza_bottom(bottom_obj);
-
+        /*
+        *   Finnur stadsetningu a s: og ; og finnur gildið þar á milli.
+        */
         int position_size = command.find("s:");
         position_semi = command.find(";");
         if(position_size == -1 || position_semi == -1) {
@@ -86,7 +105,9 @@ order* menu_shorthand::get_shorthand() {
         command = command.substr(position_semi+1, command.length());
         pizza_size size_obj = u->find_size(size_int);
         p.set_pizza_size(size_obj);
-
+       /*
+        *   Finnur stadsetningu a a: og ; og finnur gildið þar á milli.
+        */
         int position_a = command.find("a:");
         topping t;
         while(position_a != -1) {
@@ -112,7 +133,9 @@ order* menu_shorthand::get_shorthand() {
             throw short_exception();
         }
     }
-
+    /*
+    *   Finnur stadsetningar a e: og ; og finnur gildin þar á milli.
+    */
     int position_e = command.find("e:");
     side_order s;
     while(position_e != -1) {

@@ -222,28 +222,28 @@ void menu_manage::start_menu() {
                         for(int i = 0; i < arr_len; i++) {
                             cout << men[i];
                         }
-                        accepted = true;
-                        do {
-                            accepted = true;
-                            try {
-                                cout << "Veldu Nyja pitsu(n) eda haetta(h): ";
-                                cin >> action_u_m;
-                                if(!cin || !isalpha(action_u_m)) {
-                                    cin.clear();
-                                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                    accepted = false;
-                                    throw menu_exception();
-                                }
-                                else if(action_u_m != 'h' && action_u_m != 'n'){
-                                    accepted = false;
-                                }
-                            } catch(menu_exception) {
-                                cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
-                            }
-                        } while(!accepted);
                     } catch(price_exception) {
                         cout << "Verd tharf ad vera tala og staerri en 0." << endl;
                     }
+                    accepted = true;
+                    do {
+                        accepted = true;
+                        try {
+                            cout << "Veldu Nyja pitsu(n) eda haetta(h): ";
+                            cin >> action_u_m;
+                            if(!cin || !isalpha(action_u_m)) {
+                                cin.clear();
+                                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                accepted = false;
+                                throw menu_exception();
+                            }
+                            else if(action_u_m != 'h' && action_u_m != 'n'){
+                                accepted = false;
+                            }
+                        } catch(menu_exception) {
+                            cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
+                        }
+                    } while(!accepted);
                 } while(action_u_m != 'h');
                 break;
             case 'e':
