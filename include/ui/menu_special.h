@@ -10,9 +10,7 @@ class menu_special
 {
     public:
         menu_special();
-        void start_menu();
-
-
+//        pizza_special* get_special();
 
     private:
 

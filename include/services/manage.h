@@ -6,8 +6,8 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#ifndef umsjon_h
-#define umsjon_h
+#ifndef manage_h
+#define manage_h
 
 #include <stdio.h>
 #include "models/pizza_size.h"
@@ -43,6 +43,9 @@ private:
     user* users;
     int users_length;
     user current_user;
+
+    pizza_special* pizza_special;
+    int special_length;
 public:
     manage();
 
@@ -82,9 +85,11 @@ public:
     int get_users_length();
     void set_user(user u);
     user get_user();
-
+/*
     void new_special(pizza_special* p);
-    user* get_specials();
+    pizza_special* get_specials();
+    int get_specials_length();
+*/
 };
 
 #endif /* umsjon_h */

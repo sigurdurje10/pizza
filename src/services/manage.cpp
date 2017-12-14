@@ -20,7 +20,6 @@
 #include "models/user.h"
 #include "repositories/user_data.h"
 #include "models/pizza_special.h"
-#include "repositories/special_data.h"
 
 manage::manage() {
 
@@ -328,9 +327,9 @@ user manage::get_user() {
     return this->current_user;
 }
 
+
+//Skráir nýtt tilboð.
 /*
-*Skráir nýtt tilboð.
-*/
 void manage::new_special(pizza_special* p) {
     special_data* d = new special_data();
     d->save_special(p);
@@ -338,16 +337,20 @@ void manage::new_special(pizza_special* p) {
     delete d;
 }
 
-/*
-*Sækir öll tilboð.
-*/
-user* manage::get_specials() {
-    user_data*p =new user_data();
-    this->users = p->get_users();
-    this->users_length = p->get_users_length();
+
+//Sækir öll tilboð.
+
+pizza_special* manage::get_specials() {
+    special_data* p = new special_data();
+    this->specials = p->get_specials();
+    this->specials_length = p->get_specials_length();
     delete p;
-    return this->users;
+    return this->specials;
 }
+
+int manage::get_specials_length(){
+    return this->special_length;
+}*/
 /*
 Finna tilboð.
 

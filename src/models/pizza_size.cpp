@@ -13,7 +13,8 @@
 using namespace std;
 
 pizza_size::pizza_size() {
-
+    this->size = 0;
+    this->price = 0;
 }
 
 pizza_size::pizza_size(int size, int price) {

@@ -34,7 +34,7 @@ void menu_manage::start_menu() {
         do {
             accepted = true;
             try {
-                cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t), Skra tilbod(i), syna lista af...(l), eda haetta(h): ";
+                cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t), Skra tilbod(i) eda haetta(h): ";
                 cin >> action_u;
                 if(!cin || !isalpha(action_u)) {
                     cin.clear();
@@ -138,7 +138,7 @@ void menu_manage::start_menu() {
                 } while(action_u_b != 'h');
                 break;
             }
-            case 'a': { 
+            case 'a': {
                 //biður um heiti á áleggi og verð
                 //notandi beðinn um að gera nýtt álegg eða að hætta, hendir í exception ef inputið er ekki valid, loopar ef
                 //input er annar stafur en h eða n
@@ -332,13 +332,20 @@ void menu_manage::start_menu() {
                 } while(action_u_t != 'h');
                 break;
             }
-            case 'i': {
+    /*        case 'i': {
                 //býr til nýtt tilboð. Byrjar menu_special og gerir flest í gegnum það.
                 //spyr notandann ef hann vill búa til nýtt special eða hætta.
                 char action_u_i;
                 do {
-                    menu_special * m_special =new menu_special();
-                    m_special->start_menu();
+                    menu_special* m_special;
+                    pizza_special* ps = m_special->get_special();
+                    /*
+                    pizza_special* specials = u->get_specials();
+                    int arr_len = u->get_specials()_length();
+                    cout << "Tilbod: " << endl;
+                    for(int i = 0; i < arr_len; i++) {
+                        cout << specials[i];
+                    }
                     bool accepted = true;
                     do {
                         accepted = true;
@@ -355,92 +362,9 @@ void menu_manage::start_menu() {
                     } while(!accepted);
                 }while(action_u_i != 'h');
                 break;
-            }
-            case 'l': {
-                char action_l;
-                do{
-                    do {
-                        accepted = true;
-                        try {
-                            cout << "Veldu Syna staerdir(s), Syna botn(b), Syna alegg(a), Syna matsedilspizzur(m), Syna oll medlaeti(e), Syna stadi(t), Syna oll tilbod(i), eda haetta(h): ";
-                            cin >> action_l;
-                            if(!cin || !isalpha(action_l)) {
-                                cin.clear();
-                                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                accepted = false;
-                                throw menu_exception();
-                            }
-                        } catch(menu_exception) {
-                            cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
-                        }
-                    } while(!accepted);
-                    int counter = 0;
-                    switch(action_l) {
-                        case 's':{
-                            pizza_size* ps = u->get_sizes();
-                            int arr_lent = u->get_sizes_length();
-                            cout << "Staerdir: " << endl;
-                            for(int i = 0; i < arr_lent; i++) {
-                                cout << ps[i];
-                            }
-                            //delete[] ps;
-                            break;
-                        }
-                        case 'b':{
-                            pizza_bottom* bottoms = u->get_bottoms();
-                            int arr_len = u->get_bottoms_length();
-                            cout << "Botnar: " << endl;
-                            for(int i = 0; i < arr_len; i++) {
-                                cout << bottoms[i];
-                            }
-                            //delete[] bottoms;
-                            break;
-                        }
-                        case 'a':{
-                            topping* top = u->get_toppings();
-                            int arr_len = u->get_toppings_length();
-                            cout << "Alegg: " << endl;
-                            for(int i = 0; i < arr_len; i++) {
-                                cout << top[i];
-                            }
-                            //delete[] top;
-                            break;
-                        }
-                        case 'm':{
-                            pizza* men = u->get_menu();
-                            int arr_len = u->get_menu_length();
-                            cout << "Allar pitsur:" << endl;
-                            for(int i = 0; i < arr_len; i++) {
-                                cout << men[i];
-                            }
-                            //delete[] men;
-                            break;
-                        }
-
-                        case 'e':{
-                            side_order* sides = u->get_sides();
-                            int arr_len = u->get_sides_length();
-                            cout << "Medlaeti: " << endl;
-                            for(int i = 0; i < arr_len; i++) {
-                                cout << sides[i];
-                            }
-                            //delete[] sides;
-                            break;
-                        }
-                        case 't':{
-                            pizza_place* places = u->get_places();
-                            int arr_len = u->get_places_length();
-                            cout << "Afhendingarstadir: " << endl;
-                            for(int i = 0; i < arr_len; i++) {
-                                cout << places[i];
-                            }
-                            //delete[] places;
-                            break;
-                        }
-                    }
-                }while(action_l != 'h');
-                break;
-            }
+            }*/
+        }
     } while(action_u != 'h');
-    delete u;
+    //delete u;
 }
+
