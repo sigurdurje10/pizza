@@ -19,6 +19,8 @@
 #include <limits>
 #include "models/user.h"
 #include "models/pizza_place.h"
+#include "models/pizza_special.h"
+#include "repositories/special_data.h"
 
 using namespace std;
 

@@ -11,11 +11,12 @@ menu_special::menu_special(){
 
 }
 
+//nýtir yfirskrifaðan >> operator hjá pizza_special til þess að láta notanda skrifa inn upl. í tilboð.
 void menu_special::start_menu(){
 
     manage* m =new manage();
     pizza_special* p_special = new pizza_special();
     cin >> *p_special;
     m->new_special(p_special);
-
+    delete m;
 }

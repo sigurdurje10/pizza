@@ -34,7 +34,7 @@ void menu_manage::start_menu() {
         do {
             accepted = true;
             try {
-                cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t), Skra tilbod(i) eda haetta(h): ";
+                cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t), Skra tilbod(i), syna lista af...(l), eda haetta(h): ";
                 cin >> action_u;
                 if(!cin || !isalpha(action_u)) {
                     cin.clear();
@@ -58,6 +58,7 @@ void menu_manage::start_menu() {
                         pizza_size* p_size = new pizza_size();
                         cin >> p_size[0];
                         u->new_size(p_size);
+                        //delete p_size;
                     } catch(price_exception){
                         cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                     } catch(size_exception) {
@@ -88,6 +89,7 @@ void menu_manage::start_menu() {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
+                    //delete[] p;
                 } while(action_u_s != 'h');
                 break;
             case 'b':
@@ -99,6 +101,7 @@ void menu_manage::start_menu() {
                         pizza_bottom* b = new pizza_bottom();
                         cin >> b[0];
                         u->new_bottom(b);
+                        //delete b;
                     }catch(price_exception) {
                         cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                     }
@@ -130,6 +133,7 @@ void menu_manage::start_menu() {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
+                    //delete[] bottoms;
                 } while(action_u_b != 'h');
                 break;
             case 'a':
@@ -143,6 +147,7 @@ void menu_manage::start_menu() {
                             topping* t = new topping();
                             cin >> t[0];
                             u->new_topping(t);
+                            //delete t;
                         } catch(price_exception) {
                             cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                         }
@@ -171,6 +176,7 @@ void menu_manage::start_menu() {
                                 cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                             }
                         } while(!accepted);
+                        //delete[] top;
                     } catch(price_exception) {
                         cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                     }
@@ -216,6 +222,7 @@ void menu_manage::start_menu() {
                         p->set_name(name);
                         p->set_price(price);
                         u->new_menu_item(p);
+                        //delete mp;
                         pizza* men = u->get_menu();
                         int arr_len = u->get_menu_length();
                         cout << "Allar pitsur:" << endl;
@@ -326,7 +333,7 @@ void menu_manage::start_menu() {
                 do {
                     menu_special * m_special =new menu_special();
                     m_special->start_menu();
-                    bool accepted =true;
+                    bool accepted = true;
                     do {
                         accepted = true;
                         cout << "Gerdu nytt tilbod(n) eda haetta(h): ";
@@ -342,7 +349,96 @@ void menu_manage::start_menu() {
                     } while(!accepted);
                 }while(action_u_i != 'h');
                 break;
-        }
+            case 'l':
+                char action_l;
+                do{
+                    do {
+                        accepted = true;
+                        try {
+                            cout << "Veldu Syna staerdir(s), Syna botn(b), Syna alegg(a), Syna matsedilspizzur(m), Syna oll medlaeti(e), Syna stadi(t), Syna oll tilbod(i), eda haetta(h): ";
+                            cin >> action_l;
+                            if(!cin || !isalpha(action_l)) {
+                                cin.clear();
+                                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                accepted = false;
+                                throw menu_exception();
+                            }
+                        } catch(menu_exception) {
+                            cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
+                        }
+                    } while(!accepted);
+                    int counter = 0;
+                    switch(action_l) {
+                        case 's':{
+                            pizza_size* ps = u->get_sizes();
+                            int arr_lent = u->get_sizes_length();
+                            cout << "Staerdir: " << endl;
+                            for(int i = 0; i < arr_lent; i++) {
+                                cout << ps[i];
+                            }
+                            //delete[] ps;
+                            break;
+                        }
+                        case 'b':{
+                            pizza_bottom* bottoms = u->get_bottoms();
+                            int arr_len = u->get_bottoms_length();
+                            cout << "Botnar: " << endl;
+                            for(int i = 0; i < arr_len; i++) {
+                                cout << bottoms[i];
+                            }
+                            //delete[] bottoms;
+                            break;
+                        }
+                        case 'a':{
+                            topping* top = u->get_toppings();
+                            int arr_len = u->get_toppings_length();
+                            cout << "Alegg: " << endl;
+                            for(int i = 0; i < arr_len; i++) {
+                                cout << top[i];
+                            }
+                            //delete[] top;
+                            break;
+                        }
+                        case 'm':{
+                            pizza* men = u->get_menu();
+                            int arr_len = u->get_menu_length();
+                            cout << "Allar pitsur:" << endl;
+                            for(int i = 0; i < arr_len; i++) {
+                                cout << men[i];
+                            }
+                            //delete[] men;
+                            break;
+                        }
+
+                        case 'e':{
+                            side_order* sides = u->get_sides();
+                            int arr_len = u->get_sides_length();
+                            cout << "Medlaeti: " << endl;
+                            for(int i = 0; i < arr_len; i++) {
+                                cout << sides[i];
+                            }
+                            //delete[] sides;
+                            break;
+                        }
+                        case 't':{
+                            pizza_place* places = u->get_places();
+                            int arr_len = u->get_places_length();
+                            cout << "Afhendingarstadir: " << endl;
+                            for(int i = 0; i < arr_len; i++) {
+                                cout << places[i];
+                            }
+                            //delete[] places;
+                        }
+                            break;
+                       /* case 'i':{
+
+                            break;
+                        }*/
+
+                    }
+                }while(action_l != 'h');
+                break;
+            }
     } while(action_u != 'h');
     delete u;
 }
