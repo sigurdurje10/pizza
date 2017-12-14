@@ -48,7 +48,7 @@ void menu_manage::start_menu() {
         } while(!accepted);
         switch(action_u) {
             //
-            case 's':
+            case 's': {
                 char action_u_s;
                 //biður notanda um að slá inn verð og stærð.
                 //hendir í exception ef annað hvort er ekki rétt
@@ -92,7 +92,8 @@ void menu_manage::start_menu() {
                     //delete[] p;
                 } while(action_u_s != 'h');
                 break;
-            case 'b':
+            }
+            case 'b': {
                 //biður um heiti á botn og verð
                 //hendir í exception ef verð er ekki tala stærri en 0
                 char action_u_b;
@@ -136,7 +137,8 @@ void menu_manage::start_menu() {
                     //delete[] bottoms;
                 } while(action_u_b != 'h');
                 break;
-            case 'a':
+            }
+            case 'a': { 
                 //biður um heiti á áleggi og verð
                 //notandi beðinn um að gera nýtt álegg eða að hætta, hendir í exception ef inputið er ekki valid, loopar ef
                 //input er annar stafur en h eða n
@@ -182,7 +184,8 @@ void menu_manage::start_menu() {
                     }
                 } while(action_u_a != 'h');
                 break;
-            case 'm':
+            }
+            case 'm': {
                 //biður notanda um verð og heiti á masteðilspizzu og nýtir sér síðan menu_pizza ui klasan til þess að skrá inn restina af pizzunni
                 //hendir í price exception ef skráð er verð sem er lægri en 0
                 //spurt er notanda hvort hann vilji búa til nýja pizzu eða hætta
@@ -253,7 +256,8 @@ void menu_manage::start_menu() {
                     } while(!accepted);
                 } while(action_u_m != 'h');
                 break;
-            case 'e':
+            }
+            case 'e': {
                 //sama og hin casein, biður um heiti og verð
                 //hendir í exception ef verð er ekki tala sem er 0 eða stærri
                 //hendir í exception action_u_e er ekki bókstafur, loopar ef þetta er annar bókstafur en n eða h
@@ -292,7 +296,8 @@ void menu_manage::start_menu() {
                     } while(!accepted);
                 } while(action_u_e != 'h');
                 break;
-            case 't':
+            }
+            case 't': {
                 //svipað og hin nema biður um heiti á stað og heimilisfang
                 //
                 char action_u_t;
@@ -326,7 +331,8 @@ void menu_manage::start_menu() {
                     } while(!accepted);
                 } while(action_u_t != 'h');
                 break;
-            case 'i':
+            }
+            case 'i': {
                 //býr til nýtt tilboð. Byrjar menu_special og gerir flest í gegnum það.
                 //spyr notandann ef hann vill búa til nýtt special eða hætta.
                 char action_u_i;
@@ -349,7 +355,8 @@ void menu_manage::start_menu() {
                     } while(!accepted);
                 }while(action_u_i != 'h');
                 break;
-            case 'l':
+            }
+            case 'l': {
                 char action_l;
                 do{
                     do {
@@ -428,13 +435,8 @@ void menu_manage::start_menu() {
                                 cout << places[i];
                             }
                             //delete[] places;
+                            break;
                         }
-                            break;
-                       /* case 'i':{
-
-                            break;
-                        }*/
-
                     }
                 }while(action_l != 'h');
                 break;
