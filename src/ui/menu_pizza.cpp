@@ -108,5 +108,6 @@ pizza* menu_pizza::get_pizza() {
             }
         } while(!accepted);
     } while(action_u_m_t != 'h' && top_count < 10);
+    delete u;
     return p;
 }

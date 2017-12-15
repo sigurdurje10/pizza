@@ -83,6 +83,8 @@ void menu_sales::start_menu(user current_user) {
                     } catch(sales_exception) {
                         cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                     }
+                    delete shorthand;
+                    delete o;
                 } catch(short_exception) {
                     cout << "Villa i inslaetti." << endl;
                 } catch(phone_exception) {
@@ -172,6 +174,8 @@ void menu_sales::start_menu(user current_user) {
                                 //ef hann valdi servalda þá er búið til alveg ný pizza
                                 menu_pizza* mp = new menu_pizza();
                                 p = (*mp->get_pizza());
+                                delete mp;
+                                //o->add_pizza(p);
                             }
                             p_count++;
                             p.calculate_price();
@@ -241,6 +245,7 @@ void menu_sales::start_menu(user current_user) {
                         if(!s->orders_empty()) {
                             order* orders = s->get_orders();
                             id = s->get_orders_length();
+                            delete[] orders;
                         }
                         if(place.get_address() != "") {
                             o->set_place(place);
@@ -583,6 +588,7 @@ void menu_sales::start_menu(user current_user) {
                 for(int i = 0; i < s->get_orders_length(); i++) {
                     cout << orders[i];
                 }
+                delete[] orders;
                 break;
             }
             //tekur inn færslunúmer ef það er til þá er því eytt

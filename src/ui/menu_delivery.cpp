@@ -68,6 +68,7 @@ void menu_delivery::start_menu(user current_user) {
                 for(int i=0; i<d->get_orders_length(); i++) {
                     cout << orders[i];
                 }
+                delete[] orders;
                 break;
             }
             //kallar á virkar pantanir úr skrá
@@ -76,6 +77,7 @@ void menu_delivery::start_menu(user current_user) {
                 for(int i=0; i<d->get_orders_length(); i++) {
                     cout << orders[i];
                 }
+                delete[] orders;
                 break;
             }
             //sækir allar pantanir sem eru tilbúnar úr skrá
@@ -84,6 +86,7 @@ void menu_delivery::start_menu(user current_user) {
                 for(int i=0; i<d->get_orders_ready_length(); i++) {
                     cout << orders[i];
                 }
+                delete[] orders;
                 break;
             }
             //skrifar út pöntun ef hún er til. Hendir í exception ef input er ekki tala

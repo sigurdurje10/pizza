@@ -63,6 +63,7 @@ void menu_baking::start_menu(user current_user) {
                 for(int i = 0; i<b->get_pizzas_length(); i++) {
                     cout << pizzas[i];
                 }
+                delete[] pizzas;
                 break;
             }
             //biður notanda um að setja inn id pizzu sem á að sýna

@@ -49,26 +49,31 @@ void menu::start_menu() {
             case 'u': {
                 menu_manage* manage = new menu_manage();
                 manage->start_menu();
+                delete manage;
                 break;
             }
             case 's': {
                 menu_sales* sales = new menu_sales();
                 sales->start_menu(current_user);
+                delete sales;
                 break;
             }
             case 'b': {
                 menu_baking* baking = new menu_baking();
                 baking->start_menu(current_user);
+                delete baking;
                 break;
             }
             case 'a': {
                 menu_delivery* delivery = new menu_delivery();
                 delivery->start_menu(current_user);
+                delete delivery;
                 break;
             }
             case 'o': {
                 menu_numbers* numbers = new menu_numbers();
                 numbers->start_menu();
+                delete numbers;
                 break;
             }
             case 'i': {

@@ -100,6 +100,7 @@ void menu_login::reg_menu() {
         username_value = username;
         m->new_user(u);
         cout << "Notandi nyskradur." << endl;
+        delete u;
     }
     delete m;
     delete m_place;

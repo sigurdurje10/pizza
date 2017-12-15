@@ -112,7 +112,7 @@ int order::get_price() {
         sum += p[i].get_price();
     }
     side_order* s = this->get_side();
-    for(int i = 0; i < this->pizza_count; i++) {
+    for(int i = 0; i < this->side_count; i++) {
         sum += s[i].get_price();
     }
     return sum;
@@ -245,7 +245,7 @@ ostream& operator << (ostream& out, const order& order) {
         out << "Sein." << endl;
     }
     if(order.damaged) {
-        out << "Ónýt." << endl;
+        out << "Onyt." << endl;
     }
     out << "Athugasemd: " << order.comment << endl;
     if(order.place.get_name() != "") {

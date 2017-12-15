@@ -49,5 +49,6 @@ pizza_place menu_place::get_place() {
         }
     }
     delete u;
+    delete[] places;
     return place;
 }

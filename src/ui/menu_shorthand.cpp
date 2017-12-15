@@ -156,5 +156,7 @@ order* menu_shorthand::get_shorthand() {
     }
     o->set_id(id);
     cout << (*o);
+    delete u;
+    delete sales_class;
     return o;
 }
