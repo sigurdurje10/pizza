@@ -21,6 +21,7 @@ public:
     order_data();
     //vistar lista af pöntunum sem virkar pantanir
     void save_orders(order* list);
+    void save_orders(order* list, int count);
     //vistar eina pöntun sem virka pöntun
     void save_order(order* p);
     //vistar pöntun sem óvirka pöntun

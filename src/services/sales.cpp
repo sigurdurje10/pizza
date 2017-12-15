@@ -69,7 +69,7 @@ void sales::delete_order(order o) {
             order_count++;
         }
     }
-    d->save_orders(orders_n);
+    d->save_orders(orders_n, order_count);
 }
 
 /*

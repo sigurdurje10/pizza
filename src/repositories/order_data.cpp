@@ -31,6 +31,17 @@ void order_data::save_orders(order* list) {
     fout.close();
 }
 
+void order_data::save_orders(order* list, int count) {
+    ofstream fout;
+    order orders[count];
+    for(int i = 0; i < count; i++) {
+        orders[i] = list[i];
+    }
+    fout.open("orders.dat", ios::out|ios::binary);
+    fout.write((char*)(&orders), sizeof(order)*(count));
+    fout.close();
+}
+
 //sama gert og save_orders. Ef það er eitthvað fyrir í skránni þá er fyrst náð í orders úr skránni með get_orders
 //svo er þessu order bætt við og því er öllu síðan bombað í skránna.
 //ef það er ekkert í skránni þá er p skrifað beint í skránna án þess að sækja eitthvað sem var fyrir
