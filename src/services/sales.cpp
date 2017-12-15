@@ -66,6 +66,7 @@ void sales::delete_order(order o) {
         if(orders[i].get_id() == o.get_id()) {
         } else {
             orders_n[order_count] = orders[i];
+            orders_n[order_count].set_id(order_count);
             order_count++;
         }
     }

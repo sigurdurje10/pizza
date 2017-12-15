@@ -34,7 +34,7 @@ void menu_manage::start_menu() {
         do {
             accepted = true;
             try {
-                cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t), Skra tilbod(i) eda haetta(h): ";
+                cout << "Veldu Skra staerd(s), Skra botn(b), Skra alegg(a), Skra matsedil(m), Skra medlaeti(e), Skra stadi(t) eda haetta(h): ";
                 cin >> action_u;
                 if(!cin || !isalpha(action_u)) {
                     cin.clear();
@@ -58,6 +58,7 @@ void menu_manage::start_menu() {
                         pizza_size* p_size = new pizza_size();
                         cin >> p_size[0];
                         u->new_size(p_size);
+                        //delete p_size;
                     } catch(price_exception){
                         cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                     } catch(size_exception) {
@@ -88,7 +89,7 @@ void menu_manage::start_menu() {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
-                    delete[] p;
+                    //delete[] p;
                 } while(action_u_s != 'h');
                 break;
             }
@@ -101,6 +102,7 @@ void menu_manage::start_menu() {
                         pizza_bottom* b = new pizza_bottom();
                         cin >> b[0];
                         u->new_bottom(b);
+                        //delete b;
                     }catch(price_exception) {
                         cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                     }
@@ -132,7 +134,7 @@ void menu_manage::start_menu() {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
-                    delete[] bottoms;
+                    //delete[] bottoms;
                 } while(action_u_b != 'h');
                 break;
             }
@@ -147,6 +149,7 @@ void menu_manage::start_menu() {
                             topping* t = new topping();
                             cin >> t[0];
                             u->new_topping(t);
+                            //delete t;
                         } catch(price_exception) {
                             cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                         }
@@ -175,7 +178,7 @@ void menu_manage::start_menu() {
                                 cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                             }
                         } while(!accepted);
-                        delete[] top;
+                        //delete[] top;
                     } catch(price_exception) {
                         cout << "Verd verdur ad vera tala sem er staerri en 0." << endl;
                     }
@@ -222,14 +225,14 @@ void menu_manage::start_menu() {
                         p->set_name(name);
                         p->set_price(price);
                         u->new_menu_item(p);
-                        delete mp;
+                        //delete mp;
                         pizza* men = u->get_menu();
                         int arr_len = u->get_menu_length();
                         cout << "Allar pitsur:" << endl;
                         for(int i = 0; i < arr_len; i++) {
                             cout << men[i];
                         }
-                        delete[] men;
+                        //delete[] men;
                     } catch(price_exception) {
                         cout << "Verd tharf ad vera tala og staerri en 0." << endl;
                     }
@@ -265,6 +268,7 @@ void menu_manage::start_menu() {
                         side_order* s = new side_order();
                         cin >> s[0];
                         u->new_side(s);
+                        //delete s;
                     } catch(price_exception) {
                         cout << "Verd verdur ad vera tala staerri en 0." << endl;
                     }
@@ -292,7 +296,7 @@ void menu_manage::start_menu() {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
-                    delete[] sides;
+                    //delete[] sides;
                 } while(action_u_e != 'h');
                 break;
             }
@@ -304,6 +308,7 @@ void menu_manage::start_menu() {
                     pizza_place* p = new pizza_place();
                     cin >> p[0];
                     u->new_place(p);
+                    //delete p;
                     pizza_place* places = u->get_places();
                     int arr_len = u->get_places_length();
                     cout << "Afhendingarstadir: " << endl;
@@ -328,7 +333,7 @@ void menu_manage::start_menu() {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
-                    delete[] places;
+                    //delete[] places;
                 } while(action_u_t != 'h');
                 break;
             }

@@ -6,24 +6,24 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "menu_sales.h"
-#include "menu_pizza.h"
-#include "pizza.h"
+#include "ui/menu_sales.h"
+#include "ui/menu_pizza.h"
+#include "models/pizza.h"
 #include <iostream>
 #include <string>
-#include "manage.h"
-#include "sales.h"
-#include "order.h"
-#include "side_order.h"
-#include "menu_shorthand.h"
+#include "services/manage.h"
+#include "services/sales.h"
+#include "models/order.h"
+#include "models/side_order.h"
+#include "ui/menu_shorthand.h"
 #include <limits>
-#include "user.h"
-#include "pizza_place.h"
+#include "models/user.h"
+#include "models/pizza_place.h"
 
 using namespace std;
 
 menu_sales::menu_sales() {
-    
+
 }
 
 void menu_sales::start_menu(user current_user) {
@@ -72,7 +72,7 @@ void menu_sales::start_menu(user current_user) {
                     } catch(sales_exception) {
                         cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                     }
-                } catch(short_exception) {
+                } catch(short_exception){
                     cout << "Villa i inslaetti." << endl;
                 } catch(phone_exception) {
                     cout << "Simanumer ma ekki innihalda bokstafi." << endl;
@@ -209,7 +209,7 @@ void menu_sales::start_menu(user current_user) {
                                 }
                             } while(!accepted);
                         } while(action_s_p_s != 'h' && side_count < 10);
-                        
+
                         int id = 0;
                         if(!s->orders_empty()) {
                             order* orders = s->get_orders();
@@ -505,7 +505,7 @@ void menu_sales::start_menu(user current_user) {
                                 accepted = false;
                                 throw sales_exception();
                             }
-                        } catch(sales_exception) {
+                        } catch(sales_exception) {
                             cout << "Valdmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
