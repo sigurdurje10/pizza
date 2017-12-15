@@ -6,26 +6,24 @@
 //  Copyright © 2017 Sigurður Jökull. All rights reserved.
 //
 
-#include "ui/menu_sales.h"
-#include "ui/menu_pizza.h"
-#include "models/pizza.h"
+#include "menu_sales.h"
+#include "menu_pizza.h"
+#include "pizza.h"
 #include <iostream>
 #include <string>
-#include "services/manage.h"
-#include "services/sales.h"
-#include "models/order.h"
-#include "models/side_order.h"
-#include "ui/menu_shorthand.h"
+#include "manage.h"
+#include "sales.h"
+#include "order.h"
+#include "side_order.h"
+#include "menu_shorthand.h"
 #include <limits>
-#include "models/user.h"
-#include "models/pizza_place.h"
-#include "models/pizza_special.h"
-#include "repositories/special_data.h"
+#include "user.h"
+#include "pizza_place.h"
 
 using namespace std;
 
 menu_sales::menu_sales() {
-
+    
 }
 
 void menu_sales::start_menu(user current_user) {
@@ -36,11 +34,9 @@ void menu_sales::start_menu(user current_user) {
         place = current_user.get_place();
     }
     char action_s;
-    //beðið notanda um að velja eitt af valmöguleikunum, loopar þangað til h er valið
     do {
         bool accepted = true;
         do {
-            accepted = true;
             try {
                 cout << "Skra pontun(p), Skra pontun flytileid(f), Sja heildarverd(v), Skra pontun senta/sotta(s), Merkja pontun greidda(g), Merkja afhendingarstad(a), Skra athugasemd(t), Sja allar pantanir(n), Eyda pontun(e) eda haetta(h): ";
                 cin >> action_s;
@@ -56,11 +52,6 @@ void menu_sales::start_menu(user current_user) {
         } while(!accepted);
         switch(action_s) {
             case 'f': {
-                //callar á menu_shorthand ui klasan,
-                //notar hann til að skrá inn pizzu með syntax
-                //síðan er notandi beðinn um að staðfesta að hann vilji að pizzan sé skráð
-                //hent í exception ef inntakið er ekki bókstafur
-                //líka meðhöndlað exception villur úr menu_shorthand
                 try {
                     order* o;
                     menu_shorthand* shorthand = new menu_shorthand();
@@ -70,22 +61,18 @@ void menu_sales::start_menu(user current_user) {
                     }
                     char stadfest;
                     try {
-                        do{
-                            cout << "Stadfesta pontun(j/n): ";
-                            cin >> stadfest;
-                            if(!isalpha(stadfest)) {
-                                throw sales_exception();
-                            }
-                            if(stadfest == 'j') {
-                                s->new_order(o);
-                            }
-                        }while(stadfest != 'j' && stadfest != 'n');
+                        cout << "Stadfesta pontun(j/n): ";
+                        cin >> stadfest;
+                        if(!isalpha(stadfest)) {
+                            throw sales_exception();
+                        }
+                        if(stadfest == 'j') {
+                            s->new_order(o);
+                        }
                     } catch(sales_exception) {
                         cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                     }
-                    delete shorthand;
-                    delete o;
-                } catch(short_exception) {
+                } catch(short_exception) {
                     cout << "Villa i inslaetti." << endl;
                 } catch(phone_exception) {
                     cout << "Simanumer ma ekki innihalda bokstafi." << endl;
@@ -96,7 +83,6 @@ void menu_sales::start_menu(user current_user) {
                 }
                 break;
             }
-            //pöntun skráð
             case 'p': {
                 char action_s_p;
                 cin.ignore();
@@ -107,9 +93,6 @@ void menu_sales::start_menu(user current_user) {
                         string phone = "";
                         string address = "";
                         do {
-                            //beðið um símanúmer og heimilisfang viðskiptavinar
-                            //bæði skráð í tilvik af order, o
-                            accepted = true;
                             cout << "Simanumer: ";
                             getline(cin, phone);
                             if(!cin) {
@@ -137,7 +120,6 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pitsa af matsedli(m) eda servalin(s):  ";
                             bool accepted = true;
                             do {
-                                accepted = true;
                                 try {
                                     cin >> action_s_p_p;
                                     if(!cin || !isalpha(action_s_p_p)) {
@@ -154,7 +136,6 @@ void menu_sales::start_menu(user current_user) {
                             string bottom = "";
                             int size = -1;
                             pizza p;
-                            //ef notandi valdi m þá er hann beðinn um að slá inn pizzu af matseðli
                             if(action_s_p_p == 'm') {
                                 string pizza_name = "";
                                 cin.ignore();
@@ -171,18 +152,15 @@ void menu_sales::start_menu(user current_user) {
                                     pizza_name = p.get_name();
                                 }
                             } else {
-                                //ef hann valdi servalda þá er búið til alveg ný pizza
                                 menu_pizza* mp = new menu_pizza();
                                 p = (*mp->get_pizza());
-                                delete mp;
-                                //o->add_pizza(p);
+                                o->add_pizza(p);
                             }
                             p_count++;
                             p.calculate_price();
                             cout << "Verd pitsu: " << p.get_price() << endl;
                             accepted = true;
                             do {
-                                accepted = true;
                                 try {
                                     cout << "Nyja pitsu(n) eda haetta(h):  ";
                                     cin >> action_s_p_p;
@@ -192,16 +170,11 @@ void menu_sales::start_menu(user current_user) {
                                         accepted = false;
                                         throw sales_exception();
                                     }
-                                    else if(action_s_p_p != 'n' && action_s_p_p != 'h')
-                                    {
-                                        accepted = false;
-                                    }
                                 } catch(sales_exception) {
                                     cout << "Valmynds innslattur tharf ad vera bokstafur." << endl;
                                 }
                             } while(!accepted);
-                        } while(action_s_p_p != 'h' && p_count < 10); //þangað til notandi vill hætta að slá inn pizzur eða þegar
-                        //10 pizzur eru komnar
+                        } while(action_s_p_p != 'h' && p_count < 10);
                         int side_count = 0;
                         char action_s_p_s;
                         do {
@@ -222,7 +195,6 @@ void menu_sales::start_menu(user current_user) {
                             side_count++;
                             bool accepted = true;
                             do {
-                                accepted = true;
                                 try {
                                     cout << "Nytt medlaeti(n) eda haetta(h):  ";
                                     cin >> action_s_p_s;
@@ -232,20 +204,16 @@ void menu_sales::start_menu(user current_user) {
                                         accepted = false;
                                         throw sales_exception();
                                     }
-                                    else if(action_s_p_s != 'n' && action_s_p_s != 'h'){
-                                        accepted = false;
-                                    }
                                 } catch(sales_exception) {
                                     cout << "Valmynds innslattur tharf ad vera bokstafur." << endl;
                                 }
                             } while(!accepted);
-                        } while(action_s_p_s != 'h' && side_count < 10);//þangað til notandi hættir eða 10 meðlæti eru komin
-
+                        } while(action_s_p_s != 'h' && side_count < 10);
+                        
                         int id = 0;
                         if(!s->orders_empty()) {
                             order* orders = s->get_orders();
                             id = s->get_orders_length();
-                            delete[] orders;
                         }
                         if(place.get_address() != "") {
                             o->set_place(place);
@@ -253,8 +221,8 @@ void menu_sales::start_menu(user current_user) {
                         o->set_id(id);
                         s->new_order(o);
                         cout << "Pontunarnumer: " << id << endl;
+                        accepted = true;
                         do {
-                            accepted = true;
                             try {
                                 cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                                 cin >> action_s_p;
@@ -264,14 +232,10 @@ void menu_sales::start_menu(user current_user) {
                                     accepted = false;
                                     throw sales_exception();
                                 }
-                                else if(action_s_p != 'n' && action_s_p != 'h'){
-                                    accepted = false;
-                                }
                             } catch(sales_exception) {
                                 cout << "Valmynds innslattur tharf ad vera bokstafur." << endl;
                             }
                         } while(!accepted);
-                        delete o;
                     } catch(sales_exception) {
                         cout << "Villa i inslaetti." << endl;
                     } catch(phone_exception) {
@@ -284,15 +248,12 @@ void menu_sales::start_menu(user current_user) {
                 } while(action_s_p != 'h');
                 break;
             }
-            //notandi slær inn pöntunarnr. og fær upp heildarverð
-            //exception ef pöntunarnúmer er ekki tala. skilaboð ef pöntunarnr. finnst ekki.
             case 'v': {
                 char action_s_v;
                 do {
                     bool accepted = true;
                     int order_number = -1;
                     do {
-                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -314,7 +275,6 @@ void menu_sales::start_menu(user current_user) {
                     }
                     accepted = true;
                     do {
-                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_v;
@@ -324,26 +284,19 @@ void menu_sales::start_menu(user current_user) {
                                 accepted = false;
                                 throw sales_exception();
                             }
-                            else if(action_s_v != 'h' && action_s_v != 'n'){
-                                accepted = false;
-                            }
                         } catch(sales_exception) {
-                            cout << "Valdmynds innslattur tharf ad vera bokstafur." << endl;//exception ef input er ekki bókstafur eða
-                            //það er invalid
+                            cout << "Valdmynds innslattur tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
                 } while(action_s_v != 'h');
                 break;
             }
-            //skráir pöntun sem sótta eða senta.
-            //gerir check á að insláttur sé valid og check á að pöntunarnr sé til.
             case 's': {
                 char action_s_s;
                 do {
                     bool accepted = true;
                     int order_number = -1;
                     do {
-                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -357,12 +310,12 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pontunarnumer tharf ad vera tala." << endl;
                         }
                     } while(!accepted || order_number == -1);
-                    order o = s->find_order(order_number);
-                    if(o.get_id() != -1) {
+                    order* o = new order[1];
+                    o[0] = s->find_order(order_number);
+                    if(o[0].get_id() != -1) {
                         bool accepted = true;
                         char del;
                         do {
-                            accepted = true;
                             try {
                                 cout << "Skra senta(e) eda sotta(o): ";
                                 cin >> del;
@@ -371,25 +324,21 @@ void menu_sales::start_menu(user current_user) {
                                     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                                     accepted = false;
                                 }
-                                else if(del != 'e' && del != 'o'){
-                                    accepted = false;
-                                }
                             } catch(sales_exception) {
                                 cout << "Valdmynds innslattur tharf ad vera bokstafur." << endl;
                             }
                         } while(!accepted);
                         if(del == 'e') {
-                            o.del();
+                            o[0].del();
                         } else if(del == 'o') {
-                            o.pickup();
+                            o[0].pickup();
                         }
-                        s->save_order(o);
+                        s->save_order(o[0]);
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
                     }
                     accepted = true;
                     do {
-                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_s;
@@ -399,9 +348,6 @@ void menu_sales::start_menu(user current_user) {
                                 accepted = false;
                                 throw sales_exception();
                             }
-                            else if(action_s_s != 'n' && action_s_s != 'h'){
-                                accepted = false;
-                            }
                         } catch(sales_exception) {
                             cout << "Valdmynds innslattur tharf ad vera bokstafur." << endl;
                         }
@@ -409,14 +355,12 @@ void menu_sales::start_menu(user current_user) {
                 } while(action_s_s != 'h');
                 break;
             }
-            //merkir pöntun greidda, með check til að skoða að input sé rétt
             case 'g': {
                 char action_s_g;
                 do {
                     bool accepted = true;
                     int order_number = -1;
                     do {
-                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -429,25 +373,23 @@ void menu_sales::start_menu(user current_user) {
                             cout << "Pontunarnumer tharf ad vera tala." << endl;
                         }
                     } while(!accepted || order_number == -1);
-                    order o = s->find_order(order_number);
-                    if(o.get_id() != -1) {
-                        o.is_paid();
-                        s->save_order(o);
+                    order* o = new order[1];
+                    o[0] = s->find_order(order_number);
+                    if(o[0].get_id() != -1) {
+                        o[0].is_paid();
+                        s->save_order(o[0]);
                         cout << "Pontun hefur verid merkt greidd. " << endl;
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
                     }
+                    accepted = true;
                     do {
-                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_g;
                             if(!cin || !isalpha(action_s_g)) {
                                 cin.clear();
                                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                                accepted = false;
-                            }
-                            else if(action_s_g != 'h' && action_s_g != 'n'){
                                 accepted = false;
                             }
                         } catch(sales_exception) {
@@ -457,7 +399,6 @@ void menu_sales::start_menu(user current_user) {
                 } while(action_s_g != 'h');
                 break;
             }
-            //merkir afhendingarstað, með input checks
             case 'a': {
                 char action_s_a;
                 do {
@@ -465,7 +406,6 @@ void menu_sales::start_menu(user current_user) {
                     int order_number = -1;
                     string place = "";
                     do {
-                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -500,8 +440,8 @@ void menu_sales::start_menu(user current_user) {
                     } else {
                         cout << "Faersla fannst ekki. " << endl;
                     }
+                    accepted = true;
                     do {
-                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_a;
@@ -511,9 +451,6 @@ void menu_sales::start_menu(user current_user) {
                                 accepted = false;
                                 throw sales_exception();
                             }
-                            else if(action_s_a != 'n' && action_s_a != 'h'){
-                                accepted = false;
-                            }
                         } catch(sales_exception) {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
                         }
@@ -522,14 +459,11 @@ void menu_sales::start_menu(user current_user) {
                 break;
             }
             case 't': {
-                //skráir athugasemd við pöntun
-                //með checks til að athuga að input sé rétt
                 char action_s_t;
                 do {
                     int order_number = -1;
                     string comment = "";
                     do {
-                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -562,7 +496,6 @@ void menu_sales::start_menu(user current_user) {
                     }
                     bool accepted = true;
                     do {
-                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_t;
@@ -572,33 +505,25 @@ void menu_sales::start_menu(user current_user) {
                                 accepted = false;
                                 throw sales_exception();
                             }
-                            else if(action_s_t != 'n' && action_s_t != 'h'){
-                                accepted = false;
-                            }
-                        } catch(sales_exception) {
+                        } catch(sales_exception) {
                             cout << "Valdmynds inntak tharf ad vera bokstafur." << endl;
                         }
                     } while(!accepted);
                 } while(action_s_t != 'h');
                 break;
             }
-            //nær í allar virkar pantanir og prentar þær út með for loopu.
             case 'n': {
                 order* orders = s->get_orders();
                 for(int i = 0; i < s->get_orders_length(); i++) {
                     cout << orders[i];
                 }
-                delete[] orders;
                 break;
             }
-            //tekur inn færslunúmer ef það er til þá er því eytt
-            //með check til að athuga að input sé valid
             case 'e': {
                 char action_s_t;
                 do {
                     int order_number = -1;
                     do {
-                        accepted = true;
                         try {
                             cout << "Pontunarnumer: ";
                             cin >> order_number;
@@ -621,7 +546,6 @@ void menu_sales::start_menu(user current_user) {
                     }
                     bool accepted = true;
                     do {
-                        accepted = true;
                         try {
                             cout << "Veldu Nyja pontun(n) eda haetta(h): ";
                             cin >> action_s_t;
@@ -630,9 +554,6 @@ void menu_sales::start_menu(user current_user) {
                                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                                 accepted = false;
                                 throw new sales_exception();
-                            }
-                            else if(action_s_t != 'n' && action_s_t != 'h'){
-                                accepted = false;
                             }
                         } catch(sales_exception) {
                             cout << "Valmynds inntak tharf ad vera bokstafur." << endl;
@@ -643,6 +564,4 @@ void menu_sales::start_menu(user current_user) {
             }
         }
     } while(action_s != 'h');
-    delete u;
-    delete s;
 }
