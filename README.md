@@ -1,6 +1,7 @@
 # Verklegt Námskeið 1 - 2017 - hópur 30
 
 Verkefnið snérist um að búa til þriggjalaga kerfi handa pizzustað
+
 Meðlimir hóps 30:
   - Aron Ingi Tómasson
   - Sigurður Jökull Eydal Tómasson
@@ -79,8 +80,8 @@ Hér getur notandi:
 # Umhverfi
 
 Við notuðum eftirfarandi forrit:
-* [CodeBlocks](http://www.codeblocks.org/downloads) - HTML to Markdown converter
-* [QT](https://www.qt.io/) - duh
+* [CodeBlocks](http://www.codeblocks.org/downloads)
+* [QT](https://www.qt.io/) 
 
 Og svo notuðum við GitHub.
 Það nægir að sækja aðal forritið á github og keyra það í codeblocks.
